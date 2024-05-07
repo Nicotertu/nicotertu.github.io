@@ -1,5 +1,49 @@
 ---
-title: "About"
+title: "Nicolas Tertusio"
+toc: false
+about:
+    template: trestles
+    image: ./images/owl.jpg
+    image-shape: round
+    image-width: 15em
+    image-title: Nicolas Tertusio
+    links:
+      - icon: github
+        text: GitHub
+        href: https://github.com/Nicotertu
+      - icon: envelope
+        text: Gmail
+        href: mailto:"nicotertu@gmail.com"
+      - icon: linkedin
+        text: LinkedIn
+        href: https://www.linkedin.com/in/nicotertu/
+      - icon: file-person
+        text: Resume
+        href: https://drive.google.com/file/d/12J3FZfsy0TACJuAu0YxLcFJPfC9afZtJ/view?usp=drive_link
 ---
 
-About this site
+### Profile.
+
+:::{#hero-heading}
+
+Electromechanical engineer with experience in construction projects and electrical systems. I possess technical skills for developing blueprints, efficient lighting designs, and programming in various languages for tasks such as web applications and data analysis. Experienced in project management and supervision, including budgeting, quotations, contract payments, and material procurement. I have a keen interest in adhering to standards and utilizing corrective and predictive measurement equipment such as thermography, vibration analysis, and power quality assessments. Currently seeking to bridge my engineering interests with the flourishing field of artificial intelligence.
+
+Technical skills: C#, Python, Flutter, Microsoft Office, AutoCAD
+
+Soft skills: responsible, organized, efficient, proactive
+
+Languages: Spanish (native), English (Advanced, C2), Italian (intermedium B1)
+
+## Education
+
+Technological University of Panama | Panama, Panama City
+Bachelor's Degree in Electromechanical Engineering | 2017 - 2023
+
+University of Buenos Aires | Buenos Aires, Argentina
+Master's Degree in Artificial Intelligence | Oct 2023 - Present
+
+## Work Experience
+
+Empresas Melo, S.A. | Project Inspector | Jan 2020 - present
+
+:::

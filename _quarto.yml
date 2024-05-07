@@ -3,18 +3,21 @@ project:
   output-dir: docs
 
 website:
-  title: "nicotertu.github.io"
+  title: "Journey into Data Science"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About Me
+      - href: https://drive.google.com/file/d/12J3FZfsy0TACJuAu0YxLcFJPfC9afZtJ/view?usp=sharing
+        text: Resume
 
 format:
   html:
-    theme: cosmo
+    theme: 
+      dark: lux #darkly or slate
+      light: lux
     css: styles.css
     toc: true
-
-
 

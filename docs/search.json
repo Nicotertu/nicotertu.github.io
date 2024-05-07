@@ -9,8 +9,22 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Nicolas Tertusio",
     "section": "",
-    "text": "About this site"
+    "text": "Electromechanical engineer with experience in construction projects and electrical systems. I possess technical skills for developing blueprints, efficient lighting designs, and programming in various languages for tasks such as web applications and data analysis. Experienced in project management and supervision, including budgeting, quotations, contract payments, and material procurement. I have a keen interest in adhering to standards and utilizing corrective and predictive measurement equipment such as thermography, vibration analysis, and power quality assessments. Currently seeking to bridge my engineering interests with the flourishing field of artificial intelligence.\nTechnical skills: C#, Python, Flutter, Microsoft Office, AutoCAD\nSoft skills: responsible, organized, efficient, proactive\nLanguages: Spanish (native), English (Advanced, C2), Italian (intermedium B1)\n\n\nTechnological University of Panama | Panama, Panama City Bachelor’s Degree in Electromechanical Engineering | 2017 - 2023\nUniversity of Buenos Aires | Buenos Aires, Argentina Master’s Degree in Artificial Intelligence | Oct 2023 - Present\n\n\n\nEmpresas Melo, S.A. | Project Inspector | Jan 2020 - present"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Nicolas Tertusio",
+    "section": "",
+    "text": "Technological University of Panama | Panama, Panama City Bachelor’s Degree in Electromechanical Engineering | 2017 - 2023\nUniversity of Buenos Aires | Buenos Aires, Argentina Master’s Degree in Artificial Intelligence | Oct 2023 - Present"
+  },
+  {
+    "objectID": "about.html#work-experience",
+    "href": "about.html#work-experience",
+    "title": "Nicolas Tertusio",
+    "section": "",
+    "text": "Empresas Melo, S.A. | Project Inspector | Jan 2020 - present"
   }
 ]
