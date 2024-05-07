@@ -1,7 +1,20 @@
 ---
-title: "nicotertu.github.io"
+title: "Data Science and Artificial Intelligence"
+
+listing:
+  contents: articles
+  type: grid
+  image-placeholder: ./images/owl.jpg
+  grid-columns: 3
+  grid-item-align: center
+  max-description-length: 100
+  date-format: medium
+  categories: cloud
+  fields: [image, date, title, description, categories]
+  sort-ui: [title, date]
+  filter-ui: [title, categories]
 ---
 
-This is a Quarto website.
+This website functions as a portfolio where I document my journey in learning about data science and artificial intelligence, a platform to share my progress, insights, and experiences as I delve into various topics in the field.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Here, you will find a collection of articles, tutorials, and projects covering a range of subjects, including data visualization, data analysis, computer vision, deep learning, machine learning, and more. Through these posts, I aim to offer valuable information and share the lessons I've learned along the way.

@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Nicolas Tertusio">
+<meta name="dcterms.date" content="2024-05-07">
+<meta name="description" content="The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax">
 
-<title>Journey into Data Science - Data Science and Artificial Intelligence</title>
+<title>Learning how to use Markdown in Jupyter Notebooks</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +26,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,35 +71,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
-      
-      searchColumns: ["listing-title","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -130,17 +102,21 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="Learning how to use Markdown in Jupyter Notebooks">
+<meta property="og:description" content="The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax">
+<meta property="og:image" content="./Article1.png">
+<meta property="og:site_name" content="Learning how to use Markdown in Jupyter Notebooks">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Journey into Data Science</span>
     </a>
   </div>
@@ -151,11 +127,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
@@ -173,23 +149,72 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#text-formatting" id="toc-text-formatting" class="nav-link active" data-scroll-target="#text-formatting">Text formatting</a>
+  <ul class="collapse">
+  <li><a href="#headers" id="toc-headers" class="nav-link" data-scroll-target="#headers">Headers</a></li>
+  <li><a href="#emphasis" id="toc-emphasis" class="nav-link" data-scroll-target="#emphasis">Emphasis</a></li>
+  </ul></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists">Lists</a>
+  <ul class="collapse">
+  <li><a href="#unordered-lists" id="toc-unordered-lists" class="nav-link" data-scroll-target="#unordered-lists">Unordered lists</a></li>
+  <li><a href="#ordered-lists" id="toc-ordered-lists" class="nav-link" data-scroll-target="#ordered-lists">Ordered lists</a></li>
+  </ul></li>
+  <li><a href="#hyperlink" id="toc-hyperlink" class="nav-link" data-scroll-target="#hyperlink">Hyperlink</a>
+  <ul class="collapse">
+  <li><a href="#external-links" id="toc-external-links" class="nav-link" data-scroll-target="#external-links">External links</a></li>
+  <li><a href="#internal-links" id="toc-internal-links" class="nav-link" data-scroll-target="#internal-links">Internal links</a></li>
+  <li><a href="#images" id="toc-images" class="nav-link" data-scroll-target="#images">Images</a></li>
+  </ul></li>
+  <li><a href="#mathematical-notation" id="toc-mathematical-notation" class="nav-link" data-scroll-target="#mathematical-notation">Mathematical notation</a></li>
+  <li><a href="#colored-boxes" id="toc-colored-boxes" class="nav-link" data-scroll-target="#colored-boxes">Colored boxes</a></li>
+  </ul>
+<div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://www.markdownguide.org/getting-started/"><i class="bi bi-link-45deg"></i>Getting Started - Markdown</a></li><li><a href="https://www.markdownguide.org/cheat-sheet/"><i class="bi bi-link-45deg"></i>Markdown Cheat Sheet</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Nicotertu/python-notebooks/blob/main/languages/Learning%20how%20to%20use%20markdown%20in%20jupyter%20notebooks.ipynb"><i class="bi bi-file-code"></i>GitHub Link</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-cloud"><div class="category" data-category="Artificial Intelligence"><span class="quarto-category-count category-cloud-2">Artificial Intelligence</span></div><div class="category" data-category="Data Science"><span class="quarto-category-count category-cloud-2">Data Science</span></div><div class="category" data-category="Machine Learning"><span class="quarto-category-count category-cloud-2">Machine Learning</span></div><div class="category" data-category="Python"><span class="quarto-category-count category-cloud-2">Python</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Science and Artificial Intelligence</h1>
-</div>
+<h1 class="title">Markdown</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">Data Science</div>
+    <div class="quarto-category">Machine Learning</div>
+    <div class="quarto-category">Artificial Intelligence</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nicolas Tertusio </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 7, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -199,197 +224,267 @@ window.Quarto = {
 </header>
 
 
-<p>This website functions as a portfolio where I document my journey in learning about data science and artificial intelligence, a platform to share my progress, insights, and experiences as I delve into various topics in the field.</p>
-<p>Here, you will find a collection of articles, tutorials, and projects covering a range of subjects, including data visualization, data analysis, computer vision, deep learning, machine learning, and more. Through these posts, I aim to offer valuable information and share the lessons I’ve learned along the way.</p>
+<style>
+p, ul, li, ol, h1, h2, h3, h4, title {
+    text-align: justify;
+}
+</style>
+<p>Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can create formatted text using simple symbols and keywords.</p>
+<p>Jupyter Notebooks are interactive computational environments where you can combine code execution, text, mathematics, plots, and rich media. They are widely used in data science, machine learning, and academic research for their flexibility and ease of use.</p>
+<p>In this article I will be covering the most common formatting techniques used in Markdown.</p>
+<section id="text-formatting" class="level2">
+<h2 class="anchored" data-anchor-id="text-formatting">Text formatting</h2>
+<section id="headers" class="level3">
+<h3 class="anchored" data-anchor-id="headers">Headers</h3>
+<p>One can apply header formatting using (<code>#</code>).<br>
+<code>#</code> is a title<br>
+<code>##</code> is a header<br>
+<code>###</code> is a sub header<br>
+<code>####</code> is a sub sub header</p>
+</section>
+<section id="emphasis" class="level3">
+<h3 class="anchored" data-anchor-id="emphasis">Emphasis</h3>
+<p>Encapsulating a text in asterisks (<code>*</code>) one can apply italics format:</p>
+<p><code>*This text will be in italics.*</code></p>
+<p><em>This text is in italics.</em></p>
+<p>Encapsulating a text in double asterisks (<code>**</code>) one can apply bold format:</p>
+<p><code>**This text will be bold.**</code></p>
+<p><strong>This text is bold.</strong></p>
+<p>Encapsulating a text in double tilde (<code>~</code>) one can apply strikethrough:</p>
+<p><code>~~This text will be strikethrough.~~</code></p>
+<p><del>This text is strikethrough.</del></p>
+<p>Encapsulating a text in backticks (`) one can apply coding format:</p>
+<p><code>This text is displayed as code.</code></p>
+<p>`This text will be displayed as code.`</p>
+<p>Encapsulating a text in tripple backticks (```) a line before it begins and a line after it finishes, one can apply multiline coding format:</p>
+<pre><code>This is the first line of a multiline code.
+This is the second line of a multiline code.
+This is the third line of a multiline code.</code></pre>
+<p>Using a single greater than (<code>&gt;</code>) at the beggining, one can show a quote:</p>
+<p><code>&gt; This text will be a quote</code></p>
+<blockquote class="blockquote">
+<p>This text is a quote</p>
+</blockquote>
+</section>
+</section>
+<section id="lists" class="level2">
+<h2 class="anchored" data-anchor-id="lists">Lists</h2>
+<section id="unordered-lists" class="level3">
+<h3 class="anchored" data-anchor-id="unordered-lists">Unordered lists</h3>
+<p>To start an unordered list, use a single hyphen and space (<code>-</code>) followed by text. To start an ordered list, use a number, dot and space (<code>1.</code>) followed by text. To add sublists, follow the same syntax but add two spaces before.</p>
+<p>This input:</p>
+<pre><code>- First bullet point
+    - First sub bullet point
+        - First sub sub bullet point
+        - Second sub sub bullet point
+        - Third sub sub bullet point
+    - Second sub bullet point
+    - Third sub bullet point
+- Second bullet point
+- Third bullet point</code></pre>
+<p>Has this output:</p>
+<ul>
+<li>First bullet point
+<ul>
+<li>First sub bullet point
+<ul>
+<li>First sub sub bullet point</li>
+<li>Second sub sub bullet point</li>
+<li>Third sub sub bullet point</li>
+</ul></li>
+<li>Second sub bullet point</li>
+<li>Third sub bullet point</li>
+</ul></li>
+<li>Second bullet point</li>
+<li>Third bullet point</li>
+</ul>
+</section>
+<section id="ordered-lists" class="level3">
+<h3 class="anchored" data-anchor-id="ordered-lists">Ordered lists</h3>
+<p>To start an ordered list, use a number, dot and space (<code>1.</code>) followed by text. To add sublists, follow the same syntax but add two spaces before.</p>
+<p>This input:</p>
+<pre><code>1. First points
+    1. First sub point
+        1. First sub sub point
+        2. Second sub sub point
+        3. Third sub sub point
+    2. Second sub point
+    3. Third sub point
+2. Second point
+3. Third point</code></pre>
+<p>Has this output:</p>
+<ol type="1">
+<li>First points
+<ol type="1">
+<li>First sub point
+<ol type="1">
+<li>First sub sub point</li>
+<li>Second sub sub point</li>
+<li>Third sub sub point</li>
+</ol></li>
+<li>Second sub point</li>
+<li>Third sub point</li>
+</ol></li>
+<li>Second point</li>
+<li>Third point</li>
+</ol>
+</section>
+</section>
+<section id="hyperlink" class="level2">
+<h2 class="anchored" data-anchor-id="hyperlink">Hyperlink</h2>
+<section id="external-links" class="level3">
+<h3 class="anchored" data-anchor-id="external-links">External links</h3>
+<p>Linking to outside websites is done by encapsulating in square brackets (<code>[]</code>) the text that can be clicked to use the link, followed by parenthesis (<code>()</code>) with the website’s URL. One can add a space after the URL and a text encapsulated by quotation marks (<code>""</code>) to show a name when the link is hovered over.</p>
+<p><code>[Text to be clicked](http://google.com "Hovered information")</code><br>
+<a href="http://google.com" title="Hovered information">Text to be clicked</a></p>
+<p><code>[External Link to Google](http://google.com)</code><br>
+<a href="http://google.com">External Link to Google</a></p>
+</section>
+<section id="internal-links" class="level3">
+<h3 class="anchored" data-anchor-id="internal-links">Internal links</h3>
+<p>Internal links work the same way as external links, but inside the document. Instead of an URL, a number sign (<code>#</code>) is used followed by the name of the heading in the document to link. In this instance, spaces are replaced by hyphens.</p>
+<p><code>[This will take you to the text formatting header.](#text-formatting)</code><br>
+<a href="#text-formatting">This will take you to the text formatting header.</a></p>
+</section>
+<section id="images" class="level3">
+<h3 class="anchored" data-anchor-id="images">Images</h3>
+<p>Images work the same way as external links, but to display them, an exclamation mark (<code>!</code>) is used before the square brackets (<code>[]</code>).</p>
+<p><code>![Look at this image!](https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg "Fancy owl")</code><br>
+<img src="https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg" title="Fancy owl" class="img-fluid" alt="Look at this image!"></p>
+</section>
+</section>
+<section id="mathematical-notation" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-notation">Mathematical notation</h2>
+<p>Mathematical notation is rendered by using LaTeX.</p>
+<ol type="1">
+<li>It can be used inline by wrapping a mathematical expression with single dollar signs (<code>$</code>), or multiline by wrapping the expressions with double dollar signs (<code>$$</code>).</li>
+<li>Single line expressions will be left aligned if they are not inside a text block.</li>
+<li>Multiline expressions will automatically be aligned at the center
+<ul>
+<li>One can aligned them at a specific point by wrapping the expression inside the double dollar signs with <code>\begin{split}</code> and <code>\end{split}</code>. Place an ampersand (<code>&amp;</code>) where the alignment should be.</li>
+</ul></li>
+<li>All special mathematical symbols (like roots, powers, underlines, bars, greek letters, summation, integral, fractions, and so on) start by using a backslash and the corresponding name.</li>
+</ol>
+<table class="table-striped table-hover table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Inline Expression</th>
+<th style="text-align: center;">LaTeX</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>$\sqrt{x}$</code></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt{x}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>$x^2$</code></td>
+<td style="text-align: center;"><span class="math inline">\(x^2\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>$\underline{x}$</code></td>
+<td style="text-align: center;"><span class="math inline">\(\underline{x}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>$\bar{x}$</code></td>
+<td style="text-align: center;"><span class="math inline">\(\bar{x}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>$\sigma$</code></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>$\frac{x+1}{x-1}$</code></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{x+1}{x-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>$\sum_{0}^{\infty}{\frac{1}{n}}$</code></td>
+<td style="text-align: center;"><span class="math inline">\(\sum_{0}^{\infty}{\frac{1}{n}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>$\int_{0}^{\infty}{\frac{1}{n}}$</code></td>
+<td style="text-align: center;"><span class="math inline">\(\int_{0}^{\infty}{\frac{1}{n}}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Multiline aligned at the equal sign input:</p>
+<pre><code>$$
+\begin{split}
+\dot{x} &amp; = \sigma (3y - 5t)\\
+\dot{x} &amp; = 3 \sigma y - 5 \sigma t \\
+\dot{x} &amp; = (1+1+1) \sigma y - (10-5) \sigma t \\
+\end{split}
+$$</code></pre>
+<p>Output: <span class="math display">\[
+\begin{split}
+\dot{x} &amp; = \sigma (3y - 5t)\\
+\dot{x} &amp; = 3 \sigma y - 5 \sigma t \\
+\dot{x} &amp; = (1+1+1) \sigma y - (10-5) \sigma t \\
+\end{split}
+\]</span></p>
+<p>Multiline aligned at the center input:</p>
+<pre><code>$$
+\begin{gather}
+\dot{x} = \sigma (3y - 5t)\\
+\dot{x} = 3 \sigma y - 5 \sigma t\\
+\dot{x} = (1+1+1) \sigma y - (10-5) \sigma t\\
+\end{gather}
+$$</code></pre>
+<p><span class="math display">\[
+\begin{gather}
+\dot{x} = \sigma (3y - 5t)\\
+\dot{x} = 3 \sigma y - 5 \sigma t\\
+\dot{x} = (1+1+1) \sigma y - (10-5) \sigma t\\
+\end{gather}
+\]</span></p>
+</section>
+<section id="colored-boxes" class="level2">
+<h2 class="anchored" data-anchor-id="colored-boxes">Colored boxes</h2>
+<p>Colored boxes can be used to highlight important information.</p>
+<ul>
+<li>Blue boxes provide useful information (alert-info).</li>
+<li>Yellow boxes provide warnings (alert-warning).</li>
+<li>Green boxes indicate successful outcomes (alert-success).</li>
+<li>Red boxes provide critical information regarding errors or potential mistakes (alert-danger).</li>
+</ul>
+<p>They are a special case and one has to use HTML notation for them. Start by using <code>&lt;div&gt;&lt;/div&gt;</code> with class <code>"alert alert-info"</code> (or the corresponding name) and finish by putting the text in between them.</p>
+<p>Input:</p>
+<pre><code>&lt;div class="alert alert-info"&gt;
+&lt;b&gt;Alert info:&lt;/b&gt; Blue boxes (alert-info) provide useful information.
+&lt;/div&gt;</code></pre>
+Output:
+<div class="alert alert-info">
+<p><b>Alert info:</b> Blue boxes (alert-info) provide useful information.</p>
+</div>
+<p>Input:</p>
+<pre><code>&lt;div class="alert alert-warning"&gt;
+&lt;b&gt;Alert warning:&lt;/b&gt; Yellow boxes (alert-warning) provide warnings.
+&lt;/div&gt;</code></pre>
+Output:
+<div class="alert alert-warning">
+<p><b>Alert warning:</b> Yellow boxes (alert-warning) provide warnings.</p>
+</div>
+<p>Input:</p>
+<pre><code>&lt;div class="alert alert-success"&gt;
+&lt;b&gt;Alert success:&lt;/b&gt; Green boxes (alert-success) indicate successful outcomes.
+&lt;/div&gt;</code></pre>
+Output:
+<div class="alert alert-success">
+<p><b>Alert success:</b> Green boxes (alert-success) indicate successful outcomes.</p>
+</div>
+<p>Input:</p>
+<pre><code>&lt;div class="alert alert-danger"&gt;
+&lt;b&gt;Alert danger:&lt;/b&gt; Red boxes (alert-danger) provide critical information regarding errors or potential mistakes.
+&lt;/div&gt;</code></pre>
+Output:
+<div class="alert alert-danger">
+<p><b>Alert danger:</b> Red boxes (alert-danger) provide critical information regarding errors or potential mistakes.</p>
+</div>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1715088929223" data-listing-reading-time-sort="7" data-listing-word-count-sort="1202">
-<a href="./articles/Article1 copy 2.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-center">
-<p class="card-img-top"><img src="./images/owl.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Learning how to use Markdown in Jupyter Notebooks
-</h5>
-<div class="card-text listing-description">
-Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can…
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1715088929223" data-listing-reading-time-sort="7" data-listing-word-count-sort="1202">
-<a href="./articles/Article1 copy 3.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-center">
-<p class="card-img-top"><img src="./images/owl.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Learning how to use Markdown in Jupyter Notebooks
-</h5>
-<div class="card-text listing-description">
-Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can…
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1715088929223" data-listing-reading-time-sort="7" data-listing-word-count-sort="1202">
-<a href="./articles/Article1 copy 4.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-center">
-<p class="card-img-top"><img src="./images/owl.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Learning how to use Markdown in Jupyter Notebooks
-</h5>
-<div class="card-text listing-description">
-Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can…
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1715088929223" data-listing-reading-time-sort="7" data-listing-word-count-sort="1202">
-<a href="./articles/Article1 copy 5.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-center">
-<p class="card-img-top"><img src="./images/owl.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Learning how to use Markdown in Jupyter Notebooks
-</h5>
-<div class="card-text listing-description">
-Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can…
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-listing-file-modified-sort="1715088929223" data-listing-reading-time-sort="7" data-listing-word-count-sort="1202">
-<a href="./articles/Article1 copy 6.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-center">
-<p class="card-img-top"><img src="./images/owl.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Learning how to use Markdown in Jupyter Notebooks
-</h5>
-<div class="card-text listing-description">
-Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can…
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="5" data-listing-file-modified-sort="1715088929223" data-listing-reading-time-sort="7" data-listing-word-count-sort="1202">
-<a href="./articles/Article1 copy 7.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-center">
-<p class="card-img-top"><img src="./images/owl.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Learning how to use Markdown in Jupyter Notebooks
-</h5>
-<div class="card-text listing-description">
-Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can…
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="6" data-listing-file-modified-sort="1715088929223" data-listing-reading-time-sort="7" data-listing-word-count-sort="1202">
-<a href="./articles/Article1 copy 8.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-center">
-<p class="card-img-top"><img src="./images/owl.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Learning how to use Markdown in Jupyter Notebooks
-</h5>
-<div class="card-text listing-description">
-Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can…
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="7" data-listing-file-modified-sort="1715088929223" data-listing-reading-time-sort="7" data-listing-word-count-sort="1202">
-<a href="./articles/Article1 copy.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-center">
-<p class="card-img-top"><img src="./images/owl.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Learning how to use Markdown in Jupyter Notebooks
-</h5>
-<div class="card-text listing-description">
-Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can…
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="8" data-categories="Python,Data Science,Machine Learning,Artificial Intelligence" data-listing-date-sort="1715058000000" data-listing-file-modified-sort="1715101145567" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1202">
-<a href="./articles/Article1.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-center">
-<p class="card-img-top">
-<img src="./articles/Article1.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Markdown
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Data Science'); return false;">
-Data Science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Artificial Intelligence'); return false;">
-Artificial Intelligence
-</div>
-</div>
-<div class="card-text listing-description">
-The most common formatting techniques used in Markdown, a lightweight markup language with…
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-May 7, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -629,6 +724,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

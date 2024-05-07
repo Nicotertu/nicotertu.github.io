@@ -1,0 +1,7 @@
+Article QMD 
+ - change GitHub link to match ipynb file.
+ - change pagetitle to match the page title.
+ - change other-links to match the content
+ - change title, date, image, categories, description and website descriptors.
+ - add justify css snippet
+ 

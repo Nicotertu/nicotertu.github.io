@@ -21,3 +21,15 @@ format:
     css: styles.css
     toc: true
 
+babelquarto:
+  languagecodes:
+    - name: en
+      text: "English"
+    - name: es
+      text: "Spanish"
+  mainlanguage: 'en'
+  languages: ['en', 'es']
+
+title-en: "Journey into Data Science"
+title-es: "Ciencia de Datos"
+lang: en
