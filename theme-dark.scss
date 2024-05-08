@@ -1,0 +1,121 @@
+/*-- scss:uses --*/
+
+/*-- scss:functions --*/
+
+/*-- scss:defaults --*/
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display|Indie+Flower');
+
+$font-family-sans-serif: "Red Hat Display";
+$font-family-monospace: "Red Hat Display";
+$code-block-border-left: #313131;
+$code-block-bg: #d1d1d1;
+$code-bg: #d1d1d1;
+$code-color: #d9ff00;
+$toc-color: #ffffff;
+$headings-color: #1a2e5c;
+$table-border-color: #000000;
+
+$body-color: #000000;
+$body-color-rgb: 236, 238, 239;
+$body-bg: #999999; //#1a1a1a
+$body-bg-rgb: 26, 26, 26;
+$emphasis-color: #fff;
+$emphasis-color-rgb: 255, 255, 255;
+$secondary-color: rgba(236, 238, 239, 0.75);
+$secondary-color-rgb: 236, 238, 239;
+$secondary-bg: #343a40;
+$secondary-bg-rgb: 52, 58, 64;
+$tertiary-color: rgba(236, 238, 239, 0.5);
+$tertiary-color-rgb: 236, 238, 239;
+$tertiary-bg: #272a2d;
+$tertiary-bg-rgb: 39, 42, 45;
+$primary-text-emphasis: #767676;
+$secondary-text-emphasis: white;
+$success-text-emphasis: #5be78b;
+$info-text-emphasis: #91deff;
+$warning-text-emphasis: #f9c172;
+$danger-text-emphasis: #fd8884;
+$light-text-emphasis: #f8f9fa;
+$dark-text-emphasis: #eceeef;
+$primary-bg-subtle: #050505;
+$secondary-bg-subtle: #333333;
+$success-bg-subtle: #49835d;
+$info-bg-subtle: #496f7f;
+$warning-bg-subtle: #816b4c;
+$danger-bg-subtle: #854947;
+$light-bg-subtle: #343a40;
+$dark-bg-subtle: #1a1d20;
+$primary-border-subtle: #101010;
+$secondary-border-subtle: #999999;
+$success-border-subtle: #034f1d;
+$info-border-subtle: #004765;
+$warning-border-subtle: #714910;
+$danger-border-subtle: #59110f;
+$light-border-subtle: #55595c;
+$dark-border-subtle: #343a40;
+$heading-color: inherit;
+$link-color: #767676;
+$link-hover-color: #919191;
+$link-color-rgb: 118, 118, 118;
+$link-hover-color-rgb: 145, 145, 145;
+$code-color: #f18bba;
+$highlight-color: #eceeef;
+$highlight-bg: #60451f;
+$border-color: #55595c;
+$border-color-translucent: rgba(255, 255, 255, 0.15);
+$form-valid-color: #93d9ab;
+$form-valid-border-color: #93d9ab;
+$form-invalid-color: #e89895;
+$form-invalid-border-color: #e89895;
+
+/* -- scss:mixins --*/
+
+/*-- scss:rules --*/
+
+:root {
+    --bs-code-color: #001d8b;
+
+    .card {
+        --bs-card-bg: #bbbbbb;
+        --bs-card-border-color: #353535;
+        --bs-card-border-radius: 3px;
+    }
+
+    .quarto-grid-item .listing-categories .listing-category {
+        color: #003769;
+        border: solid 1px #003769;
+        border-radius: 3px;
+        box-shadow: 1px 1px 2px;
+    }
+
+    .quarto-title .quarto-categories .quarto-category {
+        opacity: .8;
+        box-shadow: 1px 1px 3px;
+    }
+
+    .code-tools-button {
+        color: #003b6f;
+    }
+
+    .code-fold .summary {
+        color: #003b6f;
+    }
+
+    div.sourceCode {
+        border: 1px solid #000000;
+        border-radius: .4rem;
+    }
+
+    p, ul, li, ol, h1, h2, h3, h4, title {
+        text-align: justify;
+    }
+
+    title, h1, h2, h3, h4 {
+        text-shadow: 1px 0px 2px #000000;
+    }
+
+    #quarto-back-to-top {
+        background-color: #494949;
+        color: #d9d9d9;
+    }
+  }

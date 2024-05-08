@@ -10,11 +10,11 @@ listing:
   max-description-length: 100
   date-format: medium
   categories: unnumbered
-  fields: [image, date, title, description, categories]
+  fields: [image, date, title, description] #categories
   sort-ui: [title, date]
   filter-ui: [title, categories]
 ---
 
-This website functions as a portfolio where I document my journey in learning about data science and artificial intelligence, a platform to share my progress, insights, and experiences as I delve into various topics in the field.
+This website functions as a portfolio where I document my journey through learning about data science and artificial intelligence, a platform to share my progress, insights, and experiences as I delve into various topics in the field.
 
-Here, you will find a collection of articles, tutorials, and projects covering a range of subjects, including data visualization, data analysis, computer vision, deep learning, machine learning, and more. Through these posts, I aim to offer valuable information and share the lessons I've learned along the way.
+Here, you will find a collection of articles and projects covering a range of subjects, including data visualization, data analysis, computer vision, deep learning, machine learning, and more. Through these posts, I aim to offer valuable information and share the lessons I've learned along the way.

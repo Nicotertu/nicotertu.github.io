@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -38,6 +38,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -231,7 +233,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()","id":1,"options":{"results":"markup","message":"true","autorun":"","fig-height":5,"context":"interactive","output":"true","dpi":72,"classes":"","label":"fig-polar","comment":"","out-height":"","fig-width":7,"warning":"true","fig-cap":"A line plot on a polar axis","read-only":"false","out-width":"700px"}}];
+globalThis.qpyodideCellDetails = [{"id":1,"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()","options":{"message":"true","comment":"","out-width":"700px","warning":"true","output":"true","results":"markup","autorun":"","read-only":"false","fig-cap":"A line plot on a polar axis","classes":"","dpi":72,"out-height":"","context":"interactive","fig-height":5,"label":"fig-polar","fig-width":7}}];
 
 
 </script>
@@ -546,10 +548,10 @@ window.Quarto = {
 <div class="quarto-title">
 <h1 class="title">Markdown</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Python2</div>
-    <div class="quarto-category">Data Science2</div>
-    <div class="quarto-category">Machine Learning2</div>
-    <div class="quarto-category">Artificial Intelligence2</div>
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">Data Science</div>
+    <div class="quarto-category">Machine Learning</div>
+    <div class="quarto-category">Artificial Intelligence</div>
   </div>
   </div>
 
@@ -584,11 +586,6 @@ window.Quarto = {
 </header>
 
 
-<style>
-p, ul, li, ol, h1, h2, h3, h4, title {
-    text-align: justify;
-}
-</style>
 <p>For a demonstration of a line plot on a polar axis, see <strong>?@fig-polar</strong>.</p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>

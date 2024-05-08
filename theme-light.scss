@@ -1,0 +1,66 @@
+/*-- scss:uses --*/
+
+/*-- scss:functions --*/
+
+/*-- scss:defaults --*/
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display|Indie+Flower');
+
+$font-family-sans-serif: "Red Hat Display";
+$font-family-monospace: "Red Hat Display";
+$body-color: #383838;
+$code-block-bg: #43545f;
+$code-bg: #43545f;
+
+
+
+/* -- scss:mixins --*/
+
+/*-- scss:rules --*/
+
+:root {
+    --bs-code-color: #ffffff;
+    
+    .card {
+        --bs-card-bg: #e9e9e9;
+        --bs-card-border-color: #7b7b7b;
+        --bs-card-border-radius: 3px;
+    }
+
+    .quarto-grid-item .listing-categories .listing-category {
+        color: #8b8b8b;
+        border: solid 1px #8b8b8b;
+        border-radius: 3px;
+        box-shadow: 1px 1px 2px;
+    }
+    
+    .quarto-title .quarto-categories .quarto-category {
+        opacity: .8;
+        box-shadow: 1px 1px 3px;
+    }
+
+    .code-tools-button {
+        color: #6c757d;
+    }
+
+    .code-fold .summary {
+        color: #5f5f5f;
+    }
+
+    div.sourceCode {
+        border: 2px solid #000000;
+        border-radius: .4rem;
+    }
+
+    p, ul, li, ol, h1, h2, h3, h4, title {
+        text-align: justify;
+    }
+
+    title, h1, h2, h3, h4 {
+        text-shadow: 1px 0px 2px #000000;
+    }
+
+    #quarto-back-to-top {
+        background-color: #fff;
+        color: #000000;
+    }
+  }

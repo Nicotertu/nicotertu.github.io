@@ -3,7 +3,7 @@ title: "Markdown"
 subtitle: ""
 date: "2024-05-07"
 image: ./Article2.png
-categories: [Python2, Data Science2, Machine Learning2, Artificial Intelligence2]
+categories: [Python, Data Science, Machine Learning, Artificial Intelligence]
 description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
 author: "Nicolas Tertusio"
 website:
@@ -35,20 +35,11 @@ format:
         pagetitle: Learning how to use Markdown in Jupyter Notebooks
 ---
 
-```{=html}
-<style>
-p, ul, li, ol, h1, h2, h3, h4, title {
-    text-align: justify;
-}
-</style>
-```
-
 For a demonstration of a line plot on a polar axis, see @fig-polar.
 
 ```{pyodide-python}
 #| label: fig-polar
 #| fig-cap: "A line plot on a polar axis"
-
 import numpy as np
 import matplotlib.pyplot as plt
 

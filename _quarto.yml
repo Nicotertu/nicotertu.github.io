@@ -16,9 +16,9 @@ website:
 
 format:
   html:
-    theme: 
-      dark: lux #darkly or slate
-      light: [lux, theme.scss]
+    theme:
+      dark: [lux, theme-light.scss]
+      light: [lux, theme-dark.scss]
     css: styles.css
     toc: true
     code-link: true
@@ -27,10 +27,10 @@ format:
       toggle: true
     code-block-bg: true
     code-line-numbers: true
-    highlight-style: 
-      light: github
-      dark: arrow-dark
+    highlight-style: github
     code-block-border-left: true
+    grid: 
+      body-width: 900px
 
 babelquarto:
   languagecodes:

@@ -3,7 +3,7 @@ title: "Markdown"
 subtitle: ""
 date: "2024-05-07"
 image: ./Article4.png
-categories: [Python4, Data Science4, Machine Learning4, Artificial Intelligence4]
+categories: [Python, Data Science, Machine Learning, Artificial Intelligence]
 description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
 author: "Nicolas Tertusio"
 website:

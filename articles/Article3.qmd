@@ -3,7 +3,7 @@ title: "Markdown"
 subtitle: ""
 date: "2024-05-07"
 image: ./Article3.png
-categories: [Python3, Data Science3, Machine Learning3, Artificial Intelligence3]
+categories: [Python, Data Science, Machine Learning, Artificial Intelligence]
 description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
 author: "Nicolas Tertusio"
 website:
@@ -34,12 +34,21 @@ format:
         pagetitle: Learning how to use Markdown in Jupyter Notebooks
 ---
 
-```{=html}
-<style>
-p, ul, li, ol, h1, h2, h3, h4, title {
-    text-align: justify;
-}
-</style>
+```{python}
+#| label: fig-polar
+#| fig-cap: "A line plot on a polar axis"
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(
+  subplot_kw = {'projection': 'polar'} 
+)
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
 ```
 
 Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can create formatted text using simple symbols and keywords.  
