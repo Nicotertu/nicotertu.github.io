@@ -12,7 +12,8 @@ website:
   description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
   image: ./Article1.png
   site-name: Nicolas Tertusio - Portfolio
-
+filters:
+  - pyodide
 format:
     html:
         toc: true
@@ -44,7 +45,7 @@ p, ul, li, ol, h1, h2, h3, h4, title {
 
 For a demonstration of a line plot on a polar axis, see @fig-polar.
 
-```{python}
+```{pyodide-python}
 #| label: fig-polar
 #| fig-cap: "A line plot on a polar axis"
 

@@ -9,7 +9,7 @@ listing:
   grid-item-align: center
   max-description-length: 100
   date-format: medium
-  categories: cloud
+  categories: unnumbered
   fields: [image, date, title, description, categories]
   sort-ui: [title, date]
   filter-ui: [title, categories]

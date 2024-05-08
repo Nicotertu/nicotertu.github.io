@@ -4,8 +4,9 @@ project:
 
 website:
   title: "Journey into Data Science"
+  back-to-top-navigation: true
   navbar:
-    left:
+    right:
       - href: index.qmd
         text: Home
       - href: about.qmd

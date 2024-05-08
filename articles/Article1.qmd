@@ -12,7 +12,8 @@ website:
   description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
   image: ./Article1.png
   site-name: Nicolas Tertusio - Portfolio
-
+filters:
+  - pyodide
 format:
     html:
         toc: true
