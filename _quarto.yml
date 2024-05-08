@@ -17,9 +17,19 @@ format:
   html:
     theme: 
       dark: lux #darkly or slate
-      light: lux
+      light: [lux, theme.scss]
     css: styles.css
     toc: true
+    code-link: true
+    code-tools:
+      source: false
+      toggle: true
+    code-block-bg: true
+    code-line-numbers: true
+    highlight-style: 
+      light: github
+      dark: arrow-dark
+    code-block-border-left: true
 
 babelquarto:
   languagecodes:

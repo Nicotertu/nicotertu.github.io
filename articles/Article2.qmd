@@ -1,5 +1,18 @@
 ---
-title: "Learning how to use Markdown in Jupyter Notebooks"
+title: "Markdown"
+subtitle: ""
+date: "2024-05-07"
+image: ./Article2.png
+categories: [Python2, Data Science2, Machine Learning2, Artificial Intelligence2]
+description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
+author: "Nicolas Tertusio"
+website:
+  open-graph: true
+  title: "Learning how to use Markdown in Jupyter Notebooks"
+  description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
+  image: ./Article1.png
+  site-name: Nicolas Tertusio - Portfolio
+
 format:
     html:
         toc: true
@@ -18,7 +31,6 @@ format:
             - text: GitHub Link
               href: https://github.com/Nicotertu/python-notebooks/blob/main/languages/Learning%20how%20to%20use%20markdown%20in%20jupyter%20notebooks.ipynb
               icon: file-code
-        keywords: Python, Data Science, Machine Learning, Artificial Intelligence
         pagetitle: Learning how to use Markdown in Jupyter Notebooks
 ---
 
@@ -28,6 +40,26 @@ p, ul, li, ol, h1, h2, h3, h4, title {
     text-align: justify;
 }
 </style>
+```
+
+For a demonstration of a line plot on a polar axis, see @fig-polar.
+
+```{python}
+#| label: fig-polar
+#| fig-cap: "A line plot on a polar axis"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(
+  subplot_kw = {'projection': 'polar'} 
+)
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
 ```
 
 Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can create formatted text using simple symbols and keywords.  

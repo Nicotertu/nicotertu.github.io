@@ -1,5 +1,18 @@
 ---
-title: "Learning how to use Markdown in Jupyter Notebooks"
+title: "Markdown"
+subtitle: ""
+date: "2024-05-07"
+image: ./Article5.png
+categories: [Python, Data Science, Machine Learning, Artificial Intelligence]
+description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
+author: "Nicolas Tertusio"
+website:
+  open-graph: true
+  title: "Learning how to use Markdown in Jupyter Notebooks"
+  description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
+  image: ./Article1.png
+  site-name: Nicolas Tertusio - Portfolio
+
 format:
     html:
         toc: true
@@ -18,7 +31,6 @@ format:
             - text: GitHub Link
               href: https://github.com/Nicotertu/python-notebooks/blob/main/languages/Learning%20how%20to%20use%20markdown%20in%20jupyter%20notebooks.ipynb
               icon: file-code
-        keywords: Python, Data Science, Machine Learning, Artificial Intelligence
         pagetitle: Learning how to use Markdown in Jupyter Notebooks
 ---
 

@@ -2,15 +2,12 @@
   {
     "listing": "/index.html",
     "items": [
-      "/articles/Article1 copy 2.html",
-      "/articles/Article1 copy 3.html",
-      "/articles/Article1 copy 4.html",
-      "/articles/Article1 copy 5.html",
-      "/articles/Article1 copy 6.html",
-      "/articles/Article1 copy 7.html",
-      "/articles/Article1 copy 8.html",
-      "/articles/Article1 copy.html",
-      "/articles/Article1.html"
+      "/articles/Article1.html",
+      "/articles/Article2.html",
+      "/articles/Article3.html",
+      "/articles/Article4.html",
+      "/articles/Article5.html",
+      "/articles/Article6.html"
     ]
   }
 ]
