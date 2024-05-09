@@ -21,6 +21,7 @@ format:
       light: [lux, theme-dark.scss]
     css: styles.css
     toc: true
+    toc-title: "Jump To"
     code-link: true
     code-tools:
       source: false
@@ -38,6 +39,7 @@ format:
 cap-location: margin
 fig-cap-location: margin
 tbl-cap-location: margin
+tbl-column: screen-inset-left
 
 babelquarto:
   languagecodes:

@@ -111,6 +111,22 @@ $form-invalid-border-color: #e89895;
         text-align: justify;
     }
 
+    .sidebar nav[role=doc-toc]>h2 {
+        font-weight: 900;
+    }
+
+    .sidebar .quarto-other-links h2 {
+        font-weight: 900;
+    }
+
+    .sidebar .quarto-code-links h2 {
+        font-weight: 900;
+    }
+
+    #quarto-sidebar>* {
+        padding-right: 0em;
+    }
+
     #quarto-back-to-top {
         background-color: #494949;
         color: #d9d9d9;

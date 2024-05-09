@@ -1,5 +1,5 @@
 ---
-title: "Markdown"
+title: "Learning to use Markdown"
 subtitle: ""
 date: "2024-05-07"
 image: ./Article1.png
@@ -74,7 +74,6 @@ random_array = np.array([np.random.normal(50, std_dev, 10000) for std_dev in std
 # Creating a Pandas DataFrame from the NumPy array
 df = pd.DataFrame(random_array, columns=list(string.ascii_uppercase[:20]))
 df
-
 ```
 
 Jupyter Notebooks are interactive computational environments where you can combine code execution, text, mathematics, plots, and rich media. They are widely used in data science, machine learning, and academic research for their flexibility and ease of use.  
