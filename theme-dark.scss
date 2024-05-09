@@ -77,8 +77,9 @@ $form-invalid-border-color: #e89895;
 
     .card {
         --bs-card-bg: #bbbbbb;
-        --bs-card-border-color: #353535;
-        --bs-card-border-radius: 3px;
+        border: var(--bs-card-border-width) solid #6b6b6b;
+        border-radius: 5px;
+        box-shadow: 5px 5px 6px 0px #4d4d4db3;
     }
 
     .quarto-grid-item .listing-categories .listing-category {
@@ -110,12 +111,12 @@ $form-invalid-border-color: #e89895;
         text-align: justify;
     }
 
-    title, h1, h2, h3, h4 {
-        text-shadow: 1px 0px 2px #000000;
-    }
-
     #quarto-back-to-top {
         background-color: #494949;
         color: #d9d9d9;
+    }
+
+    .column-margin figcaption {
+        text-align: center;
     }
   }

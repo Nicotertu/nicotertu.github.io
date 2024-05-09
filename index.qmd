@@ -7,7 +7,7 @@ listing:
   image-placeholder: ./images/owl.jpg
   grid-columns: 3
   grid-item-align: center
-  max-description-length: 100
+  max-description-length: 200
   date-format: medium
   categories: unnumbered
   fields: [image, date, title, description] #categories

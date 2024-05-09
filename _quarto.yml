@@ -30,7 +30,14 @@ format:
     highlight-style: github
     code-block-border-left: true
     grid: 
-      body-width: 900px
+      sidebar-width: 250px
+      body-width: 1400px
+      margin-width: 600px
+      gutter-width: 3.5em
+
+cap-location: margin
+fig-cap-location: margin
+tbl-cap-location: margin
 
 babelquarto:
   languagecodes:
