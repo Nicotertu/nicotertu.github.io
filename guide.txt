@@ -5,3 +5,15 @@ Article QMD
  - change title, date, image, categories, description and website descriptors.
  - add justify css snippet
  
+
+
+
+ 
+To add executable code, add this to the quarto file parameters
+filters:
+  - pyodide
+
+And this in the code
+```{pyodide-python}
+# python code
+```
