@@ -3,11 +3,10 @@ project:
   output-dir: docs
 
 website:
-  site-url: https://nicotertu.github.io/
   title: "Journey into Data Science"
   back-to-top-navigation: true
   navbar:
-    left:
+    right:
       - href: index.qmd
         text: Home
       - href: about.qmd
@@ -35,19 +34,20 @@ format:
       body-width: 1400px
       margin-width: 600px
       gutter-width: 3.5em
+
 cap-location: margin
 fig-cap-location: margin
 tbl-cap-location: margin
 
 babelquarto:
   languagecodes:
-  - name: es
-    text: "Version in es"
-  - name: en
-    text: "Version in en"
+    - name: en
+      text: "English"
+    - name: es
+      text: "Spanish"
   mainlanguage: 'en'
-  languages: ['es']
-title-es: title in es
-description-es: description in es
-author-es: author in es
+  languages: ['en', 'es']
+
+title-en: "Journey into Data Science"
+title-es: "Ciencia de Datos"
 lang: en

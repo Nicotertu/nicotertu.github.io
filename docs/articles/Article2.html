@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -233,7 +233,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()","id":1,"options":{"message":"true","results":"markup","output":"true","comment":"","warning":"true","out-width":"700px","fig-cap":"A line plot on a polar axis","read-only":"false","out-height":"","context":"interactive","autorun":"","fig-width":7,"classes":"","label":"fig-polar","dpi":72,"fig-height":5}}];
+globalThis.qpyodideCellDetails = [{"options":{"message":"true","warning":"true","dpi":72,"context":"interactive","fig-cap":"A line plot on a polar axis","output":"true","comment":"","read-only":"false","label":"fig-polar","classes":"","fig-height":5,"out-height":"","out-width":"700px","autorun":"","results":"markup","fig-width":7},"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()","id":1}];
 
 
 </script>
@@ -457,6 +457,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Learning how to use Markdown in Jupyter Notebooks">
 <meta property="og:description" content="The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax">
+<meta property="og:image" content="./Article2.png">
 <meta property="og:site_name" content="Learning how to use Markdown in Jupyter Notebooks">
 </head>
 
@@ -476,7 +477,7 @@ window.Quarto = {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
@@ -1120,7 +1121,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/nicotertu\.github\.io\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

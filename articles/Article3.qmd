@@ -2,7 +2,7 @@
 title: "Markdown"
 subtitle: ""
 date: "2024-05-07"
-#image: ./Article3.png
+image: ./Article3.png
 categories: [Python, Data Science, Machine Learning, Artificial Intelligence]
 description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
 author: "Nicolas Tertusio"
