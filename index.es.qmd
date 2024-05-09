@@ -1,0 +1,21 @@
+---
+title: "Ciencia de Datos e Inteligencia Artificial"
+
+listing:
+  contents: articles
+  type: grid
+  image-placeholder: ./images/owl.jpg
+  grid-columns: 3
+  grid-item-align: center
+  max-description-length: 200
+  date-format: medium
+  categories: unnumbered
+  fields: [image, date, title, description] #categories
+  sort-ui: [title, date]
+  filter-ui: [title, categories]
+---
+
+Este sitio web funciona como un portafolio donde documento mi viaje a través del aprendizaje de ciencia de datos e inteligencia artificial, una plataforma para compartir mi progreso, ideas y experiencias mientras profundizo en varios temas en el campo.
+
+Aquí encontrarás una colección de artículos y proyectos que cubren una variedad de temas, incluidos visualización de datos, análisis de datos, visión por computadora, aprendizaje profundo, aprendizaje automático y más. A través de estas publicaciones, mi objetivo es ofrecer información valiosa y compartir las lecciones que he aprendido en el camino.
+

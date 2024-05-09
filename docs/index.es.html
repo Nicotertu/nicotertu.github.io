@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Journey into Data Science - Nicolas Tertusio</title>
+<title>Journey into Data Science - Ciencia de Datos e Inteligencia Artificial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,9 +30,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
@@ -67,12 +70,70 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-date','listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
+      
+      searchColumns: ["listing-title","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -94,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
@@ -113,73 +174,126 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-unnumbered"><div class="category" data-category="Artificial Intelligence">Artificial Intelligence</div><div class="category" data-category="Data Science">Data Science</div><div class="category" data-category="Machine Learning">Machine Learning</div><div class="category" data-category="Python">Python</div></div></div>
 <!-- main -->
-<div class="quarto-about-trestles content">
-  <div class="about-entity">
-    <img src="./images/owl.jpg" class="about-image
-  round " style="height: 15em; width: 15em;" title="Nicolas Tertusio">
+<main class="content" id="quarto-document-content">
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Nicolas Tertusio</h1>
+<h1 class="title">Ciencia de Datos e Inteligencia Artificial</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
+
+    
+  
+    
   </div>
+  
+
+
 </header>
-    <div class="about-links">
-  <a href="https://www.linkedin.com/in/nicotertu/" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="https://drive.google.com/file/d/12J3FZfsy0TACJuAu0YxLcFJPfC9afZtJ/view?usp=drive_link" class="about-link" rel="" target="">
-    <i class="bi bi-file-person"></i>
-     <span class="about-link-text">Resume</span>
-  </a>
-  <a href="https://github.com/Nicotertu" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">GitHub</span>
-  </a>
-  <a href="mailto:" nicotertu@gmail.com""="" class="about-link" rel="" target="">
-    <i class="bi bi-envelope"></i>
-     <span class="about-link-text">Gmail</span>
-  </a>
-</div>
+
+
+<p>Este sitio web funciona como un portafolio donde documento mi viaje a través del aprendizaje de ciencia de datos e inteligencia artificial, una plataforma para compartir mi progreso, ideas y experiencias mientras profundizo en varios temas en el campo.</p>
+<p>Aquí encontrarás una colección de artículos y proyectos que cubren una variedad de temas, incluidos visualización de datos, análisis de datos, visión por computadora, aprendizaje profundo, aprendizaje automático y más. A través de estas publicaciones, mi objetivo es ofrecer información valiosa y compartir las lecciones que he aprendido en el camino.</p>
+
+
+
+
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+     </select>
   </div>
-  <div class="about-contents"><main class="content" id="quarto-document-content">
-<style>
-.skills {
-  font-weight: bold;
-  font-style: italic;
-}
-.education {
-  font-weight: bold;
-  margin: 0;
-  padding: 0;
-}
-</style>
-<section id="profile." class="level3">
-<h3>Profile.</h3>
-<div id="hero-heading">
-<p>Electromechanical engineer with experience in construction projects and electrical systems. I possess technical skills for developing blueprints, efficient lighting designs, and programming in various languages for tasks such as web applications and data analysis. Experienced in project management and supervision, including budgeting, quotations, contract payments, and material procurement. I have a keen interest in adhering to standards and utilizing corrective and predictive measurement equipment such as thermography, vibration analysis, and power quality assessments. Currently seeking to bridge my engineering interests with the flourishing field of artificial intelligence.</p>
-<p><b class="skills">Technical skills</b>: C#, Python, Flutter, Microsoft Office, AutoCAD</p>
-<p><b class="skills">Soft skills</b>: responsible, organized, efficient, proactive</p>
-<p><b class="skills">Languages</b>: Spanish (native), English (Advanced, C2), Italian (intermedium B1)</p>
-<section id="education" class="level2">
-<h2 data-anchor-id="education">Education</h2>
-<p><b class="education">Technological University of Panama</b> | Panama, Panama City<br> <b class="education">Bachelor's Degree in Electromechanical Engineering</b> | 2017 - 2023</p>
-<p><b class="education">University of Buenos Aires</b> | Buenos Aires, Argentina<br> <b class="education">Master's Degree in Artificial Intelligence</b> | Oct 2023 - Present</p>
-</section>
-<section id="work-experience" class="level2">
-<h2 data-anchor-id="work-experience">Work Experience</h2>
-<p>Empresas Melo, S.A. | Project Inspector | Jan 2020 - present</p>
-</section>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
 </div>
-
-
-</section>
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main></div>
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="Python,Data Science,Machine Learning,Artificial Intelligence" data-listing-date-sort="1715058000000" data-listing-file-modified-sort="1715277118198" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1317">
+<a href="./articles/Article1.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-center">
+<p class="card-img-top"><img src="articles\Article1_files\figure-html\fig-polar-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Markdown
+</h5>
+<div class="card-text listing-description">
+The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax
 </div>
- <!-- /main -->
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+May 7, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="Python,Data Science,Machine Learning,Artificial Intelligence" data-listing-date-sort="1715058000000" data-listing-file-modified-sort="1715277376657" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1239">
+<a href="./articles/Article2.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-center">
+<p class="card-img-top"><img src="./images/owl.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Markdown
+</h5>
+<div class="card-text listing-description">
+The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+May 7, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="Python,Data Science,Machine Learning,Artificial Intelligence" data-listing-date-sort="1715058000000" data-listing-file-modified-sort="1715277143739" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1227">
+<a href="./articles/Article3.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-center">
+<p class="card-img-top"><img src="articles\Article3_files\figure-html\fig-polar-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Markdown
+</h5>
+<div class="card-text listing-description">
+The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+May 7, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -344,6 +458,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   } else {
     toggleColorMode(false);
   }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     
