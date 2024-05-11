@@ -53,3 +53,5 @@ Real-World Application: Detecting objects in security camera footage.
 Developing a Recurrent Neural Network for Time Series Prediction
 Coding Snippet: Show how to create a simple RNN or LSTM network to predict time series data with Keras.
 Real-World Application: Predicting future stock prices based on historical data.
+
+MLFLOW (search linkedin for other stuff)
