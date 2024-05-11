@@ -107,8 +107,8 @@ $form-invalid-border-color: #e89895;
         border-radius: .4rem;
     }
 
-    p, ul, li, ol, h1, h2, h3, h4, title {
-        text-align: justify;
+    .quarto-grid-item div.post-contents {
+        align-items: flex-start;
     }
 
     .sidebar nav[role=doc-toc]>h2 {
