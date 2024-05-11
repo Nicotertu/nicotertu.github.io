@@ -146,7 +146,7 @@ window.Quarto = {
 <meta property="og:site_name" content="Learning how to use Markdown in Jupyter Notebooks">
 </head>
 
-<body class="floating nav-fixed slimcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -186,8 +186,9 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Jump To</h2>
    
   <ul>
@@ -211,13 +212,9 @@ window.Quarto = {
   <li><a href="#colored-boxes" id="toc-colored-boxes" class="nav-link" data-scroll-target="#colored-boxes">Colored boxes</a></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://www.markdownguide.org/getting-started/"><i class="bi bi-link-45deg"></i>Getting Started - Markdown</a></li><li><a href="https://www.markdownguide.org/cheat-sheet/"><i class="bi bi-link-45deg"></i>Markdown Cheat Sheet</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Nicotertu/python-notebooks/blob/main/languages/Learning%20how%20to%20use%20markdown%20in%20jupyter%20notebooks.ipynb"><i class="bi bi-file-code"></i>GitHub Link</a></li></ul></div></nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -262,7 +259,7 @@ window.Quarto = {
 
 
 <p>For a demonstration of a line plot on a polar axis, see <a href="#fig-polar" class="quarto-xref">Figure&nbsp;1</a>.</p>
-<div id="cell-fig-polar" class="cell page-columns page-full" data-execution_count="1">
+<div id="cell-fig-polar" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>See code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -278,13 +275,13 @@ window.Quarto = {
 <span id="cb1-11"><a href="#cb1-11"></a>ax.grid(<span class="va">True</span>)</span>
 <span id="cb1-12"><a href="#cb1-12"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display page-columns page-full">
-<div id="fig-polar" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
-<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div class="cell-output cell-output-display">
+<div id="fig-polar" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Article1_files/figure-html/fig-polar-output-1.png" width="450" height="439" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: A line plot on a polar axis
 </figcaption>
 </figure>
@@ -292,7 +289,7 @@ Figure&nbsp;1: A line plot on a polar axis
 </div>
 </div>
 <p>Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can create formatted text using simple symbols and keywords.</p>
-<div id="b013b52a" class="cell page-columns page-full" data-execution_count="2">
+<div id="9873d23f" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>See code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -312,7 +309,7 @@ Figure&nbsp;1: A line plot on a polar axis
 <span id="cb2-15"><a href="#cb2-15"></a>df <span class="op">=</span> pd.DataFrame(random_array, columns<span class="op">=</span><span class="bu">list</span>(string.ascii_uppercase[:<span class="dv">20</span>]))</span>
 <span id="cb2-16"><a href="#cb2-16"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display column-screen-inset-left" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 <div>
 

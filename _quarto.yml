@@ -46,10 +46,10 @@ format:
       margin-width: 300px
       gutter-width: 5% #3.5em
 
-cap-location: margin
-fig-cap-location: margin
-tbl-cap-location: margin
-tbl-column: screen-inset-left
+#cap-location: margin
+#fig-cap-location: margin
+#tbl-cap-location: margin
+#tbl-column: screen-inset-left
 
 babelquarto:
   languagecodes:
