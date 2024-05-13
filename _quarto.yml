@@ -16,19 +16,21 @@ website:
   page-footer:
     background: black
     center: 
-      - text: LinkedIn
+      - icon: linkedin
+        aria-label: LinkedIn
         href: https://www.linkedin.com/in/nicotertu/
-      - text: GitHub
+      - icon: github
+        aria-label: GitHub
         href: https://github.com/Nicotertu
-      - text: Resume
+      - icon: envelope
+        aria-label: Resume
         href: https://drive.google.com/file/d/12J3FZfsy0TACJuAu0YxLcFJPfC9afZtJ/view?usp=drive_link
-
 
 format:
   html:
     theme:
-      dark: [lux, theme-light.scss]
-      light: [lux, theme-dark.scss]
+      #dark: [lux, theme-dark.scss]
+      light: [lux, theme-light.scss]
     css: styles.css
     toc: true
     toc-title: "Jump To"

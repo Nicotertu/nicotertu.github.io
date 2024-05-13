@@ -28,6 +28,12 @@ $code-bg: #43545f;
         box-shadow: 5px 5px 6px 0px #4d4d4d6e;
     }
 
+    /*navigation bar padding*/
+    footer.footer .nav-footer, #quarto-header>nav {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
     /*top padding between nav bar and content*/
     #quarto-content {
         padding-top: 1.5em;
@@ -38,7 +44,7 @@ $code-bg: #43545f;
         padding-top: 1rem;
     }
 
-    /**/
+    /*grid item categorie tags*/
     .quarto-grid-item .listing-categories .listing-category {
         color: #8b8b8b;
         border: solid 1px #8b8b8b;
@@ -46,10 +52,31 @@ $code-bg: #43545f;
         box-shadow: 1px 1px 2px;
     }
     
-    /**/
+    /*article categorie tag*/
     .quarto-title .quarto-categories .quarto-category {
-        opacity: .8;
-        box-shadow: 1px 1px 3px;
+        opacity: 1;
+        box-shadow: 0px 0px 3px;
+        border: 0px;
+    }
+
+    /*required fix to align website title with article title*/
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 0px;
+    }
+
+    /*padding between tags and description*/
+    .quarto-title .quarto-categories {
+        padding-bottom: 2em;
+    }
+
+    /*padding to align article table of content with title*/
+    #quarto-content.page-columns #quarto-margin-sidebar, #quarto-content.page-columns #quarto-sidebar {
+        padding-top: 6.5%;
+    }
+
+    /*article header (title, description, tags, author, date) paddig*/
+    #title-block-header {
+        padding-bottom: 25px;
     }
 
     /**/
