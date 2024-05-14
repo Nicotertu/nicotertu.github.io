@@ -1,7 +1,7 @@
 ---
-title: "Markdown"
+title: "Exploring Datasets"
 subtitle: ""
-date: "2024-05-07"
+date: "2024-05-14"
 image: ./Article2.png
 categories: [Python, Data Science, Machine Learning, Artificial Intelligence]
 description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
@@ -22,264 +22,232 @@ format:
         code-copy: true
         link-external-newwindow: true
         other-links: 
-            - text: Getting Started - Markdown
-              href: https://www.markdownguide.org/getting-started/
+            - text: Credit Card Dataset
+              href: https://www.kaggle.com/datasets/tanayatipre/car-price-prediction-dataset
             - text: Markdown Cheat Sheet
               href: https://www.markdownguide.org/cheat-sheet/
         code-links:
             - text: GitHub Link
-              href: https://github.com/Nicotertu/python-notebooks/blob/main/languages/Learning%20how%20to%20use%20markdown%20in%20jupyter%20notebooks.ipynb
+              href: https://github.com/Nicotertu/python-notebooks/blob/main/machine-learning/Exploring%20a%20dataset.ipynb
               icon: file-code
         pagetitle: Learning how to use Markdown in Jupyter Notebooks
 ---
 
-Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can create formatted text using simple symbols and keywords.  
-
-Jupyter Notebooks are interactive computational environments where you can combine code execution, text, mathematics, plots, and rich media. They are widely used in data science, machine learning, and academic research for their flexibility and ease of use.  
-
-In this article I will be covering the most common formatting techniques used in Markdown.
-
-## Text formatting
-### Headers
-One can apply header formatting using (`#`).  
-`#` is a title  
-`##` is a header  
-`###` is a sub header  
-`####` is a sub sub header  
-
-### Emphasis
-Encapsulating a text in asterisks (`*`) one can apply italics format: 
-
-`*This text will be in italics.*`  
-
-*This text is in italics.* 
-
-Encapsulating a text in double asterisks (`**`) one can apply bold format: 
-
-`**This text will be bold.**`  
-
-**This text is bold.** 
-
-Encapsulating a text in double tilde (`~`) one can apply strikethrough: 
-
-`~~This text will be strikethrough.~~`  
-
-~~This text is strikethrough.~~ 
-
-Encapsulating a text in backticks (\`) one can apply coding format: 
-
-`This text is displayed as code.` 
-
-\`This text will be displayed as code.\`   
-
-Encapsulating a text in tripple backticks (\`\`\`) a line before it begins and a line after it finishes, one can apply multiline coding format: 
-
-```
-This is the first line of a multiline code.
-This is the second line of a multiline code.
-This is the third line of a multiline code.
+``` {python}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from matplotlib.ticker import MultipleLocator
+from tabulate import tabulate
+from scipy import stats
+from scipy.stats import skew, kurtosis, norm, kstest
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+from imblearn.over_sampling import SMOTE
 ```
 
-Using a single greater than (`>`) at the beggining, one can show a quote: 
-
-`> This text will be a quote`
-
-> This text is a quote
-
-## Lists
-### Unordered lists
-To start an unordered list, use a single hyphen and space (`- `) followed by text. To start an ordered list, use a number, dot and space (`1. `) followed by text. To add sublists, follow the same syntax but add two spaces before.
-
-This input: 
-
-```
-- First bullet point
-    - First sub bullet point
-        - First sub sub bullet point
-        - Second sub sub bullet point
-        - Third sub sub bullet point
-    - Second sub bullet point
-    - Third sub bullet point
-- Second bullet point
-- Third bullet point
+```{python}
+train_df = pd.read_csv("./train_data.csv")
 ```
 
-Has this output:
+```{python}
+def corr_matrix(df):
+    correlation_matrix = df.corr()
 
-- First bullet point
-    - First sub bullet point
-        - First sub sub bullet point
-        - Second sub sub bullet point
-        - Third sub sub bullet point
-    - Second sub bullet point
-    - Third sub bullet point
-- Second bullet point
-- Third bullet point
-
-### Ordered lists
-To start an ordered list, use a number, dot and space (`1. `) followed by text. To add sublists, follow the same syntax but add two spaces before.
-
-This input:
-```
-1. First points
-    1. First sub point
-        1. First sub sub point
-        2. Second sub sub point
-        3. Third sub sub point
-    2. Second sub point
-    3. Third sub point
-2. Second point
-3. Third point
+    plt.figure(figsize=(25,25))
+    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
+    plt.title('Correlation matrix')
+    plt.show()
 ```
 
-Has this output:
-
-1. First points
-    1. First sub point
-        1. First sub sub point
-        2. Second sub sub point
-        3. Third sub sub point
-    2. Second sub point
-    3. Third sub point
-2. Second point
-3. Third point
-
-## Hyperlink
-### External links
-Linking to outside websites is done by encapsulating in square brackets (`[]`) the text that can be clicked to use the link, followed by parenthesis (`()`) with the website's URL. One can add a space after the URL and a text encapsulated by quotation marks (`""`) to show a name when the link is hovered over.
-
-`[Text to be clicked](http://google.com "Hovered information")`  
-[Text to be clicked](http://google.com "Hovered information")
-
-`[External Link to Google](http://google.com)`  
-[External Link to Google](http://google.com)
-
-### Internal links
-Internal links work the same way as external links, but inside the document. Instead of an URL, a number sign (`#`) is used followed by the name of the heading in the document to link. In this instance, spaces are replaced by hyphens.  
-
-`[This will take you to the text formatting header.](#text-formatting)`  
-[This will take you to the text formatting header.](#text-formatting)
-
-### Images
-Images work the same way as external links, but to display them, an exclamation mark (`!`) is used before the square brackets (`[]`).
-
-`![Look at this image!](https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg "Fancy owl")`  
-![Look at this image!](https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg "Fancy owl")
-
-## Mathematical notation
-Mathematical notation is rendered by using LaTeX. 
-
-1. It can be used inline by wrapping a mathematical expression with single dollar signs (`$`), or multiline by wrapping the expressions with double dollar signs (`$$`).
-2. Single line expressions will be left aligned if they are not inside a text block.
-3. Multiline expressions will automatically be aligned at the center
-    - One can aligned them at a specific point by wrapping the expression inside the double dollar signs with `\begin{split}` and `\end{split}`. Place an ampersand (`&`) where the alignment should be.
-4. All special mathematical symbols (like roots, powers, underlines, bars, greek letters, summation, integral, fractions, and so on) start by using a backslash and the corresponding name.
-
-Inline Expression | LaTeX
-:-:|:-:
-`$\sqrt{x}$`|$\sqrt{x}$
-`$x^2$`|$x^2$
-`$\underline{x}$`|$\underline{x}$
-`$\bar{x}$`|$\bar{x}$
-`$\sigma$`|$\sigma$
-`$\frac{x+1}{x-1}$`|$\frac{x+1}{x-1}$
-`$\sum_{0}^{\infty}{\frac{1}{n}}$`|$\sum_{0}^{\infty}{\frac{1}{n}}$
-`$\int_{0}^{\infty}{\frac{1}{n}}$`|$\int_{0}^{\infty}{\frac{1}{n}}$
-
-: {.striped .hover}
-
-
-Multiline aligned at the equal sign input: 
-```
-$$
-\begin{split}
-\dot{x} & = \sigma (3y - 5t)\\
-\dot{x} & = 3 \sigma y - 5 \sigma t \\
-\dot{x} & = (1+1+1) \sigma y - (10-5) \sigma t \\
-\end{split}
-$$
-```
-Output: 
-$$
-\begin{split}
-\dot{x} & = \sigma (3y - 5t)\\
-\dot{x} & = 3 \sigma y - 5 \sigma t \\
-\dot{x} & = (1+1+1) \sigma y - (10-5) \sigma t \\
-\end{split}
-$$
-
-Multiline aligned at the center input: 
-```
-$$
-\begin{gather}
-\dot{x} = \sigma (3y - 5t)\\
-\dot{x} = 3 \sigma y - 5 \sigma t\\
-\dot{x} = (1+1+1) \sigma y - (10-5) \sigma t\\
-\end{gather}
-$$
-```
-$$
-\begin{gather}
-\dot{x} = \sigma (3y - 5t)\\
-\dot{x} = 3 \sigma y - 5 \sigma t\\
-\dot{x} = (1+1+1) \sigma y - (10-5) \sigma t\\
-\end{gather}
-$$
-
-## Colored boxes
-Colored boxes can be used to highlight important information. 
-
-- Blue boxes provide useful information (alert-info).
-- Yellow boxes provide warnings (alert-warning).
-- Green boxes indicate successful outcomes (alert-success).
-- Red boxes provide critical information regarding errors or potential mistakes (alert-danger).
-
-They are a special case and one has to use HTML notation for them. Start by using `<div></div>` with class `"alert alert-info"` (or the corresponding name) and finish by putting the text in between them.
-
-Input:
-```
-<div class="alert alert-info">
-<b>Alert info:</b> Blue boxes (alert-info) provide useful information.
-</div>
+```{python}
+train_df.head(5)
 ```
 
-Output:
-<div class="alert alert-info">
-<b>Alert info:</b> Blue boxes (alert-info) provide useful information.
-</div>
-
-Input:
-```
-<div class="alert alert-warning">
-<b>Alert warning:</b> Yellow boxes (alert-warning) provide warnings.
-</div>
+```{python}
+train_df_step1 = train_df.drop(['ID'], axis=1)
 ```
 
-Output:
-<div class="alert alert-warning">
-<b>Alert warning:</b> Yellow boxes (alert-warning) provide warnings.
-</div>
-
-Input:
-```
-<div class="alert alert-success">
-<b>Alert success:</b> Green boxes (alert-success) indicate successful outcomes.
-</div>
+```{python}
+train_df_step2 = train_df_step1.drop(['Has a mobile phone'], axis=1)
 ```
 
-Output:
-<div class="alert alert-success">
-<b>Alert success:</b> Green boxes (alert-success) indicate successful outcomes.
-</div>
-
-Input:
-```
-<div class="alert alert-danger">
-<b>Alert danger:</b> Red boxes (alert-danger) provide critical information regarding errors or potential mistakes.
-</div>
+```{python}
+#replacing an entire column of strings for integers raises some warnings
+with pd.option_context("future.no_silent_downcasting", True): 
+    train_df_step2['Gender'] = train_df_step2['Gender'].replace({'M': int(0), 'F': int(1)}).astype(int)
+    train_df_step2['Has a car'] = train_df_step2['Has a car'].replace({'N': int(0), 'Y': int(1)}).astype(int)
+    train_df_step2['Has a property'] = train_df_step2['Has a property'].replace({'N': int(0), 'Y': int(1)}).astype(int)
 ```
 
-Output:
-<div class="alert alert-danger">
-<b>Alert danger:</b> Red boxes (alert-danger) provide critical information regarding errors or potential mistakes.
-</div>
+```{python}
+print(f"Employment status: {train_df['Employment status'].unique()}\n")
+print(f"Education level: {train_df['Education level'].unique()}\n")
+print(f"Marital status: {train_df['Marital status'].unique()}\n")
+print(f"Dwelling: {train_df['Dwelling'].unique()}\n")
+print(f"Job title: {train_df['Job title'].unique()}")
+```
+
+```{python}
+nan_job_df = train_df[train_df['Job title'].isna()]
+print(f"Employment status: {nan_job_df['Employment status'].unique()}\n")
+```
+
+```{python}
+train_df_step3 = train_df_step2.drop(['Job title'], axis=1)
+
+train_df_step4 = pd.get_dummies(train_df_step3, columns=['Employment status', 'Education level', 'Marital status', 'Dwelling'], dtype=int)
+```
+
+```{python}
+corr_matrix(train_df_step4)
+```
+
+```{python}
+has_a_car = train_df_step4['Has a car']
+has_a_property = train_df_step4['Has a property']
+
+plt.figure(figsize=(8, 6))
+plt.scatter(has_a_property, has_a_car)
+plt.title('Scatter Plot of Has a car vs Has a property')
+plt.xlabel('Has a property')
+plt.ylabel('Has a car')
+plt.grid(True)
+plt.show()
+```
+
+```{python}
+train_df_step5 = train_df_step4.drop(['Has a car'], axis=1)
+```
+
+```{python}
+family_member_count = train_df_step5['Family member count']
+children_count = train_df_step5['Children count']
+
+plt.figure(figsize=(8, 6))
+plt.scatter(family_member_count, children_count, alpha=0.5)
+plt.title('Scatter Plot of Family Member Count vs Children Count')
+plt.xlabel('Family Member Count')
+plt.ylabel('Children Count')
+plt.grid(True)
+
+plt.gca().xaxis.set_major_locator(MultipleLocator(1))
+plt.gca().yaxis.set_major_locator(MultipleLocator(1))
+
+plt.show()
+```
+
+```{python}
+employment_status_pensioner = train_df_step5[(train_df_step5['Employment status_Pensioner'] == 1)]
+employment_status_pensioner['Employment length'].value_counts()
+```
+
+```{python}
+train_df_step6 = train_df_step5.drop(['Employment status_Pensioner'], axis=1)
+```
+
+```{python}
+scaler = MinMaxScaler()
+train_df_step7 = scaler.fit_transform(train_df_step6)
+train_df_step7 = pd.DataFrame(train_df_step7, columns=train_df_step6.columns)
+```
+
+```{python}
+y_data = train_df_step7['Is high risk']
+x_data = train_df_step7.drop(columns=['Is high risk'])
+
+def train_model(x, y):
+    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+    rf_classifier = RandomForestClassifier()
+    param_grid = {
+        'n_estimators': [10, 50, 100],
+        'max_depth': [None, 5, 10],
+        'min_samples_split': [2, 4],
+        'min_samples_leaf': [1, 3]
+    }
+
+    grid_search = GridSearchCV(estimator=rf_classifier, param_grid=param_grid, cv=5, scoring='accuracy')
+    grid_search.fit(X_train, y_train)
+
+    best_params = grid_search.best_params_
+    print("Best hyperparameters ():", best_params)
+    best_model = grid_search.best_estimator_
+
+    y_pred = best_model.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    print("Accuracy on testing set:", accuracy)
+    
+    # Get predictions on the test set
+    y_pred = best_model.predict(X_test)
+
+    # Generate confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
+
+    # Plot confusion matrix
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=best_model.classes_)
+    disp.plot(cmap=plt.cm.Blues)
+    plt.title('Confusion Matrix')
+    plt.show()
+    
+    return best_model
+    
+best_model = train_model(x_data, y_data)
+```
+
+```{python}
+train_df_step7['Is high risk'].value_counts()
+```
+
+```{python}
+smote = SMOTE()
+
+x_smote, y_smote = smote.fit_resample(x_data, y_data)
+
+print('Original dataset shape')
+print(y_data.value_counts())
+print('\nResample dataset shape')
+print(y_smote.value_counts())
+```
+
+```{python}
+best_model_balanced = train_model(x_smote, y_smote)
+```
+
+```{python}
+y_pred_balanced = best_model_balanced.predict(x_data)
+balanced_accuracy = accuracy_score(y_data, y_pred_balanced)
+
+# Generate confusion matrix
+cm = confusion_matrix(y_data, y_pred_balanced)
+
+# Plot confusion matrix
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=best_model.classes_)
+disp.plot(cmap=plt.cm.Blues)
+plt.title('Confusion Matrix')
+plt.show()
+```
+
+```{python}
+y_pred_unbalanced = best_model.predict(x_data)
+unbalanced_accuracy = accuracy_score(y_data, y_pred_unbalanced)
+
+# Generate confusion matrix
+cm = confusion_matrix(y_data, y_pred_unbalanced)
+
+# Plot confusion matrix
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=best_model.classes_)
+disp.plot(cmap=plt.cm.Blues)
+plt.title('Confusion Matrix')
+plt.show()
+```
+
+```{python}
+print(f"Accuracy on testing set with balanced training: {balanced_accuracy:.4f}%")
+print(f"Accuracy on testing set with unbalanced training: {unbalanced_accuracy:.4f}%")
+```
+
+```{python}
+```
