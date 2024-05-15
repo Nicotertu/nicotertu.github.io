@@ -3,14 +3,14 @@ title: "Learning to use Markdown"
 subtitle: ""
 date: "2024-05-07"
 image: ./Article1.png
-categories: [Python, Data Science, Machine Learning, Artificial Intelligence]
+categories: [Beginner, Python, Data Science, Machine Learning, Artificial Intelligence]
 description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax."
 author: "Nicolas Tertusio"
 website:
   open-graph: true
   title: "Learning how to use Markdown in Jupyter Notebooks"
   description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax."
-  image: ./Article1.png
+  image: ./Markdown.png
   site-name: Nicolas Tertusio - Portfolio
 filters:
   - pyodide

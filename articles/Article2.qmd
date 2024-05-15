@@ -3,14 +3,14 @@ title: "Exploring Datasets"
 subtitle: ""
 date: "2024-05-14"
 image: ./Article2.png
-categories: [Python, Data Science, Machine Learning, Artificial Intelligence]
+categories: [Intermediate, Data analysis, Python, Data Science, Machine Learning, Artificial Intelligence]
 description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
 author: "Nicolas Tertusio"
 website:
   open-graph: true
   title: "Learning how to use Markdown in Jupyter Notebooks"
   description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
-  image: ./Article1.png
+  image: ./Datasets.png
   site-name: Nicolas Tertusio - Portfolio
 format:
     html:
@@ -24,8 +24,6 @@ format:
         other-links: 
             - text: Credit Card Dataset
               href: https://www.kaggle.com/datasets/tanayatipre/car-price-prediction-dataset
-            - text: Markdown Cheat Sheet
-              href: https://www.markdownguide.org/cheat-sheet/
         code-links:
             - text: GitHub Link
               href: https://github.com/Nicotertu/python-notebooks/blob/main/machine-learning/Exploring%20a%20dataset.ipynb
@@ -39,9 +37,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.ticker import MultipleLocator
-from tabulate import tabulate
-from scipy import stats
-from scipy.stats import skew, kurtosis, norm, kstest
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -51,6 +46,7 @@ from imblearn.over_sampling import SMOTE
 
 ```{python}
 train_df = pd.read_csv("./train_data.csv")
+test_df = pd.read_csv("./test_data.csv")
 ```
 
 ```{python}
