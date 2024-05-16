@@ -4,12 +4,12 @@ subtitle: ""
 date: "2024-05-14"
 image: ./Article2.png
 categories: [Intermediate, Data analysis, Python, Data Science, Machine Learning, Artificial Intelligence]
-description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
+description: "The journey from raw data to a predictive model involves several crucial steps."
 author: "Nicolas Tertusio"
 website:
   open-graph: true
   title: "Learning how to use Markdown in Jupyter Notebooks"
-  description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax"
+  description: "The journey from raw data to a predictive model involves several crucial steps."
   image: ./Datasets.png
   site-name: Nicolas Tertusio - Portfolio
 format:
@@ -22,14 +22,22 @@ format:
         code-copy: true
         link-external-newwindow: true
         other-links: 
+            - text: Kaggle - AI & ML Community
+              href: https://www.kaggle.com/
             - text: Credit Card Dataset
               href: https://www.kaggle.com/datasets/tanayatipre/car-price-prediction-dataset
         code-links:
             - text: GitHub Link
               href: https://github.com/Nicotertu/python-notebooks/blob/main/machine-learning/Exploring%20a%20dataset.ipynb
               icon: file-code
-        pagetitle: Learning how to use Markdown in Jupyter Notebooks
+        pagetitle: Exploring Datasets
 ---
+
+In the world of data science and machine learning, understanding the significance of not just diving headfirst into building models but rather meticulously exploring and understanding the datasets at hand is crucial.
+
+In this article I embark on a journey through the pre-modeling phase, focusing on essential exploratory data analysis (EDA) techniques. I am going to be using a dataset from Kaggle, a website where one can find different datasets, people can upload their machine learning models, there's even competition and sometimes prizes for winners. The dataset is called "Credit Car Prediction", and it has multiple variables regarding the financial and social status of individuals. The goal of the dataset is to determine if an individual is or not eligible for a credit card.
+
+We start off importing the libraries we are going to be using, and loading the dataset.
 
 ``` {python}
 import pandas as pd
@@ -42,12 +50,18 @@ from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDis
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
 from imblearn.over_sampling import SMOTE
-```
 
-```{python}
 train_df = pd.read_csv("./train_data.csv")
 test_df = pd.read_csv("./test_data.csv")
 ```
+
+Let's take a look at the dataset, see what types of variables there are, what information they bring to the table, how many there are, and how many entries.
+
+```{python}
+train_df.head(5)
+```
+
+
 
 ```{python}
 def corr_matrix(df):
@@ -59,9 +73,7 @@ def corr_matrix(df):
     plt.show()
 ```
 
-```{python}
-train_df.head(5)
-```
+
 
 ```{python}
 train_df_step1 = train_df.drop(['ID'], axis=1)
