@@ -55,3 +55,10 @@ Coding Snippet: Show how to create a simple RNN or LSTM network to predict time 
 Real-World Application: Predicting future stock prices based on historical data.
 
 MLFLOW (search linkedin for other stuff)
+Data leakage (Train-Test contamination, check article 2) https://community.alteryx.com/t5/Data-Science/Dealing-with-Data-Leakage/ba-p/827583
+Different plots (seaborn, swarm plot, interactive plots, kernel density estimate)
+Mutual information score
+PCA Feature engineering (https://www.kaggle.com/code/ryanholbrook/principal-component-analysis)
+Permutation importance, partial dependence plots, SHAP values (https://www.kaggle.com/code/dansbecker/advanced-uses-of-shap-values)
+https://www.kaggle.com/code/alexisbcook/play-the-game
+https://www.kaggle.com/learn/time-series

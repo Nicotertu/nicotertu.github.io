@@ -55,33 +55,32 @@ train_df = pd.read_csv("./train_data.csv")
 test_df = pd.read_csv("./test_data.csv")
 ```
 
-Let's take a look at the dataset, see what types of variables there are, what information they bring to the table, how many there are, and how many entries.
+Let's take a look at the dataset, see what types of features there are, what information they bring to the table, how many there are, how many entries and some of the statistics of each.
 
 ```{python}
 train_df.head(5)
 ```
 
-
-
 ```{python}
-def corr_matrix(df):
-    correlation_matrix = df.corr()
-
-    plt.figure(figsize=(25,25))
-    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
-    plt.title('Correlation matrix')
-    plt.show()
+train_df.describe()
 ```
 
-
+ID can be quickly eliminated, as it provides no information about the client. It is merely used by databases to assign a unique value to any given client.
 
 ```{python}
 train_df_step1 = train_df.drop(['ID'], axis=1)
 ```
 
+Looking at mobile phones, it has a mean of 1, standart deviation of 0, minimum of 1 and maximum of 1. It is simply a feature full of 1's, it provides no information. If we encountered in the validation set or real life a person with no mobile phone, the model can't possibly learn anything about them.
+
 ```{python}
 train_df_step2 = train_df_step1.drop(['Has a mobile phone'], axis=1)
 ```
+
+Focusing on categorical features, there are three that we need to transform into discrete features. 
+  - Gender we replace M to 0 and F to 1.
+  - Has a car we replace N to 0 and Y to 1.
+  - Has a property we replace N to 0 and Y to 1.
 
 ```{python}
 #replacing an entire column of strings for integers raises some warnings
@@ -91,18 +90,44 @@ with pd.option_context("future.no_silent_downcasting", True):
     train_df_step2['Has a property'] = train_df_step2['Has a property'].replace({'N': int(0), 'Y': int(1)}).astype(int)
 ```
 
-```{python}
-print(f"Employment status: {train_df['Employment status'].unique()}\n")
-print(f"Education level: {train_df['Education level'].unique()}\n")
-print(f"Marital status: {train_df['Marital status'].unique()}\n")
-print(f"Dwelling: {train_df['Dwelling'].unique()}\n")
-print(f"Job title: {train_df['Job title'].unique()}")
-```
+Next up are features that have more than two possible categories, like Employment status, Education level, Marital status, Dwelling and Job title. 
+
+Plotting them is a very helpful way to visualize how many categories there are and the population of each.
 
 ```{python}
-nan_job_df = train_df[train_df['Job title'].isna()]
-print(f"Employment status: {nan_job_df['Employment status'].unique()}\n")
+features = ['Employment status', 'Education level', 'Marital status', 'Dwelling', 'Job title']
+
+for feature in features:
+    plt.figure(figsize=(10, 6))
+    sns.countplot(data=train_df_step2, x=feature)
+    plt.title(f'Count of Unique Values in {feature}')
+    plt.xlabel('')
+    plt.xticks(rotation=90)
+    plt.ylabel('Counts')
+    
+plt.show()
 ```
+
+Job title has NaN values though, are they all students and pensioners that don't work anymore? Or are there no job title for some people's jobs? Let's combine Employment status and Job title, so we can see what the employment status is of those whose job title is missing.
+
+```{python}
+nan_job_title_df = train_df[train_df['Job title'].isna()]
+employment_status_counts = nan_job_title_df['Employment status'].value_counts()
+
+plt.figure(figsize=(8, 6))
+plt.pie(employment_status_counts, labels=employment_status_counts.index, autopct='%1.1f%%', startangle=45)
+plt.title('Employment Status for NaN Job Titles')
+plt.axis('equal')
+plt.show()
+```
+
+It's all around the place. Gathering the information we have so far:
+  - Job title has 9027 NaN values (roughly 30%)
+  - Missing job titles seem to be all over the place compared their employment status, MCAR (Missing Completely at Random)
+  - Imputing would be complicated (but not impossible)
+  - Encoding this feature would increase the dimensionality significantly
+
+Based on that, I will remove the feature altogether.
 
 ```{python}
 train_df_step3 = train_df_step2.drop(['Job title'], axis=1)
@@ -111,29 +136,17 @@ train_df_step4 = pd.get_dummies(train_df_step3, columns=['Employment status', 'E
 ```
 
 ```{python}
-corr_matrix(train_df_step4)
-```
+correlation_matrix = train_df_step4.corr()
 
-```{python}
-has_a_car = train_df_step4['Has a car']
-has_a_property = train_df_step4['Has a property']
-
-plt.figure(figsize=(8, 6))
-plt.scatter(has_a_property, has_a_car)
-plt.title('Scatter Plot of Has a car vs Has a property')
-plt.xlabel('Has a property')
-plt.ylabel('Has a car')
-plt.grid(True)
+plt.figure(figsize=(25,25))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
+plt.title('Correlation matrix')
 plt.show()
 ```
 
 ```{python}
-train_df_step5 = train_df_step4.drop(['Has a car'], axis=1)
-```
-
-```{python}
-family_member_count = train_df_step5['Family member count']
-children_count = train_df_step5['Children count']
+family_member_count = train_df_step4['Family member count']
+children_count = train_df_step4['Children count']
 
 plt.figure(figsize=(8, 6))
 plt.scatter(family_member_count, children_count, alpha=0.5)
@@ -149,29 +162,29 @@ plt.show()
 ```
 
 ```{python}
-employment_status_pensioner = train_df_step5[(train_df_step5['Employment status_Pensioner'] == 1)]
+employment_status_pensioner = train_df_step4[(train_df_step4['Employment status_Pensioner'] == 1)]
 employment_status_pensioner['Employment length'].value_counts()
 ```
 
 ```{python}
-train_df_step6 = train_df_step5.drop(['Employment status_Pensioner'], axis=1)
+train_df_step5 = train_df_step4.drop(['Employment status_Pensioner'], axis=1)
 ```
 
 ```{python}
 scaler = MinMaxScaler()
-train_df_step7 = scaler.fit_transform(train_df_step6)
-train_df_step7 = pd.DataFrame(train_df_step7, columns=train_df_step6.columns)
+train_df_step6 = scaler.fit_transform(train_df_step5)
+train_df_step6 = pd.DataFrame(train_df_step6, columns=train_df_step5.columns)
 ```
 
 ```{python}
-y_data = train_df_step7['Is high risk']
-x_data = train_df_step7.drop(columns=['Is high risk'])
+y_data = train_df_step6['Is high risk']
+x_data = train_df_step6.drop(columns=['Is high risk'])
 
 def train_model(x, y):
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
-    rf_classifier = RandomForestClassifier()
+    rf_classifier = RandomForestClassifier(random_state=42)
     param_grid = {
-        'n_estimators': [10, 50, 100],
+        'n_estimators': [10, 100],
         'max_depth': [None, 5, 10],
         'min_samples_split': [2, 4],
         'min_samples_leaf': [1, 3]
@@ -181,20 +194,17 @@ def train_model(x, y):
     grid_search.fit(X_train, y_train)
 
     best_params = grid_search.best_params_
-    print("Best hyperparameters ():", best_params)
+    print("Best hyperparameters:", best_params)
     best_model = grid_search.best_estimator_
 
     y_pred = best_model.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
     print("Accuracy on testing set:", accuracy)
     
-    # Get predictions on the test set
     y_pred = best_model.predict(X_test)
 
-    # Generate confusion matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    # Plot confusion matrix
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=best_model.classes_)
     disp.plot(cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
@@ -206,7 +216,7 @@ best_model = train_model(x_data, y_data)
 ```
 
 ```{python}
-train_df_step7['Is high risk'].value_counts()
+train_df_step6['Is high risk'].value_counts()
 ```
 
 ```{python}
@@ -228,10 +238,8 @@ best_model_balanced = train_model(x_smote, y_smote)
 y_pred_balanced = best_model_balanced.predict(x_data)
 balanced_accuracy = accuracy_score(y_data, y_pred_balanced)
 
-# Generate confusion matrix
 cm = confusion_matrix(y_data, y_pred_balanced)
 
-# Plot confusion matrix
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=best_model.classes_)
 disp.plot(cmap=plt.cm.Blues)
 plt.title('Confusion Matrix')
@@ -242,10 +250,8 @@ plt.show()
 y_pred_unbalanced = best_model.predict(x_data)
 unbalanced_accuracy = accuracy_score(y_data, y_pred_unbalanced)
 
-# Generate confusion matrix
 cm = confusion_matrix(y_data, y_pred_unbalanced)
 
-# Plot confusion matrix
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=best_model.classes_)
 disp.plot(cmap=plt.cm.Blues)
 plt.title('Confusion Matrix')
@@ -253,9 +259,29 @@ plt.show()
 ```
 
 ```{python}
-print(f"Accuracy on testing set with balanced training: {balanced_accuracy:.4f}%")
-print(f"Accuracy on testing set with unbalanced training: {unbalanced_accuracy:.4f}%")
+test_df = pd.read_csv("./test_data.csv")
+test_df = pd.get_dummies(test_df, columns=['Employment status', 'Education level', 'Marital status', 'Dwelling'], dtype=int)
+test_df = test_df.drop(['ID','Has a mobile phone','Job title','Employment status_Pensioner'], axis=1)
+with pd.option_context("future.no_silent_downcasting", True):
+    test_df['Gender'] = test_df['Gender'].replace({'M': int(0), 'F': int(1)}).astype(int)
+    test_df['Has a property'] = test_df['Has a property'].replace({'N': int(0), 'Y': int(1)}).astype(int)
+    test_df['Has a car'] = test_df['Has a car'].replace({'N': int(0), 'Y': int(1)}).astype(int)
+scaler = MinMaxScaler()
+test_df_columns = test_df.columns
+test_df = scaler.fit_transform(test_df)
+test_df = pd.DataFrame(test_df, columns = test_df_columns)
 ```
 
 ```{python}
+y_data = test_df['Is high risk']
+x_data = test_df.drop(columns=['Is high risk'])
+
+y_pred_unbalanced = best_model.predict(x_data)
+unbalanced_accuracy = accuracy_score(y_data, y_pred_unbalanced)
+
+y_pred_balanced = best_model_balanced.predict(x_data)
+balanced_accuracy = accuracy_score(y_data, y_pred_balanced)
+
+print(f"Accuracy on dataset with balanced training: {balanced_accuracy:.4f}%")
+print(f"Accuracy on dataset set with unbalanced training: {unbalanced_accuracy:.4f}%")
 ```
