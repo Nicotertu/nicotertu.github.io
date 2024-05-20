@@ -8,8 +8,8 @@
 $font-family-sans-serif: "Red Hat Display";
 $font-family-monospace: "Red Hat Display";
 $body-color: #383838;
-$code-block-bg: #43545f;
-$code-bg: #43545f;
+$code-block-bg: #f3f3f3;
+$code-bg: #f3f3f3;
 
 
 
@@ -91,7 +91,7 @@ $code-bg: #43545f;
 
     /*coding block inside articles*/
     div.sourceCode {
-        border: 2px solid #000000;
+        border: 2px solid #c9c9c9;
         border-radius: .4rem;
     }
 

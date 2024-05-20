@@ -2,22 +2,22 @@
 title: "Exploring Datasets"
 subtitle: ""
 date: "2024-05-14"
-image: ./Article2.png
+image: ./002-Datasets.png
 categories: [Intermediate, Data analysis, Python, Data Science, Machine Learning, Artificial Intelligence]
 description: "The journey from raw data to a predictive model involves several crucial steps."
 author: "Nicolas Tertusio"
 website:
   open-graph: true
-  title: "Learning how to use Markdown in Jupyter Notebooks"
+  title: "Exploring Datasets"
   description: "The journey from raw data to a predictive model involves several crucial steps."
-  image: ./Datasets.png
+  image: ./002-Datasets.png
   site-name: Nicolas Tertusio - Portfolio
 format:
     html:
         toc: true
         toc-depth: 3
-        toc-location: left
-        code-fold: true
+        toc-location: right
+        code-fold: false
         code-summary: "See code"
         code-copy: true
         link-external-newwindow: true
@@ -33,6 +33,7 @@ format:
         pagetitle: Exploring Datasets
 ---
 
+## Introduction
 In the world of data science and machine learning, understanding the significance of not just diving headfirst into building models but rather meticulously exploring and understanding the datasets at hand is crucial.
 
 In this article I embark on a journey through the pre-modeling phase, focusing on essential exploratory data analysis (EDA) techniques. I am going to be using a dataset from Kaggle, a website where one can find different datasets, people can upload their machine learning models, there's even competition and sometimes prizes for winners. The dataset is called "Credit Car Prediction", and it has multiple variables regarding the financial and social status of individuals. The goal of the dataset is to determine if an individual is or not eligible for a credit card.
@@ -51,50 +52,74 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
 from imblearn.over_sampling import SMOTE
 
-train_df = pd.read_csv("./train_data.csv")
-test_df = pd.read_csv("./test_data.csv")
+train_df = pd.read_csv("./002-train_data.csv")
+test_df = pd.read_csv("./002-test_data.csv")
 ```
-
+## Exploring the dataset
 Let's take a look at the dataset, see what types of features there are, what information they bring to the table, how many there are, how many entries and some of the statistics of each.
 
 ```{python}
 train_df.head(5)
 ```
+<br />
 
 ```{python}
 train_df.describe()
 ```
 
-ID can be quickly eliminated, as it provides no information about the client. It is merely used by databases to assign a unique value to any given client.
+### Dropping features
+ID can be quickly dropped, as it provides no information about the client. It is merely used by databases to assign a unique value to any given client.
 
 ```{python}
 train_df_step1 = train_df.drop(['ID'], axis=1)
 ```
+<br />
+Looking at the mobile phones statistics:
 
-Looking at mobile phones, it has a mean of 1, standart deviation of 0, minimum of 1 and maximum of 1. It is simply a feature full of 1's, it provides no information. If we encountered in the validation set or real life a person with no mobile phone, the model can't possibly learn anything about them.
+  - It has a mean of 1
+  - It has a standart deviation of 0
+  - It has a minimum of 1
+  - It has a maximum of 1
+  
+It is simply a feature full of 1's, it provides no information. If we encountered in the validation set or real life a person with no mobile phone, the model can't possibly learn anything about them.
 
 ```{python}
 train_df_step2 = train_df_step1.drop(['Has a mobile phone'], axis=1)
 ```
-
+### Transforming categorical features
 Focusing on categorical features, there are three that we need to transform into discrete features. 
+
   - Gender we replace M to 0 and F to 1.
   - Has a car we replace N to 0 and Y to 1.
   - Has a property we replace N to 0 and Y to 1.
 
 ```{python}
 #replacing an entire column of strings for integers raises some warnings
-with pd.option_context("future.no_silent_downcasting", True): 
-    train_df_step2['Gender'] = train_df_step2['Gender'].replace({'M': int(0), 'F': int(1)}).astype(int)
-    train_df_step2['Has a car'] = train_df_step2['Has a car'].replace({'N': int(0), 'Y': int(1)}).astype(int)
-    train_df_step2['Has a property'] = train_df_step2['Has a property'].replace({'N': int(0), 'Y': int(1)}).astype(int)
+#with pd.option_context("future.no_silent_downcasting", True): 
+train_df_step2['Gender'] = train_df_step2['Gender'].replace({'M': int(0), 'F': int(1)}).astype(int)
+train_df_step2['Has a car'] = train_df_step2['Has a car'].replace({'N': int(0), 'Y': int(1)}).astype(int)
+train_df_step2['Has a property'] = train_df_step2['Has a property'].replace({'N': int(0), 'Y': int(1)}).astype(int)
 ```
+<br />
+<div class="alert alert-warning">
+<b>Warning:</b> Replacing an entire column of strings for integers raises some warnings. Consider using "#with pd.option_context("future.no_silent_downcasting", True):" to remove the warning.
+</div>
 
 Next up are features that have more than two possible categories, like Employment status, Education level, Marital status, Dwelling and Job title. 
 
-Plotting them is a very helpful way to visualize how many categories there are and the population of each.
+Plotting them is a very helpful way to visualize how many categories there are and the population of each. See @fig-uniques[0], @fig-uniques[1], @fig-uniques[2], @fig-uniques[3], @fig-uniques[4].
 
 ```{python}
+#| label: fig-uniques
+#| layout-ncol: 2
+#| fig-cap:
+#|   - "Unique values for Employment status"
+#|   - "Unique values for Education level"
+#|   - "Unique values for Marital status"
+#|   - "Unique values for Dwelling"
+#|   - "Unique values for Job title"
+#| fig-align: center
+#| fig-responsive: true
 features = ['Employment status', 'Education level', 'Marital status', 'Dwelling', 'Job title']
 
 for feature in features:
@@ -107,7 +132,7 @@ for feature in features:
     
 plt.show()
 ```
-
+<br />
 Job title has NaN values though, are they all students and pensioners that don't work anymore? Or are there no job title for some people's jobs? Let's combine Employment status and Job title, so we can see what the employment status is of those whose job title is missing.
 
 ```{python}
@@ -120,20 +145,22 @@ plt.title('Employment Status for NaN Job Titles')
 plt.axis('equal')
 plt.show()
 ```
-
+<br />
 It's all around the place. Gathering the information we have so far:
   - Job title has 9027 NaN values (roughly 30%)
   - Missing job titles seem to be all over the place compared their employment status, MCAR (Missing Completely at Random)
   - Imputing would be complicated (but not impossible)
   - Encoding this feature would increase the dimensionality significantly
 
-Based on that, I will remove the feature altogether.
+Based on that, I will remove the feature altogether, and apply OHE (One Hot Encoding).
 
 ```{python}
 train_df_step3 = train_df_step2.drop(['Job title'], axis=1)
 
 train_df_step4 = pd.get_dummies(train_df_step3, columns=['Employment status', 'Education level', 'Marital status', 'Dwelling'], dtype=int)
 ```
+### Correlation matrix
+Finally, let's take a look at the correlation matrix.
 
 ```{python}
 correlation_matrix = train_df_step4.corr()
@@ -143,6 +170,12 @@ sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidt
 plt.title('Correlation matrix')
 plt.show()
 ```
+<br />
+There are two things that might be interesting to explore further: 
+  - Correlation between 'Family member count' and 'Children count'.
+  - Correlation between 'Employment status_Pensioner' and 'Employment length'.
+
+'Family member count' and 'Children count' are obviously correlated, but it is not a correlation of 1. That means that sometimes, more family members taken into account other than children, or even sometimes children are not taken into account for family, therefore we can't really remove this feature. It is adding some information after all.
 
 ```{python}
 family_member_count = train_df_step4['Family member count']
@@ -160,23 +193,43 @@ plt.gca().yaxis.set_major_locator(MultipleLocator(1))
 
 plt.show()
 ```
+<br />
+We can see that most of the time, children make up for most of the family members, but sometimes (especifically for 1 family member), there are a few cases with more children than family members.
+
+Moving to the next point to explore, let's take a look at those with an employment status of pensioner and their respective 'Employment length'.
 
 ```{python}
 employment_status_pensioner = train_df_step4[(train_df_step4['Employment status_Pensioner'] == 1)]
 employment_status_pensioner['Employment length'].value_counts()
 ```
+<br />
+Out of 4920 pensioners, only 12 have an 'Employment length' different than the value '365243'. That is a 0.24% over the pensioners and 0.04% over the dataset. It is most likely safe to remove one of these two features, as they are explaining the same thing. But which one to remove matters: 'Employment status_Pensioner' has the same information as 'Employment length', but not the other way around. 'Employment length' has information about those that are not Pensioners.
+
+That means we can only remove the Employment status_Pensioner feature.
 
 ```{python}
 train_df_step5 = train_df_step4.drop(['Employment status_Pensioner'], axis=1)
 ```
+### Scaling features
+At last, before training a machine learning model, we should scale features, given that some of them like 'Income' and 'Employment length' are not proportional to the others.
 
 ```{python}
 scaler = MinMaxScaler()
 train_df_step6 = scaler.fit_transform(train_df_step5)
 train_df_step6 = pd.DataFrame(train_df_step6, columns=train_df_step5.columns)
 ```
+## Training a model
+To train a model we first split the data in input (x_data) and output (y_data). Then we apply the following: 
+  - Split dataset between train and test sets.
+  - Apply cross validation
+  - Search for best hyperparameters
+  - Make predictions
+  - Calculate accuracy
+
+To visually see the results, we can use a confusion matrix.
 
 ```{python}
+#| eval: false
 y_data = train_df_step6['Is high risk']
 x_data = train_df_step6.drop(columns=['Is high risk'])
 
@@ -214,12 +267,23 @@ def train_model(x, y):
     
 best_model = train_model(x_data, y_data)
 ```
+<br />
+98.52% accuracy is great! That meanst almost every observation we made about the dataset were appropiate and helped us build an accurate model... or not.
+
+Some machine learning models, especially those that are tree based, tend to fall into a trap of unbalanced classes. And in this dataset, there's a huge unbalance in our output 'Is high risk'.
 
 ```{python}
+#| eval: false
 train_df_step6['Is high risk'].value_counts()
 ```
+<br />
+Only 1.74% are high risk. What does that mean? Well... instead of analyzing the dataset, evaluating models, hyperparameters, cross validation and whatnot, it would be more effective to say "No client is high risk". That would give us an accuracy of 98.26%. Looking at the confusion matrix, that is exactly what the model learned and did.
+
+### Balancing classes
+One way to fix this is to balance the classes, either by undersampling or oversampling. Let's try and use oversampling, as we don't really want to loose 28000 entries of valuable information.
 
 ```{python}
+#| eval: false
 smote = SMOTE()
 
 x_smote, y_smote = smote.fit_resample(x_data, y_data)
@@ -229,12 +293,18 @@ print(y_data.value_counts())
 print('\nResample dataset shape')
 print(y_smote.value_counts())
 ```
+<br />
+Now classes are balanced, let's train a new model... a balanced one.
 
 ```{python}
+#| eval: false
 best_model_balanced = train_model(x_smote, y_smote)
 ```
+### Comparing balanced and unbalanced models
+And now, after balancing our classes, we get an even better accuracy, 99.03%! But it wouldn't be fair to compare when we artificially created almost half the data. Let's compare both models, the balanced and unbalanced models, with the entire dataset as input.
 
 ```{python}
+#| eval: false
 y_pred_balanced = best_model_balanced.predict(x_data)
 balanced_accuracy = accuracy_score(y_data, y_pred_balanced)
 
@@ -245,8 +315,10 @@ disp.plot(cmap=plt.cm.Blues)
 plt.title('Confusion Matrix')
 plt.show()
 ```
+<br />
 
 ```{python}
+#| eval: false
 y_pred_unbalanced = best_model.predict(x_data)
 unbalanced_accuracy = accuracy_score(y_data, y_pred_unbalanced)
 
@@ -257,8 +329,24 @@ disp.plot(cmap=plt.cm.Blues)
 plt.title('Confusion Matrix')
 plt.show()
 ```
+<br />
+Results for the balanced model:
+  - It predicted that 436 cases were high risk, 387 of those were rightfully high risk (88.76% accuracy).
+  - It predicted that 28729 cases were not high risk, 28617 of those were rightfully not high risk (99.61% accuracy).
+  - Overall accuracy of 99.45%.
+
+Results for the unbalanced mode: 
+  - It predicted that 3 cases were high risk, 3 of those were rightfully high risk (100% accuracy).
+  - It predicted that 29162 cases were not high risk, 28666 of those were rightfully not high risk (98.30% accuracy).
+  - Overall accuracy of 98.30%.
+
+Only when measured by their overall accuracy does the balanced model truly shine. But only a glimpse into the confusion matrix will clearly shows that the balanced model actually learned from the high risk entries, whereas the unbalanced one barely did.
+
+### Comparing with unseen data
+In all fairness though, we're measuring them by almost the same data we trained both models on. Let's throw at them data it they have never seen.
 
 ```{python}
+#| eval: false
 test_df = pd.read_csv("./test_data.csv")
 test_df = pd.get_dummies(test_df, columns=['Employment status', 'Education level', 'Marital status', 'Dwelling'], dtype=int)
 test_df = test_df.drop(['ID','Has a mobile phone','Job title','Employment status_Pensioner'], axis=1)
@@ -271,8 +359,10 @@ test_df_columns = test_df.columns
 test_df = scaler.fit_transform(test_df)
 test_df = pd.DataFrame(test_df, columns = test_df_columns)
 ```
+<br />
 
 ```{python}
+#| eval: false
 y_data = test_df['Is high risk']
 x_data = test_df.drop(columns=['Is high risk'])
 
@@ -282,6 +372,27 @@ unbalanced_accuracy = accuracy_score(y_data, y_pred_unbalanced)
 y_pred_balanced = best_model_balanced.predict(x_data)
 balanced_accuracy = accuracy_score(y_data, y_pred_balanced)
 
-print(f"Accuracy on dataset with balanced training: {balanced_accuracy:.4f}%")
-print(f"Accuracy on dataset set with unbalanced training: {unbalanced_accuracy:.4f}%")
+print(f"Accuracy on dataset with balanced training: {balanced_accuracy*100:.2f}%")
+print(f"Accuracy on dataset set with unbalanced training: {unbalanced_accuracy*100:.2f}%")
 ```
+<br />
+Overall accuracy of the balanced model dropped to 90.65% and the unbalanced model stayed high at 98.40%, but is it truly accurate?
+
+```{python}
+#| eval: false
+cm = confusion_matrix(y_data, y_pred_unbalanced)
+
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=best_model.classes_)
+disp.plot(cmap=plt.cm.Blues)
+plt.title('Unbalanced Confusion Matrix')
+plt.show()
+
+cm = confusion_matrix(y_data, y_pred_balanced)
+
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=best_model.classes_)
+disp.plot(cmap=plt.cm.Blues)
+plt.title('Balanced Confusion Matrix')
+plt.show()
+```
+<br />
+It isn't. The unbalanced model did not predict any high risk, whereas the balanced model predicted 635 cases. It did so correctly at 5.51% accuracy which is not that good, but that is a story for a different day.

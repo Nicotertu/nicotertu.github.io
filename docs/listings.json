@@ -2,11 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
-      "/articles/Article1.html",
-      "/articles/Article2.html",
-      "/articles/Article3 copy 2.html",
-      "/articles/Article3 copy.html",
-      "/articles/Article3.html"
+      "/articles/002-Datasets.html",
+      "/articles/001-Markdown.html"
     ]
   }
 ]

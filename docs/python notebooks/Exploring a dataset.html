@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Journey into Data Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Journey into Data Science</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://drive.google.com/file/d/12J3FZfsy0TACJuAu0YxLcFJPfC9afZtJ/view?usp=sharing"> 
+<span class="menu-text">Resume</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<div id="cell-0" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">from</span> matplotlib.ticker <span class="im">import</span> MultipleLocator</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, confusion_matrix, ConfusionMatrixDisplay</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, GridSearchCV</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="im">from</span> imblearn.over_sampling <span class="im">import</span> SMOTE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-1" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>train_df <span class="op">=</span> pd.read_csv(<span class="st">"./train_data.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>test_df <span class="op">=</span> pd.read_csv(<span class="st">"./test_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Primero revisamos el dataset. Antes de cualquier manipulacion de los datos, debemos explorar, entender los datos y finalmente comprender lo que deseamos hacer con los mismos. En este caso lo que se intenta es determinar si una persona es elegible para una tarjeta de credito. La variable de interes para este caso es “Is High Risk”.</p>
+<div id="cell-3" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>train_df.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">Gender</th>
+<th data-quarto-table-cell-role="th">Has a car</th>
+<th data-quarto-table-cell-role="th">Has a property</th>
+<th data-quarto-table-cell-role="th">Children count</th>
+<th data-quarto-table-cell-role="th">Income</th>
+<th data-quarto-table-cell-role="th">Employment status</th>
+<th data-quarto-table-cell-role="th">Education level</th>
+<th data-quarto-table-cell-role="th">Marital status</th>
+<th data-quarto-table-cell-role="th">Dwelling</th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">Employment length</th>
+<th data-quarto-table-cell-role="th">Has a mobile phone</th>
+<th data-quarto-table-cell-role="th">Has a work phone</th>
+<th data-quarto-table-cell-role="th">Has a phone</th>
+<th data-quarto-table-cell-role="th">Has an email</th>
+<th data-quarto-table-cell-role="th">Job title</th>
+<th data-quarto-table-cell-role="th">Family member count</th>
+<th data-quarto-table-cell-role="th">Account age</th>
+<th data-quarto-table-cell-role="th">Is high risk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>5037048</td>
+<td>M</td>
+<td>Y</td>
+<td>Y</td>
+<td>0</td>
+<td>135000.0</td>
+<td>Working</td>
+<td>Secondary / secondary special</td>
+<td>Married</td>
+<td>With parents</td>
+<td>-16271</td>
+<td>-3111</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Core staff</td>
+<td>2.0</td>
+<td>-17.0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>5044630</td>
+<td>F</td>
+<td>Y</td>
+<td>N</td>
+<td>1</td>
+<td>135000.0</td>
+<td>Commercial associate</td>
+<td>Higher education</td>
+<td>Single / not married</td>
+<td>House / apartment</td>
+<td>-10130</td>
+<td>-1651</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Accountants</td>
+<td>2.0</td>
+<td>-1.0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>5079079</td>
+<td>F</td>
+<td>N</td>
+<td>Y</td>
+<td>2</td>
+<td>180000.0</td>
+<td>Commercial associate</td>
+<td>Secondary / secondary special</td>
+<td>Married</td>
+<td>House / apartment</td>
+<td>-12821</td>
+<td>-5657</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Laborers</td>
+<td>4.0</td>
+<td>-38.0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>5112872</td>
+<td>F</td>
+<td>Y</td>
+<td>Y</td>
+<td>0</td>
+<td>360000.0</td>
+<td>Commercial associate</td>
+<td>Higher education</td>
+<td>Single / not married</td>
+<td>House / apartment</td>
+<td>-20929</td>
+<td>-2046</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>Managers</td>
+<td>1.0</td>
+<td>-11.0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5105858</td>
+<td>F</td>
+<td>N</td>
+<td>N</td>
+<td>0</td>
+<td>270000.0</td>
+<td>Working</td>
+<td>Secondary / secondary special</td>
+<td>Separated</td>
+<td>House / apartment</td>
+<td>-16207</td>
+<td>-515</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>NaN</td>
+<td>1.0</td>
+<td>-41.0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="cell-4" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>train_df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">Children count</th>
+<th data-quarto-table-cell-role="th">Income</th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">Employment length</th>
+<th data-quarto-table-cell-role="th">Has a mobile phone</th>
+<th data-quarto-table-cell-role="th">Has a work phone</th>
+<th data-quarto-table-cell-role="th">Has a phone</th>
+<th data-quarto-table-cell-role="th">Has an email</th>
+<th data-quarto-table-cell-role="th">Family member count</th>
+<th data-quarto-table-cell-role="th">Account age</th>
+<th data-quarto-table-cell-role="th">Is high risk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>2.916500e+04</td>
+<td>29165.000000</td>
+<td>2.916500e+04</td>
+<td>29165.000000</td>
+<td>29165.000000</td>
+<td>29165.0</td>
+<td>29165.000000</td>
+<td>29165.000000</td>
+<td>29165.000000</td>
+<td>29165.000000</td>
+<td>29165.000000</td>
+<td>29165.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>5.078232e+06</td>
+<td>0.430790</td>
+<td>1.868904e+05</td>
+<td>-15979.477490</td>
+<td>59257.761255</td>
+<td>1.0</td>
+<td>0.224310</td>
+<td>0.294977</td>
+<td>0.090279</td>
+<td>2.197531</td>
+<td>-26.137734</td>
+<td>0.017110</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>4.182400e+04</td>
+<td>0.741882</td>
+<td>1.014096e+05</td>
+<td>4202.997485</td>
+<td>137655.883458</td>
+<td>0.0</td>
+<td>0.417134</td>
+<td>0.456040</td>
+<td>0.286587</td>
+<td>0.912189</td>
+<td>16.486702</td>
+<td>0.129682</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>5.008804e+06</td>
+<td>0.000000</td>
+<td>2.700000e+04</td>
+<td>-25152.000000</td>
+<td>-15713.000000</td>
+<td>1.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>-60.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>5.042047e+06</td>
+<td>0.000000</td>
+<td>1.215000e+05</td>
+<td>-19444.000000</td>
+<td>-3153.000000</td>
+<td>1.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>2.000000</td>
+<td>-39.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>5.074666e+06</td>
+<td>0.000000</td>
+<td>1.575000e+05</td>
+<td>-15565.000000</td>
+<td>-1557.000000</td>
+<td>1.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>2.000000</td>
+<td>-24.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>5.114629e+06</td>
+<td>1.000000</td>
+<td>2.250000e+05</td>
+<td>-12475.000000</td>
+<td>-412.000000</td>
+<td>1.0</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>0.000000</td>
+<td>3.000000</td>
+<td>-12.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>5.150485e+06</td>
+<td>19.000000</td>
+<td>1.575000e+06</td>
+<td>-7705.000000</td>
+<td>365243.000000</td>
+<td>1.0</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>20.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>El primer analisis exploratorio a realizar es si hay alguna variable que no aporta significancia al resultado. En este dataset podemos ver que el ID de un cliente no ayuda a determinar si una persona es o no elegible para tarjeta de credito. Es simplemente un valor que el banco les asignó para identificarlos.</p>
+<div id="cell-6" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>train_df_step1 <span class="op">=</span> train_df.drop([<span class="st">'ID'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Explorando mas a fondo, vemos que todas las personas del dataset tienen telefono movil, por lo que tampoco aporta informacion.</p>
+<div id="cell-8" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>train_df_step2 <span class="op">=</span> train_df_step1.drop([<span class="st">'Has a mobile phone'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora nos enfocamos en el tipo de variables que hay: - Categoricas - Nominales - Ordinales - Numericas - Discretas - Continuas</p>
+<p>Las numericas no requieren transformacion, pero las categoricas si se deben convertir en numericas para poder analizarlas con cualquier modelo. Las mas sencillas son Gender, Has car y Has a property, ya que se remplazan directamente por 1 y 0.</p>
+<div id="cell-10" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#replacing an entire column of strings for integers raises some warnings</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="cf">with</span> pd.option_context(<span class="st">"future.no_silent_downcasting"</span>, <span class="va">True</span>): </span>
+<span id="cb7-3"><a href="#cb7-3"></a>    train_df_step2[<span class="st">'Gender'</span>] <span class="op">=</span> train_df_step2[<span class="st">'Gender'</span>].replace({<span class="st">'M'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'F'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    train_df_step2[<span class="st">'Has a car'</span>] <span class="op">=</span> train_df_step2[<span class="st">'Has a car'</span>].replace({<span class="st">'N'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'Y'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    train_df_step2[<span class="st">'Has a property'</span>] <span class="op">=</span> train_df_step2[<span class="st">'Has a property'</span>].replace({<span class="st">'N'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'Y'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Employment status, Education level, Marital status, Dwelling y Job title debemos analizarlas con mas detalle para ver cuantas categorias contiene cada una.</p>
+<div id="cell-12" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># List of features to visualize</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>features <span class="op">=</span> [<span class="st">'Employment status'</span>, <span class="st">'Education level'</span>, <span class="st">'Marital status'</span>, <span class="st">'Dwelling'</span>, <span class="st">'Job title'</span>]</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># Loop through the features and create a count plot for each</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="cf">for</span> feature <span class="kw">in</span> features:</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    sns.countplot(data<span class="op">=</span>train_df_step2, x<span class="op">=</span>feature)</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    plt.title(<span class="ss">f'Count of Unique Values in </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb8-9"><a href="#cb8-9"></a>    plt.xlabel(<span class="st">''</span>)</span>
+<span id="cb8-10"><a href="#cb8-10"></a>    plt.xticks(rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb8-11"><a href="#cb8-11"></a>    plt.ylabel(<span class="st">'Counts'</span>)</span>
+<span id="cb8-12"><a href="#cb8-12"></a>    </span>
+<span id="cb8-13"><a href="#cb8-13"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-9-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-9-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-9-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Employment status, Marital status, Dwelling y Job title son variables nominales mientras que Education level puede considerarse ordinal.</p>
+<p>A las variables nominales les podriamos aplicar One Hot Encoding, pero entre todas ellas tenemos 35 valores, por lo que terminariamos con muchas mas dimensiones que variables iniciales. Podriamos utilizar Binary Encoding, pero exploremos un poco mas los datos. Una observacion importante es que Job title tiene valores nulos, pero siempre se debe analizar con cuidado los datos. Uno podria suponer que aquellas personas sin titulo de trabajo, estan desempleadas, pero no debemos suponer.</p>
+<div id="cell-14" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>train_df.isna().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>ID                        0
+Gender                    0
+Has a car                 0
+Has a property            0
+Children count            0
+Income                    0
+Employment status         0
+Education level           0
+Marital status            0
+Dwelling                  0
+Age                       0
+Employment length         0
+Has a mobile phone        0
+Has a work phone          0
+Has a phone               0
+Has an email              0
+Job title              9027
+Family member count       0
+Account age               0
+Is high risk              0
+dtype: int64</code></pre>
+</div>
+</div>
+<div id="cell-15" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>nan_job_title_df <span class="op">=</span> train_df[train_df[<span class="st">'Job title'</span>].isna()]</span>
+<span id="cb11-2"><a href="#cb11-2"></a>employment_status_counts <span class="op">=</span> nan_job_title_df[<span class="st">'Employment status'</span>].value_counts()</span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb11-5"><a href="#cb11-5"></a>plt.pie(employment_status_counts, labels<span class="op">=</span>employment_status_counts.index, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>, startangle<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb11-6"><a href="#cb11-6"></a>plt.title(<span class="st">'Employment Status for NaN Job Titles'</span>)</span>
+<span id="cb11-7"><a href="#cb11-7"></a>plt.axis(<span class="st">'equal'</span>)</span>
+<span id="cb11-8"><a href="#cb11-8"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Podemos ver que efectivamente algunas personas sin Job title asignado, tienen Employment status que indica que si tienen trabajo. En este caso, el titulo del trabajo de una persona no nos brinda tanta informacion sobre su eligibilidad para recibir una tarjeta de credito (principalmente porque tenemos la informacion completa acerca de sus ingresos). Pero si se quisiera utilizar esta informacion, se podria hacer imputacion de datos (algun algoritmo de clusterizacion como KNN, asumir la moda o incluso entrenar un modelo para primero rellenar esos valores). Quitando Job title, podemos utilizar One Hot Encoding sin agregar tantas dimensiones al dataset.</p>
+<div id="cell-17" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>train_df_step3 <span class="op">=</span> train_df_step2.drop([<span class="st">'Job title'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>train_df_step4 <span class="op">=</span> pd.get_dummies(train_df_step3, columns<span class="op">=</span>[<span class="st">'Employment status'</span>, <span class="st">'Education level'</span>, <span class="st">'Marital status'</span>, <span class="st">'Dwelling'</span>], dtype<span class="op">=</span><span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A continuacion vamos a revisar la matriz de correlacion.</p>
+<div id="cell-19" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>correlation_matrix <span class="op">=</span> train_df_step4.corr()</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">25</span>,<span class="dv">25</span>))</span>
+<span id="cb13-4"><a href="#cb13-4"></a>sns.heatmap(correlation_matrix, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, linewidths<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb13-5"><a href="#cb13-5"></a>plt.title(<span class="st">'Correlation matrix'</span>)</span>
+<span id="cb13-6"><a href="#cb13-6"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Se pueden ver varios puntos importantes a explorar: 1. La correlacion de 1 entre ‘employment status_pensioner’ y ‘employment length’ 2. La alta correlacion entre ‘family member count’ y ‘children count’</p>
+<p>En cuanto a ‘family member count’ y ‘children count’, la correlatividad no es de 1 pero muy alta. Esto es de esperarse ya que la cantidad de miembros de familia esta muy relacionada a la cantidad de hijos, pero una variable toma en cuenta otro tipo de familiares. Como una variable aporta algo de informacion adicional, no podemos eliminar ninguna de ellas.</p>
+<div id="cell-22" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>family_member_count <span class="op">=</span> train_df_step4[<span class="st">'Family member count'</span>]</span>
+<span id="cb14-2"><a href="#cb14-2"></a>children_count <span class="op">=</span> train_df_step4[<span class="st">'Children count'</span>]</span>
+<span id="cb14-3"><a href="#cb14-3"></a></span>
+<span id="cb14-4"><a href="#cb14-4"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb14-5"><a href="#cb14-5"></a>plt.scatter(family_member_count, children_count, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb14-6"><a href="#cb14-6"></a>plt.title(<span class="st">'Scatter Plot of Family Member Count vs Children Count'</span>)</span>
+<span id="cb14-7"><a href="#cb14-7"></a>plt.xlabel(<span class="st">'Family Member Count'</span>)</span>
+<span id="cb14-8"><a href="#cb14-8"></a>plt.ylabel(<span class="st">'Children Count'</span>)</span>
+<span id="cb14-9"><a href="#cb14-9"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb14-10"><a href="#cb14-10"></a></span>
+<span id="cb14-11"><a href="#cb14-11"></a>plt.gca().xaxis.set_major_locator(MultipleLocator(<span class="dv">1</span>))</span>
+<span id="cb14-12"><a href="#cb14-12"></a>plt.gca().yaxis.set_major_locator(MultipleLocator(<span class="dv">1</span>))</span>
+<span id="cb14-13"><a href="#cb14-13"></a></span>
+<span id="cb14-14"><a href="#cb14-14"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Dentro de los 4908 pensionados, solo 12 tienen valor distinto a 365243 (un 0.24%). Y sobre el dataset entero, el porcentaje baja a 0.04%. En este caso se puede eliminar una de las variables, pero a diferencia de los otros casos, aqui si importa cual de las dos se elimina. Si eliminasemos employment length, se perderia toda la informacion de la gente que si tiene empleo, por lo que solamente podemos eliminar la columna de pensionados, ya que toda su informacion esta contenida en ‘employment length’.</p>
+<div id="cell-24" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>employment_status_pensioner <span class="op">=</span> train_df_step4[(train_df_step4[<span class="st">'Employment status_Pensioner'</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
+<span id="cb15-2"><a href="#cb15-2"></a>employment_status_pensioner[<span class="st">'Employment length'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>Employment length
+ 365243    4908
+-678          1
+-443          1
+-586          1
+-672          1
+-673          1
+-3680         1
+-2745         1
+-2208         1
+-620          1
+-1325         1
+-1644         1
+-2269         1
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<div id="cell-25" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>train_df_step5 <span class="op">=</span> train_df_step4.drop([<span class="st">'Employment status_Pensioner'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Last step should be scaling variables, since some of them like ‘Income’ and ‘Employment length’ are not proportional in scale to the others.</p>
+<div id="cell-27" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>scaler <span class="op">=</span> MinMaxScaler()</span>
+<span id="cb18-2"><a href="#cb18-2"></a>train_df_step6 <span class="op">=</span> scaler.fit_transform(train_df_step5)</span>
+<span id="cb18-3"><a href="#cb18-3"></a>train_df_step6 <span class="op">=</span> pd.DataFrame(train_df_step6, columns<span class="op">=</span>train_df_step5.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-28" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>y_data <span class="op">=</span> train_df_step6[<span class="st">'Is high risk'</span>]</span>
+<span id="cb19-2"><a href="#cb19-2"></a>x_data <span class="op">=</span> train_df_step6.drop(columns<span class="op">=</span>[<span class="st">'Is high risk'</span>])</span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="kw">def</span> train_model(x, y):</span>
+<span id="cb19-5"><a href="#cb19-5"></a>    X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(x, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb19-6"><a href="#cb19-6"></a>    </span>
+<span id="cb19-7"><a href="#cb19-7"></a>    rf_classifier <span class="op">=</span> RandomForestClassifier(random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb19-8"><a href="#cb19-8"></a>    param_grid <span class="op">=</span> {</span>
+<span id="cb19-9"><a href="#cb19-9"></a>        <span class="st">'n_estimators'</span>: [<span class="dv">10</span>, <span class="dv">100</span>],</span>
+<span id="cb19-10"><a href="#cb19-10"></a>        <span class="st">'max_depth'</span>: [<span class="va">None</span>, <span class="dv">5</span>, <span class="dv">10</span>],</span>
+<span id="cb19-11"><a href="#cb19-11"></a>        <span class="st">'min_samples_split'</span>: [<span class="dv">2</span>, <span class="dv">4</span>],</span>
+<span id="cb19-12"><a href="#cb19-12"></a>        <span class="st">'min_samples_leaf'</span>: [<span class="dv">1</span>, <span class="dv">3</span>]</span>
+<span id="cb19-13"><a href="#cb19-13"></a>    }</span>
+<span id="cb19-14"><a href="#cb19-14"></a></span>
+<span id="cb19-15"><a href="#cb19-15"></a>    grid_search <span class="op">=</span> GridSearchCV(estimator<span class="op">=</span>rf_classifier, param_grid<span class="op">=</span>param_grid, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">'accuracy'</span>)</span>
+<span id="cb19-16"><a href="#cb19-16"></a>    grid_search.fit(X_train, y_train)</span>
+<span id="cb19-17"><a href="#cb19-17"></a></span>
+<span id="cb19-18"><a href="#cb19-18"></a>    best_params <span class="op">=</span> grid_search.best_params_</span>
+<span id="cb19-19"><a href="#cb19-19"></a>    <span class="bu">print</span>(<span class="st">"Best hyperparameters:"</span>, best_params)</span>
+<span id="cb19-20"><a href="#cb19-20"></a>    best_model <span class="op">=</span> grid_search.best_estimator_</span>
+<span id="cb19-21"><a href="#cb19-21"></a></span>
+<span id="cb19-22"><a href="#cb19-22"></a>    y_pred <span class="op">=</span> best_model.predict(X_test)</span>
+<span id="cb19-23"><a href="#cb19-23"></a>    accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb19-24"><a href="#cb19-24"></a>    <span class="bu">print</span>(<span class="st">"Accuracy on testing set:"</span>, accuracy)</span>
+<span id="cb19-25"><a href="#cb19-25"></a>    </span>
+<span id="cb19-26"><a href="#cb19-26"></a>    y_pred <span class="op">=</span> best_model.predict(X_test)</span>
+<span id="cb19-27"><a href="#cb19-27"></a></span>
+<span id="cb19-28"><a href="#cb19-28"></a>    cm <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
+<span id="cb19-29"><a href="#cb19-29"></a></span>
+<span id="cb19-30"><a href="#cb19-30"></a>    disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
+<span id="cb19-31"><a href="#cb19-31"></a>    disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
+<span id="cb19-32"><a href="#cb19-32"></a>    plt.title(<span class="st">'Confusion Matrix'</span>)</span>
+<span id="cb19-33"><a href="#cb19-33"></a>    plt.show()</span>
+<span id="cb19-34"><a href="#cb19-34"></a>    </span>
+<span id="cb19-35"><a href="#cb19-35"></a>    <span class="cf">return</span> best_model</span>
+<span id="cb19-36"><a href="#cb19-36"></a>    </span>
+<span id="cb19-37"><a href="#cb19-37"></a>best_model <span class="op">=</span> train_model(x_data, y_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Best hyperparameters: {'max_depth': None, 'min_samples_leaf': 3, 'min_samples_split': 2, 'n_estimators': 100}
+Accuracy on testing set: 0.9852563003600205</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-18-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>98.52% de precision! Esto significa que todas las observaciones que hicimos acerca del dataset fueron apropiadas y ayudaron a construir un modelo con excelente precision… o no.</p>
+<p>Algunos modelos de machine learning, especialmente los basados en arboles, tienden a caer en una trampa cuando se trabaja con clases no balanceadas. En este dataset hay un desbalance enorme de ‘Is High Risk’.</p>
+<div id="cell-30" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>train_df_step6[<span class="st">'Is high risk'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>Is high risk
+0.0    28666
+1.0      499
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<p>Solamente un 1.74% de los clientes son de riesgo. Que significa esto? En vez de hacer un analisis del dataset y evaluar modelos, hiperparametros, hacer crossvalidation, etc., podriamos unicamente predecir que ningun cliente es de riesgo. Esto nos daria una precision de 98.26%, la cual es mejor que el modelo que acabamos de evaluar. Los modelos de machine learning trabajan en su mejor condicion cuando las clases estan balanceadas, asi que nuestro ultimo paso será este balance.</p>
+<div id="cell-32" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>smote <span class="op">=</span> SMOTE()</span>
+<span id="cb23-2"><a href="#cb23-2"></a></span>
+<span id="cb23-3"><a href="#cb23-3"></a>x_smote, y_smote <span class="op">=</span> smote.fit_resample(x_data, y_data)</span>
+<span id="cb23-4"><a href="#cb23-4"></a></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="bu">print</span>(<span class="st">'Original dataset shape'</span>)</span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="bu">print</span>(y_data.value_counts())</span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Resample dataset shape'</span>)</span>
+<span id="cb23-8"><a href="#cb23-8"></a><span class="bu">print</span>(y_smote.value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Original dataset shape
+Is high risk
+0.0    28666
+1.0      499
+Name: count, dtype: int64
+
+Resample dataset shape
+Is high risk
+0.0    28666
+1.0    28666
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<p>Entrenamos nuevamente el modelo pero con las clases balanceadas (28666 casos de riesgo y no riesgo), y obtenemos una precision mayor a la del primer modelo, e incluso mayor a solo predecir que un cliente no es de riesgo. En la matriz de confusion podemos ver que el modelo esta debidamente prediciendo tanto clientes de riesgo como clientes que no son de riesgo.</p>
+<div id="cell-34" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>best_model_balanced <span class="op">=</span> train_model(x_smote, y_smote)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Best hyperparameters: {'max_depth': None, 'min_samples_leaf': 1, 'min_samples_split': 4, 'n_estimators': 100}
+Accuracy on testing set: 0.9903200488357896</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-21-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Veamos la comparacion entre utilizar el modelo entrenado con clases balanceadas, y el modelo entrenado sin clases balanceadas. En el modelo balanceado se predijeron correctamente 388 casos de riesgo, e incorrectamente 111 casos de riesgo (77.76%). En el modelo no balanceado se predijeron correctamente 15 casos de riesgo, e incorrectamente 484 casos de riesgo (3.00%).</p>
+<div id="cell-36" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>y_pred_balanced <span class="op">=</span> best_model_balanced.predict(x_data)</span>
+<span id="cb27-2"><a href="#cb27-2"></a>balanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_balanced)</span>
+<span id="cb27-3"><a href="#cb27-3"></a></span>
+<span id="cb27-4"><a href="#cb27-4"></a>cm <span class="op">=</span> confusion_matrix(y_data, y_pred_balanced)</span>
+<span id="cb27-5"><a href="#cb27-5"></a></span>
+<span id="cb27-6"><a href="#cb27-6"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
+<span id="cb27-7"><a href="#cb27-7"></a>disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
+<span id="cb27-8"><a href="#cb27-8"></a>plt.title(<span class="st">'Balanced Confusion Matrix'</span>)</span>
+<span id="cb27-9"><a href="#cb27-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-37" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>y_pred_unbalanced <span class="op">=</span> best_model.predict(x_data)</span>
+<span id="cb28-2"><a href="#cb28-2"></a>unbalanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_unbalanced)</span>
+<span id="cb28-3"><a href="#cb28-3"></a></span>
+<span id="cb28-4"><a href="#cb28-4"></a>cm <span class="op">=</span> confusion_matrix(y_data, y_pred_unbalanced)</span>
+<span id="cb28-5"><a href="#cb28-5"></a></span>
+<span id="cb28-6"><a href="#cb28-6"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
+<span id="cb28-7"><a href="#cb28-7"></a>disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
+<span id="cb28-8"><a href="#cb28-8"></a>plt.title(<span class="st">'Unbalanced Confusion Matrix'</span>)</span>
+<span id="cb28-9"><a href="#cb28-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-23-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-38" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>test_df <span class="op">=</span> pd.read_csv(<span class="st">"./test_data.csv"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2"></a>test_df <span class="op">=</span> pd.get_dummies(test_df, columns<span class="op">=</span>[<span class="st">'Employment status'</span>, <span class="st">'Education level'</span>, <span class="st">'Marital status'</span>, <span class="st">'Dwelling'</span>], dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb29-3"><a href="#cb29-3"></a>test_df <span class="op">=</span> test_df.drop([<span class="st">'ID'</span>,<span class="st">'Has a mobile phone'</span>,<span class="st">'Job title'</span>,<span class="st">'Employment status_Pensioner'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="cf">with</span> pd.option_context(<span class="st">"future.no_silent_downcasting"</span>, <span class="va">True</span>):</span>
+<span id="cb29-5"><a href="#cb29-5"></a>    test_df[<span class="st">'Gender'</span>] <span class="op">=</span> test_df[<span class="st">'Gender'</span>].replace({<span class="st">'M'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'F'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span>
+<span id="cb29-6"><a href="#cb29-6"></a>    test_df[<span class="st">'Has a property'</span>] <span class="op">=</span> test_df[<span class="st">'Has a property'</span>].replace({<span class="st">'N'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'Y'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span>
+<span id="cb29-7"><a href="#cb29-7"></a>    test_df[<span class="st">'Has a car'</span>] <span class="op">=</span> test_df[<span class="st">'Has a car'</span>].replace({<span class="st">'N'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'Y'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span>
+<span id="cb29-8"><a href="#cb29-8"></a>scaler <span class="op">=</span> MinMaxScaler()</span>
+<span id="cb29-9"><a href="#cb29-9"></a>test_df_columns <span class="op">=</span> test_df.columns</span>
+<span id="cb29-10"><a href="#cb29-10"></a>test_df <span class="op">=</span> scaler.fit_transform(test_df)</span>
+<span id="cb29-11"><a href="#cb29-11"></a>test_df <span class="op">=</span> pd.DataFrame(test_df, columns <span class="op">=</span> test_df_columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-39" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>y_data <span class="op">=</span> test_df[<span class="st">'Is high risk'</span>]</span>
+<span id="cb30-2"><a href="#cb30-2"></a>x_data <span class="op">=</span> test_df.drop(columns<span class="op">=</span>[<span class="st">'Is high risk'</span>])</span>
+<span id="cb30-3"><a href="#cb30-3"></a></span>
+<span id="cb30-4"><a href="#cb30-4"></a>y_pred_unbalanced <span class="op">=</span> best_model.predict(x_data)</span>
+<span id="cb30-5"><a href="#cb30-5"></a>unbalanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_unbalanced)</span>
+<span id="cb30-6"><a href="#cb30-6"></a></span>
+<span id="cb30-7"><a href="#cb30-7"></a>y_pred_balanced <span class="op">=</span> best_model_balanced.predict(x_data)</span>
+<span id="cb30-8"><a href="#cb30-8"></a>balanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_balanced)</span>
+<span id="cb30-9"><a href="#cb30-9"></a></span>
+<span id="cb30-10"><a href="#cb30-10"></a><span class="bu">print</span>(<span class="ss">f"Accuracy on dataset with balanced training: </span><span class="sc">{</span>balanced_accuracy<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb30-11"><a href="#cb30-11"></a><span class="bu">print</span>(<span class="ss">f"Accuracy on dataset set with unbalanced training: </span><span class="sc">{</span>unbalanced_accuracy<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy on dataset with balanced training: 90.65%
+Accuracy on dataset set with unbalanced training: 98.40%</code></pre>
+</div>
+</div>
+<div id="cell-40" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>cm <span class="op">=</span> confusion_matrix(y_data, y_pred_unbalanced)</span>
+<span id="cb32-2"><a href="#cb32-2"></a></span>
+<span id="cb32-3"><a href="#cb32-3"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
+<span id="cb32-4"><a href="#cb32-4"></a>disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
+<span id="cb32-5"><a href="#cb32-5"></a>plt.title(<span class="st">'Unbalanced Confusion Matrix'</span>)</span>
+<span id="cb32-6"><a href="#cb32-6"></a>plt.show()</span>
+<span id="cb32-7"><a href="#cb32-7"></a></span>
+<span id="cb32-8"><a href="#cb32-8"></a>cm <span class="op">=</span> confusion_matrix(y_data, y_pred_balanced)</span>
+<span id="cb32-9"><a href="#cb32-9"></a></span>
+<span id="cb32-10"><a href="#cb32-10"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
+<span id="cb32-11"><a href="#cb32-11"></a>disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
+<span id="cb32-12"><a href="#cb32-12"></a>plt.title(<span class="st">'Balanced Confusion Matrix'</span>)</span>
+<span id="cb32-13"><a href="#cb32-13"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-26-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exploring a dataset_files/figure-html/cell-26-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/nicotertu/">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Nicotertu">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://drive.google.com/file/d/12J3FZfsy0TACJuAu0YxLcFJPfC9afZtJ/view?usp=drive_link">
+      <i class="bi bi-envelope" role="img" aria-label="Resume">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -40,7 +40,7 @@ format:
       toggle: true
     code-block-bg: true
     code-line-numbers: true
-    highlight-style: github
+    highlight-style: tango
     code-block-border-left: true
     grid: 
       sidebar-width: 0px #250px
