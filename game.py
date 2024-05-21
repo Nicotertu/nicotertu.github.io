@@ -12,15 +12,15 @@ SNAKE_SIZE = 10
 FOOD_SIZE = 5
 FPS = 30
 SNAKE_SPEED = 5
-NUM_RANDOM_SNAKES = 20
+NUM_RANDOM_SNAKES = 10
 LEADERBOARD_X = 10
 LEADERBOARD_Y = 10
 LEADERBOARD_SPACING = 20
-DIRECTION_CHANGE_INTERVAL = 30  # frames
-INITIAL_SNAKE_SIZE = 10
-INITIAL_FOOD = 2500
+DIRECTION_CHANGE_INTERVAL = 1  # frames
+INITIAL_SNAKE_SIZE = 5
+INITIAL_FOOD = 200
 ROTATION_SPEED = 15  # degrees per frame
-RESPAWN_SAFE_DISTANCE = 50
+RESPAWN_SAFE_DISTANCE = 300
 
 # Colors
 WHITE = (255, 255, 255)
@@ -40,6 +40,7 @@ class Snake:
         self.target_direction = self.direction
         self.body = [(self.x, self.y)]
         self.alive = True
+        self.kills = 0
 
     def move(self):
         dx = SNAKE_SPEED * math.cos(math.radians(self.direction))
@@ -52,13 +53,12 @@ class Snake:
 
     def draw(self, surface):
         for segment in self.body:
-            pygame.draw.rect(surface, self.color, (segment[0], segment[1], SNAKE_SIZE, SNAKE_SIZE))
+            pygame.draw.rect(surface, self.color, (segment[0], segment[1], SNAKE_SIZE, SNAKE_SIZE), border_radius= 10)
 
     def grow(self):
         self.length += 1
 
     def check_collision(self):
-        # Check collision with borders
         if self.x < 0 or self.x >= SCREEN_WIDTH or self.y < 0 or self.y >= SCREEN_HEIGHT:
             return True
         return False
@@ -68,18 +68,21 @@ class Snake:
             if snake != self and snake.alive:
                 for segment in snake.body:
                     if self.x < segment[0] + SNAKE_SIZE and self.x + SNAKE_SIZE > segment[0] and \
-                       self.y < segment[1] + SNAKE_SIZE and self.y + SNAKE_SIZE > segment[1]:
+                    self.y < segment[1] + SNAKE_SIZE and self.y + SNAKE_SIZE > segment[1]:
+                        if snake.alive:  # Ensure that only alive snakes can kill
+                            snake.kills += 1  # Increment the kills count
                         return True
         return False
 
     def respawn(self, is_player=False, other_snakes=[]):
+        self.kills = 0
         if is_player:
             self.x = SCREEN_WIDTH // 2
             self.y = SCREEN_HEIGHT // 2
         else:
             while True:
-                self.x = random.randint(0, SCREEN_WIDTH)
-                self.y = random.randint(0, SCREEN_HEIGHT)
+                self.x = random.randint(SCREEN_WIDTH / 10, SCREEN_WIDTH * 9/10)
+                self.y = random.randint(SCREEN_HEIGHT / 10, SCREEN_HEIGHT * 9/10)
                 too_close = False
                 for snake in other_snakes:
                     if distance(self.x, self.y, snake.x, snake.y) < RESPAWN_SAFE_DISTANCE:
@@ -189,6 +192,9 @@ while running:
         # Check if random snake collides with border or itself
         if snake.check_collision():
             snake.alive = False
+            
+        if snake.check_collision_with_snakes([player] + random_snakes):
+            snake.alive = False
 
         # Check if random snake eats food
         for food in foods:
@@ -198,29 +204,24 @@ while running:
                 foods.append(Food())
                 snake.grow()
 
+    # Check if player collides with border
+    if player.check_collision():
+        player.alive = False
+    
     # Check collisions between the player and random snakes
     if player.check_collision_with_snakes(random_snakes):
         player.alive = False
 
-    for snake in random_snakes:
-        if snake.check_collision_with_snakes([player] + random_snakes):
-            snake.alive = False
-
     # Respawn player if dead
     if not player.alive:
         player.respawn(is_player=True)
-
-    # Respawn random snakes if dead
-    for snake in random_snakes:
-        if not snake.alive:
-            snake.respawn()
 
     # Update the leaderboard
     leaderboard = sorted(random_snakes + [player], key=lambda x: x.length, reverse=True)[:5]
 
     # Draw the leaderboard
     for i, snake in enumerate(leaderboard):
-        score_text = f"{i+1}. Snake Length: {snake.length}"
+        score_text = f"{i+1}. Snake Length: {snake.length} | Kills: {snake.kills}"
         score_surface = pygame.font.Font(None, 24).render(score_text, True, YELLOW)
         screen.blit(score_surface, (LEADERBOARD_X, LEADERBOARD_Y + i * LEADERBOARD_SPACING))
 
