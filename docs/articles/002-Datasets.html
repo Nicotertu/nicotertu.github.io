@@ -229,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the world of data science and machine learning, understanding the significance of not just diving headfirst into building models but rather meticulously exploring and understanding the datasets at hand is crucial.</p>
 <p>In this article I embark on a journey through the pre-modeling phase, focusing on essential exploratory data analysis (EDA) techniques. I am going to be using a dataset from Kaggle, a website where one can find different datasets, people can upload their machine learning models, there’s even competition and sometimes prizes for winners. The dataset is called “Credit Car Prediction”, and it has multiple variables regarding the financial and social status of individuals. The goal of the dataset is to determine if an individual is or not eligible for a credit card.</p>
 <p>We start off importing the libraries we are going to be using, and loading the dataset.</p>
-<div id="b3259fcb" class="cell" data-execution_count="1">
+<div id="21de2399" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exploring-the-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-the-dataset">Exploring the dataset</h2>
 <p>Let’s take a look at the dataset, see what types of features there are, what information they bring to the table, how many there are, how many entries and some of the statistics of each.</p>
-<div id="ef8a592d" class="cell" data-execution_count="2">
+<div id="dc24adb3" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>train_df.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
@@ -405,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><br></p>
-<div id="eb6d0974" class="cell" data-execution_count="3">
+<div id="6614d295" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>train_df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -561,7 +561,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="dropping-features" class="level3">
 <h3 class="anchored" data-anchor-id="dropping-features">Dropping features</h3>
 <p>ID can be quickly dropped, as it provides no information about the client. It is merely used by databases to assign a unique value to any given client.</p>
-<div id="e7cc422d" class="cell" data-execution_count="4">
+<div id="2c379da9" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>train_df_step1 <span class="op">=</span> train_df.drop([<span class="st">'ID'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> Looking at the mobile phones statistics:</p>
@@ -572,7 +572,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>It has a maximum of 1</li>
 </ul>
 <p>It is simply a feature full of 1’s, it provides no information. If we encountered in the validation set or real life a person with no mobile phone, the model can’t possibly learn anything about them.</p>
-<div id="1023b99b" class="cell" data-execution_count="5">
+<div id="7a4b03f2" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>train_df_step2 <span class="op">=</span> train_df_step1.drop([<span class="st">'Has a mobile phone'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -584,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Has a car we replace N to 0 and Y to 1.</li>
 <li>Has a property we replace N to 0 and Y to 1.</li>
 </ul>
-<div id="39935ccd" class="cell" data-execution_count="6">
+<div id="5931b263" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#replacing an entire column of strings for integers raises some warnings</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="co">#with pd.option_context("future.no_silent_downcasting", True): </span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>train_df_step2[<span class="st">'Gender'</span>] <span class="op">=</span> train_df_step2[<span class="st">'Gender'</span>].replace({<span class="st">'M'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'F'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span>
@@ -600,7 +600,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>features <span class="op">=</span> [<span class="st">'Employment status'</span>, <span class="st">'Education level'</span>, <span class="st">'Marital status'</span>, <span class="st">'Dwelling'</span>, <span class="st">'Job title'</span>]</span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="cf">for</span> feature <span class="kw">in</span> features:</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
 <span id="cb7-5"><a href="#cb7-5"></a>    sns.countplot(data<span class="op">=</span>train_df_step2, x<span class="op">=</span>feature)</span>
 <span id="cb7-6"><a href="#cb7-6"></a>    plt.title(<span class="ss">f'Count of Unique Values in </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb7-7"><a href="#cb7-7"></a>    plt.xlabel(<span class="st">''</span>)</span>
@@ -608,13 +608,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-9"><a href="#cb7-9"></a>    plt.ylabel(<span class="st">'Counts'</span>)</span>
 <span id="cb7-10"><a href="#cb7-10"></a>    </span>
 <span id="cb7-11"><a href="#cb7-11"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="cell-fig-uniques" class="cell quarto-layout-panel" data-layout-ncol="2" data-fig-responsive="true" data-execution_count="7">
+<div id="cell-fig-uniques" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="7">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-uniques" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-uniques-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="002-Datasets_files/figure-html/fig-uniques-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="833" height="639">
+<img src="002-Datasets_files/figure-html/fig-uniques-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="610" height="491">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uniques-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Unique values for Employment status
@@ -626,7 +626,7 @@ Figure&nbsp;1: Unique values for Employment status
 <div id="fig-uniques" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-uniques-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="002-Datasets_files/figure-html/fig-uniques-output-2.png" class="quarto-figure quarto-figure-center figure-img" width="833" height="695">
+<img src="002-Datasets_files/figure-html/fig-uniques-output-2.png" class="quarto-figure quarto-figure-center figure-img" width="610" height="547">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uniques-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Unique values for Education level
@@ -640,7 +640,7 @@ Figure&nbsp;2: Unique values for Education level
 <div id="fig-uniques" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-uniques-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="002-Datasets_files/figure-html/fig-uniques-output-3.png" class="quarto-figure quarto-figure-center figure-img" width="833" height="624">
+<img src="002-Datasets_files/figure-html/fig-uniques-output-3.png" class="quarto-figure quarto-figure-center figure-img" width="610" height="476">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uniques-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Unique values for Marital status
@@ -652,7 +652,7 @@ Figure&nbsp;3: Unique values for Marital status
 <div id="fig-uniques" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-uniques-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="002-Datasets_files/figure-html/fig-uniques-output-4.png" class="quarto-figure quarto-figure-center figure-img" width="833" height="630">
+<img src="002-Datasets_files/figure-html/fig-uniques-output-4.png" class="quarto-figure quarto-figure-center figure-img" width="610" height="482">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uniques-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4: Unique values for Dwelling
@@ -666,7 +666,7 @@ Figure&nbsp;4: Unique values for Dwelling
 <div id="fig-uniques" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-uniques-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="002-Datasets_files/figure-html/fig-uniques-output-5.png" class="quarto-figure quarto-figure-center figure-img" width="825" height="632">
+<img src="002-Datasets_files/figure-html/fig-uniques-output-5.png" class="quarto-figure quarto-figure-center figure-img" width="601" height="484">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uniques-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5: Unique values for Job title
@@ -677,7 +677,7 @@ Figure&nbsp;5: Unique values for Job title
 </div>
 </div>
 <p><br> Job title has NaN values though, are they all students and pensioners that don’t work anymore? Or are there no job title for some people’s jobs? Let’s combine Employment status and Job title, so we can see what the employment status is of those whose job title is missing.</p>
-<div id="53faf453" class="cell" data-execution_count="8">
+<div id="5c87826a" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>nan_job_title_df <span class="op">=</span> train_df[train_df[<span class="st">'Job title'</span>].isna()]</span>
 <span id="cb8-2"><a href="#cb8-2"></a>employment_status_counts <span class="op">=</span> nan_job_title_df[<span class="st">'Employment status'</span>].value_counts()</span>
 <span id="cb8-3"><a href="#cb8-3"></a></span>
@@ -694,9 +694,15 @@ Figure&nbsp;5: Unique values for Job title
 </div>
 </div>
 </div>
-<p><br> It’s all around the place. Gathering the information we have so far: - Job title has 9027 NaN values (roughly 30%) - Missing job titles seem to be all over the place compared their employment status, MCAR (Missing Completely at Random) - Imputing would be complicated (but not impossible) - Encoding this feature would increase the dimensionality significantly</p>
+<p><br> It’s all around the place. Gathering the information we have so far:</p>
+<ul>
+<li>Job title has 9027 NaN values (roughly 30%)</li>
+<li>Missing job titles seem to be all over the place compared their employment status, MCAR (Missing Completely at Random)</li>
+<li>Imputing would be complicated (but not impossible)</li>
+<li>Encoding this feature would increase the dimensionality significantly</li>
+</ul>
 <p>Based on that, I will remove the feature altogether, and apply OHE (One Hot Encoding).</p>
-<div id="102d4f4f" class="cell" data-execution_count="9">
+<div id="a81be63a" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>train_df_step3 <span class="op">=</span> train_df_step2.drop([<span class="st">'Job title'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
 <span id="cb9-3"><a href="#cb9-3"></a>train_df_step4 <span class="op">=</span> pd.get_dummies(train_df_step3, columns<span class="op">=</span>[<span class="st">'Employment status'</span>, <span class="st">'Education level'</span>, <span class="st">'Marital status'</span>, <span class="st">'Dwelling'</span>], dtype<span class="op">=</span><span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -705,7 +711,7 @@ Figure&nbsp;5: Unique values for Job title
 <section id="correlation-matrix" class="level3">
 <h3 class="anchored" data-anchor-id="correlation-matrix">Correlation matrix</h3>
 <p>Finally, let’s take a look at the correlation matrix.</p>
-<div id="56c737bf" class="cell" data-execution_count="10">
+<div id="638fca15" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>correlation_matrix <span class="op">=</span> train_df_step4.corr()</span>
 <span id="cb10-2"><a href="#cb10-2"></a></span>
 <span id="cb10-3"><a href="#cb10-3"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">25</span>,<span class="dv">25</span>))</span>
@@ -722,7 +728,7 @@ Figure&nbsp;5: Unique values for Job title
 </div>
 <p><br> There are two things that might be interesting to explore further: - Correlation between ‘Family member count’ and ‘Children count’. - Correlation between ‘Employment status_Pensioner’ and ‘Employment length’.</p>
 <p>‘Family member count’ and ‘Children count’ are obviously correlated, but it is not a correlation of 1. That means that sometimes, more family members taken into account other than children, or even sometimes children are not taken into account for family, therefore we can’t really remove this feature. It is adding some information after all.</p>
-<div id="846281f1" class="cell" data-execution_count="11">
+<div id="db467665" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>family_member_count <span class="op">=</span> train_df_step4[<span class="st">'Family member count'</span>]</span>
 <span id="cb11-2"><a href="#cb11-2"></a>children_count <span class="op">=</span> train_df_step4[<span class="st">'Children count'</span>]</span>
 <span id="cb11-3"><a href="#cb11-3"></a></span>
@@ -747,7 +753,7 @@ Figure&nbsp;5: Unique values for Job title
 </div>
 <p><br> We can see that most of the time, children make up for most of the family members, but sometimes (especifically for 1 family member), there are a few cases with more children than family members.</p>
 <p>Moving to the next point to explore, let’s take a look at those with an employment status of pensioner and their respective ‘Employment length’.</p>
-<div id="00422218" class="cell" data-execution_count="12">
+<div id="0796b1a9" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>employment_status_pensioner <span class="op">=</span> train_df_step4[(train_df_step4[<span class="st">'Employment status_Pensioner'</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
 <span id="cb12-2"><a href="#cb12-2"></a>employment_status_pensioner[<span class="st">'Employment length'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -770,14 +776,14 @@ Name: count, dtype: int64</code></pre>
 </div>
 <p><br> Out of 4920 pensioners, only 12 have an ‘Employment length’ different than the value ‘365243’. That is a 0.24% over the pensioners and 0.04% over the dataset. It is most likely safe to remove one of these two features, as they are explaining the same thing. But which one to remove matters: ‘Employment status_Pensioner’ has the same information as ‘Employment length’, but not the other way around. ‘Employment length’ has information about those that are not Pensioners.</p>
 <p>That means we can only remove the Employment status_Pensioner feature.</p>
-<div id="a5a24fb8" class="cell" data-execution_count="13">
+<div id="7a33be0c" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>train_df_step5 <span class="op">=</span> train_df_step4.drop([<span class="st">'Employment status_Pensioner'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="scaling-features" class="level3">
 <h3 class="anchored" data-anchor-id="scaling-features">Scaling features</h3>
 <p>At last, before training a machine learning model, we should scale features, given that some of them like ‘Income’ and ‘Employment length’ are not proportional to the others.</p>
-<div id="050ccce8" class="cell" data-execution_count="14">
+<div id="6189be67" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>scaler <span class="op">=</span> MinMaxScaler()</span>
 <span id="cb15-2"><a href="#cb15-2"></a>train_df_step6 <span class="op">=</span> scaler.fit_transform(train_df_step5)</span>
 <span id="cb15-3"><a href="#cb15-3"></a>train_df_step6 <span class="op">=</span> pd.DataFrame(train_df_step6, columns<span class="op">=</span>train_df_step5.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -788,7 +794,7 @@ Name: count, dtype: int64</code></pre>
 <h2 class="anchored" data-anchor-id="training-a-model">Training a model</h2>
 <p>To train a model we first split the data in input (x_data) and output (y_data). Then we apply the following: - Split dataset between train and test sets. - Apply cross validation - Search for best hyperparameters - Make predictions - Calculate accuracy</p>
 <p>To visually see the results, we can use a confusion matrix.</p>
-<div id="5b8a9193" class="cell" data-execution_count="15">
+<div id="aaae7a15" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>y_data <span class="op">=</span> train_df_step6[<span class="st">'Is high risk'</span>]</span>
 <span id="cb16-2"><a href="#cb16-2"></a>x_data <span class="op">=</span> train_df_step6.drop(columns<span class="op">=</span>[<span class="st">'Is high risk'</span>])</span>
 <span id="cb16-3"><a href="#cb16-3"></a></span>
@@ -828,14 +834,14 @@ Name: count, dtype: int64</code></pre>
 </div>
 <p><br> 98.52% accuracy is great! That meanst almost every observation we made about the dataset were appropiate and helped us build an accurate model… or not.</p>
 <p>Some machine learning models, especially those that are tree based, tend to fall into a trap of unbalanced classes. And in this dataset, there’s a huge unbalance in our output ‘Is high risk’.</p>
-<div id="e9dfbd2f" class="cell" data-execution_count="16">
+<div id="07487735" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>train_df_step6[<span class="st">'Is high risk'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> Only 1.74% are high risk. What does that mean? Well… instead of analyzing the dataset, evaluating models, hyperparameters, cross validation and whatnot, it would be more effective to say “No client is high risk”. That would give us an accuracy of 98.26%. Looking at the confusion matrix, that is exactly what the model learned and did.</p>
 <section id="balancing-classes" class="level3">
 <h3 class="anchored" data-anchor-id="balancing-classes">Balancing classes</h3>
 <p>One way to fix this is to balance the classes, either by undersampling or oversampling. Let’s try and use oversampling, as we don’t really want to loose 28000 entries of valuable information.</p>
-<div id="03da48df" class="cell" data-execution_count="17">
+<div id="6f243cc7" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>smote <span class="op">=</span> SMOTE()</span>
 <span id="cb18-2"><a href="#cb18-2"></a></span>
 <span id="cb18-3"><a href="#cb18-3"></a>x_smote, y_smote <span class="op">=</span> smote.fit_resample(x_data, y_data)</span>
@@ -846,14 +852,14 @@ Name: count, dtype: int64</code></pre>
 <span id="cb18-8"><a href="#cb18-8"></a><span class="bu">print</span>(y_smote.value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> Now classes are balanced, let’s train a new model… a balanced one.</p>
-<div id="b6b98423" class="cell" data-execution_count="18">
+<div id="ed5cf224" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>best_model_balanced <span class="op">=</span> train_model(x_smote, y_smote)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="comparing-balanced-and-unbalanced-models" class="level3">
 <h3 class="anchored" data-anchor-id="comparing-balanced-and-unbalanced-models">Comparing balanced and unbalanced models</h3>
 <p>And now, after balancing our classes, we get an even better accuracy, 99.03%! But it wouldn’t be fair to compare when we artificially created almost half the data. Let’s compare both models, the balanced and unbalanced models, with the entire dataset as input.</p>
-<div id="aa91634c" class="cell" data-execution_count="19">
+<div id="f5e9b01a" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>y_pred_balanced <span class="op">=</span> best_model_balanced.predict(x_data)</span>
 <span id="cb20-2"><a href="#cb20-2"></a>balanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_balanced)</span>
 <span id="cb20-3"><a href="#cb20-3"></a></span>
@@ -865,7 +871,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb20-9"><a href="#cb20-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
-<div id="10f34393" class="cell" data-execution_count="20">
+<div id="8da5ccd5" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>y_pred_unbalanced <span class="op">=</span> best_model.predict(x_data)</span>
 <span id="cb21-2"><a href="#cb21-2"></a>unbalanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_unbalanced)</span>
 <span id="cb21-3"><a href="#cb21-3"></a></span>
@@ -883,7 +889,7 @@ Name: count, dtype: int64</code></pre>
 <section id="comparing-with-unseen-data" class="level3">
 <h3 class="anchored" data-anchor-id="comparing-with-unseen-data">Comparing with unseen data</h3>
 <p>In all fairness though, we’re measuring them by almost the same data we trained both models on. Let’s throw at them data it they have never seen.</p>
-<div id="1e24b978" class="cell" data-execution_count="21">
+<div id="2e70e42c" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>test_df <span class="op">=</span> pd.read_csv(<span class="st">"./test_data.csv"</span>)</span>
 <span id="cb22-2"><a href="#cb22-2"></a>test_df <span class="op">=</span> pd.get_dummies(test_df, columns<span class="op">=</span>[<span class="st">'Employment status'</span>, <span class="st">'Education level'</span>, <span class="st">'Marital status'</span>, <span class="st">'Dwelling'</span>], dtype<span class="op">=</span><span class="bu">int</span>)</span>
 <span id="cb22-3"><a href="#cb22-3"></a>test_df <span class="op">=</span> test_df.drop([<span class="st">'ID'</span>,<span class="st">'Has a mobile phone'</span>,<span class="st">'Job title'</span>,<span class="st">'Employment status_Pensioner'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
@@ -897,7 +903,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb22-11"><a href="#cb22-11"></a>test_df <span class="op">=</span> pd.DataFrame(test_df, columns <span class="op">=</span> test_df_columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
-<div id="aead8ea3" class="cell" data-execution_count="22">
+<div id="e3aa84fc" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>y_data <span class="op">=</span> test_df[<span class="st">'Is high risk'</span>]</span>
 <span id="cb23-2"><a href="#cb23-2"></a>x_data <span class="op">=</span> test_df.drop(columns<span class="op">=</span>[<span class="st">'Is high risk'</span>])</span>
 <span id="cb23-3"><a href="#cb23-3"></a></span>
@@ -911,7 +917,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb23-11"><a href="#cb23-11"></a><span class="bu">print</span>(<span class="ss">f"Accuracy on dataset set with unbalanced training: </span><span class="sc">{</span>unbalanced_accuracy<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> Overall accuracy of the balanced model dropped to 90.65% and the unbalanced model stayed high at 98.40%, but is it truly accurate?</p>
-<div id="3c4ff3e9" class="cell" data-execution_count="23">
+<div id="946b2ef6" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>cm <span class="op">=</span> confusion_matrix(y_data, y_pred_unbalanced)</span>
 <span id="cb24-2"><a href="#cb24-2"></a></span>
 <span id="cb24-3"><a href="#cb24-3"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>

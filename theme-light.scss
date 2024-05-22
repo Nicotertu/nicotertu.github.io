@@ -89,6 +89,11 @@ $code-bg: #f3f3f3;
         color: #5f5f5f;
     }
 
+    /*center output of code cells*/
+    .cell-output-display {
+        text-align: center;
+    }
+
     /*coding block inside articles*/
     div.sourceCode {
         border: 2px solid #c9c9c9;

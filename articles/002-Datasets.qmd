@@ -107,7 +107,7 @@ train_df_step2['Has a property'] = train_df_step2['Has a property'].replace({'N'
 
 Next up are features that have more than two possible categories, like Employment status, Education level, Marital status, Dwelling and Job title. 
 
-Plotting them is a very helpful way to visualize how many categories there are and the population of each. See @fig-uniques[0], @fig-uniques[1], @fig-uniques[2], @fig-uniques[3], @fig-uniques[4].
+Plotting them is a very helpful way to visualize how many categories there are and the population of each. See @fig-uniques, @fig-uniques, @fig-uniques, @fig-uniques, @fig-uniques.
 
 ```{python}
 #| label: fig-uniques
@@ -119,11 +119,10 @@ Plotting them is a very helpful way to visualize how many categories there are a
 #|   - "Unique values for Dwelling"
 #|   - "Unique values for Job title"
 #| fig-align: center
-#| fig-responsive: true
 features = ['Employment status', 'Education level', 'Marital status', 'Dwelling', 'Job title']
 
 for feature in features:
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(7, 4))
     sns.countplot(data=train_df_step2, x=feature)
     plt.title(f'Count of Unique Values in {feature}')
     plt.xlabel('')
@@ -147,6 +146,7 @@ plt.show()
 ```
 <br />
 It's all around the place. Gathering the information we have so far:
+
   - Job title has 9027 NaN values (roughly 30%)
   - Missing job titles seem to be all over the place compared their employment status, MCAR (Missing Completely at Random)
   - Imputing would be complicated (but not impossible)

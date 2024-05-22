@@ -35,47 +35,7 @@ format:
         pagetitle: Learning how to use Markdown in Jupyter Notebooks
 ---
 
-For a demonstration of a line plot on a polar axis, see @fig-polar.
-
-```{python}
-#| eval: false
-#| label: fig-polar
-#| fig-cap: "A line plot on a polar axis"
-import numpy as np
-import matplotlib.pyplot as plt
-
-r = np.arange(0, 2, 0.01)
-theta = 2 * np.pi * r
-fig, ax = plt.subplots(
-  subplot_kw = {'projection': 'polar'} 
-)
-ax.plot(theta, r)
-ax.set_rticks([0.5, 1, 1.5, 2])
-ax.grid(True)
-plt.show()
-```
-
 Markdown is a lightweight markup language with plain-text formatting syntax. With it, you can create formatted text using simple symbols and keywords.  
-
-```{python}
-#| eval: false
-import pandas as pd
-import seaborn as sns
-import string
-
-# Seed for reproducibility
-np.random.seed(42)
-
-# Creating a list of standard deviations, from 10% to 100% of the mean
-std_devs = np.linspace(0.1 * 50, 1 * 50, 20)  # Varying standard deviations from 10% to 100% of the mean
-
-# Generating the DataFrame with varying standard deviations
-random_array = np.array([np.random.normal(50, std_dev, 10000) for std_dev in std_devs]).T  # Transpose to correct shape
-
-# Creating a Pandas DataFrame from the NumPy array
-df = pd.DataFrame(random_array, columns=list(string.ascii_uppercase[:20]))
-df
-```
 
 Jupyter Notebooks are interactive computational environments where you can combine code execution, text, mathematics, plots, and rich media. They are widely used in data science, machine learning, and academic research for their flexibility and ease of use.  
 

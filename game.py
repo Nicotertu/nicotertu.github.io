@@ -1,6 +1,8 @@
 import pygame
 import random
 import math
+from collections import defaultdict
+import numpy as np
 
 # Initialize Pygame
 pygame.init()
@@ -8,7 +10,7 @@ pygame.init()
 # Constants
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 1000
-SNAKE_SIZE = 10
+SNAKE_SIZE = 8
 FOOD_SIZE = 5
 FPS = 30
 SNAKE_SPEED = 5
@@ -18,9 +20,10 @@ LEADERBOARD_Y = 10
 LEADERBOARD_SPACING = 20
 DIRECTION_CHANGE_INTERVAL = 1  # frames
 INITIAL_SNAKE_SIZE = 5
-INITIAL_FOOD = 200
+INITIAL_FOOD = 2000
 ROTATION_SPEED = 15  # degrees per frame
 RESPAWN_SAFE_DISTANCE = 300
+ACTIONS = 8
 
 # Colors
 WHITE = (255, 255, 255)
@@ -28,6 +31,12 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 YELLOW = (255, 255, 0)
+
+# Q-learning parameters
+ALPHA = 0.1
+GAMMA = 1
+EPSILON = 0.8
+Q_TABLE = defaultdict(lambda: np.zeros(ACTIONS))
 
 # Snake class
 class Snake:
@@ -81,8 +90,8 @@ class Snake:
             self.y = SCREEN_HEIGHT // 2
         else:
             while True:
-                self.x = random.randint(SCREEN_WIDTH / 10, SCREEN_WIDTH * 9/10)
-                self.y = random.randint(SCREEN_HEIGHT / 10, SCREEN_HEIGHT * 9/10)
+                self.x = random.randint(SCREEN_WIDTH // 10, SCREEN_WIDTH * 9//10)
+                self.y = random.randint(SCREEN_HEIGHT // 10, SCREEN_HEIGHT * 9//10)
                 too_close = False
                 for snake in other_snakes:
                     if distance(self.x, self.y, snake.x, snake.y) < RESPAWN_SAFE_DISTANCE:
@@ -117,6 +126,28 @@ class Food:
 def distance(x1, y1, x2, y2):
     return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
+def angle(x1, y1, x2, y2):
+    return math.atan2(y2 - y1, x2 - x1)
+
+def get_state(snake, foods):
+    head_x, head_y = snake.x, snake.y
+    food_distances = [distance(head_x, head_y, food.x, food.y) for food in foods]
+    food_angles = [angle(head_x, head_y, food.x, food.y) for food in foods]
+    nearest_food_distance = min(food_distances) if food_distances else 0
+    nearest_food_angle = min(food_angles) if food_angles else 0
+    return (int(head_x), int(head_y), int(nearest_food_distance), int(nearest_food_angle))
+
+def choose_action(state):
+    if random.uniform(0, 1) < EPSILON:
+        return random.randint(0, ACTIONS - 1)  # Explore: random action
+    else:
+        return np.argmax(Q_TABLE[state])  # Exploit: best action
+
+def update_q_table(state, action, reward, next_state):
+    best_next_action = np.argmax(Q_TABLE[next_state])
+    td_target = reward + GAMMA * Q_TABLE[next_state][best_next_action]
+    Q_TABLE[state][action] += ALPHA * (td_target - Q_TABLE[state][action])
+
 # Create the screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Snake Game")
@@ -147,6 +178,15 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    # Get current state
+    #current_state = get_state(player, foods)
+
+    # Choose action
+    #action = choose_action(current_state)
+
+    # Update player direction based on action
+    #player.target_direction = (action * 360 / ACTIONS) % 360
+    
     # Player movement towards mouse position
     mouse_x, mouse_y = pygame.mouse.get_pos()
     angle = math.atan2(mouse_y - player.y, mouse_x - player.x)
@@ -158,16 +198,37 @@ while running:
 
     # Move the player
     player.move()
+    
+    # Get next state
+    #next_state = get_state(player, foods)
+    
+    # Calculate reward
+    reward = 0
+    #if not player.alive:
+    #    reward = -100  # Penalize for dying
+    #elif current_state != next_state:
+    #    #reward = -1  # Small penalty for time step
+    #    for food in foods:
+    #        reward = -distance(player.x, player.y, food.x, food.y)
+    #        if (player.x < food.x + FOOD_SIZE and player.x + SNAKE_SIZE > food.x and
+    #                player.y < food.y + FOOD_SIZE and player.y + SNAKE_SIZE > food.y):
+    #            reward = 20  # Reward for eating food
+                
+    # Update Q-table
+    #update_q_table(current_state, action, reward, next_state)
+    
+    # Display action taken
+    #score_text = f"{action} | Reward: {reward:.0f}"
+    #score_surface = pygame.font.Font(None, 24).render(score_text, True, YELLOW)
+    #screen.blit(score_surface, (player.x - 10, player.y + 10))
 
     # Draw the player
     player.draw(screen)
 
-    # Draw the food
-    for food in foods:
-        food.draw(screen)
-
     # Check if the player eats food
     for food in foods:
+        food.draw(screen)
+        
         if (player.x < food.x + FOOD_SIZE and player.x + SNAKE_SIZE > food.x and
                 player.y < food.y + FOOD_SIZE and player.y + SNAKE_SIZE > food.y):
             foods.remove(food)
