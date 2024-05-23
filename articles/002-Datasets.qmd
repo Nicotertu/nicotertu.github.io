@@ -246,6 +246,7 @@ plt.show()
 ```
 <br />
 There are two things that might be interesting to explore further: 
+
   - Correlation between 'Family member count' and 'Children count'.
   - Correlation between 'Employment status_Pensioner' and 'Employment length'.
 
