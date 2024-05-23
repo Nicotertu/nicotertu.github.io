@@ -6,6 +6,8 @@ image: ./001-Markdown.png
 categories: [Beginner, Python, Data Science, Machine Learning, Artificial Intelligence]
 description: "The most common formatting techniques used in Markdown, a lightweight markup language with plain-text formatting syntax."
 author: "Nicolas Tertusio"
+execute:
+  freeze: auto
 website:
   open-graph: true
   title: "Learning how to use Markdown in Jupyter Notebooks"
@@ -20,7 +22,7 @@ format:
         toc-depth: 3
         toc-location: right
         code-fold: true
-        code-summary: "See code"
+        code-summary: "Code"
         code-copy: true
         link-external-newwindow: true
         other-links: 

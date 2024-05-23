@@ -6,6 +6,8 @@ image: ./002-Datasets.png
 categories: [Intermediate, Data analysis, Python, Data Science, Machine Learning, Artificial Intelligence]
 description: "The journey from raw data to a predictive model involves several crucial steps."
 author: "Nicolas Tertusio"
+execute:
+  freeze: auto
 website:
   open-graph: true
   title: "Exploring Datasets"
@@ -18,7 +20,7 @@ format:
         toc-depth: 3
         toc-location: right
         code-fold: false
-        code-summary: "See code"
+        code-summary: "Code"
         code-copy: true
         link-external-newwindow: true
         other-links: 
@@ -66,6 +68,7 @@ train_df.head(5)
 ```{python}
 train_df.describe()
 ```
+<br />
 
 ### Dropping features
 ID can be quickly dropped, as it provides no information about the client. It is merely used by databases to assign a unique value to any given client.
@@ -86,6 +89,8 @@ It is simply a feature full of 1's, it provides no information. If we encountere
 ```{python}
 train_df_step2 = train_df_step1.drop(['Has a mobile phone'], axis=1)
 ```
+<br />
+
 ### Transforming categorical features
 Focusing on categorical features, there are three that we need to transform into discrete features. 
 
@@ -107,18 +112,9 @@ train_df_step2['Has a property'] = train_df_step2['Has a property'].replace({'N'
 
 Next up are features that have more than two possible categories, like Employment status, Education level, Marital status, Dwelling and Job title. 
 
-Plotting them is a very helpful way to visualize how many categories there are and the population of each. See @fig-uniques, @fig-uniques, @fig-uniques, @fig-uniques, @fig-uniques.
-
+Plotting them is a very helpful way to visualize how many categories there are and the population of each. See @fig-uniques1, @fig-uniques2, @fig-uniques3, @fig-uniques4, @fig-uniques5.
 ```{python}
-#| label: fig-uniques
-#| layout-ncol: 2
-#| fig-cap:
-#|   - "Unique values for Employment status"
-#|   - "Unique values for Education level"
-#|   - "Unique values for Marital status"
-#|   - "Unique values for Dwelling"
-#|   - "Unique values for Job title"
-#| fig-align: center
+#| eval: false
 features = ['Employment status', 'Education level', 'Marital status', 'Dwelling', 'Job title']
 
 for feature in features:
@@ -131,10 +127,83 @@ for feature in features:
     
 plt.show()
 ```
-<br />
-Job title has NaN values though, are they all students and pensioners that don't work anymore? Or are there no job title for some people's jobs? Let's combine Employment status and Job title, so we can see what the employment status is of those whose job title is missing.
 
 ```{python}
+#| echo: false
+#| label: fig-uniques1
+#| fig-cap: Unique values for Employment status
+#| fig-align: center
+plt.figure(figsize=(7, 4))
+sns.countplot(data=train_df_step2, x='Employment status')
+plt.title(f'Count of Unique Values in Employment status')
+plt.xlabel('')
+plt.xticks(rotation=90)
+plt.ylabel('Counts')
+plt.show()
+```
+
+```{python}
+#| echo: false
+#| label: fig-uniques2
+#| fig-cap: Unique values for Education level
+#| fig-align: center
+plt.figure(figsize=(7, 4))
+sns.countplot(data=train_df_step2, x='Education level')
+plt.title(f'Count of Unique Values in Education level')
+plt.xlabel('')
+plt.xticks(rotation=90)
+plt.ylabel('Counts')
+plt.show()
+```
+
+```{python}
+#| echo: false
+#| label: fig-uniques3
+#| fig-cap: Unique values for Marital status
+#| fig-align: center
+plt.figure(figsize=(7, 4))
+sns.countplot(data=train_df_step2, x='Marital status')
+plt.title(f'Count of Unique Values in Marital status')
+plt.xlabel('')
+plt.xticks(rotation=90)
+plt.ylabel('Counts')
+plt.show()
+```
+
+```{python}
+#| echo: false
+#| label: fig-uniques4
+#| fig-cap: Unique values for Dwelling
+#| fig-align: center
+plt.figure(figsize=(7, 4))
+sns.countplot(data=train_df_step2, x='Dwelling')
+plt.title(f'Count of Unique Values in Dwelling')
+plt.xlabel('')
+plt.xticks(rotation=90)
+plt.ylabel('Counts')
+plt.show()
+```
+
+```{python}
+#| echo: false
+#| label: fig-uniques5
+#| fig-cap: Unique values for Job title
+#| fig-align: center
+plt.figure(figsize=(7, 4))
+sns.countplot(data=train_df_step2, x='Job title')
+plt.title(f'Count of Unique Values in Job title')
+plt.xlabel('')
+plt.xticks(rotation=90)
+plt.ylabel('Counts')
+plt.show()
+```
+<br />
+Job title has NaN values though, are they all students and pensioners that don't work anymore? Or are there no job title for some people's jobs? Let's combine Employment status and Job title, so we can see what the employment status is of those whose job title is missing, see @fig-job-titles.
+
+```{python}
+#| label: fig-job-titles
+#| fig-cap: Employment Status for NaN Job Titles
+#| fig-align: center
 nan_job_title_df = train_df[train_df['Job title'].isna()]
 employment_status_counts = nan_job_title_df['Employment status'].value_counts()
 
@@ -159,10 +228,15 @@ train_df_step3 = train_df_step2.drop(['Job title'], axis=1)
 
 train_df_step4 = pd.get_dummies(train_df_step3, columns=['Employment status', 'Education level', 'Marital status', 'Dwelling'], dtype=int)
 ```
+<br />
+
 ### Correlation matrix
 Finally, let's take a look at the correlation matrix.
 
 ```{python}
+#| label: fig-correlation-matrix
+#| fig-cap: Correlation matrix
+#| fig-align: center
 correlation_matrix = train_df_step4.corr()
 
 plt.figure(figsize=(25,25))
@@ -175,9 +249,12 @@ There are two things that might be interesting to explore further:
   - Correlation between 'Family member count' and 'Children count'.
   - Correlation between 'Employment status_Pensioner' and 'Employment length'.
 
-'Family member count' and 'Children count' are obviously correlated, but it is not a correlation of 1. That means that sometimes, more family members taken into account other than children, or even sometimes children are not taken into account for family, therefore we can't really remove this feature. It is adding some information after all.
+'Family member count' and 'Children count' are obviously correlated, but it is not a correlation of 1. That means that sometimes, more family members taken into account other than children, or even sometimes children are not taken into account for family, therefore we can't really remove this feature. It is adding some information after all, see @fig-family-children-count.
 
 ```{python}
+#| label: fig-family-children-count
+#| fig-cap: Correlation matrix
+#| fig-align: center
 family_member_count = train_df_step4['Family member count']
 children_count = train_df_step4['Children count']
 
@@ -210,6 +287,8 @@ That means we can only remove the Employment status_Pensioner feature.
 ```{python}
 train_df_step5 = train_df_step4.drop(['Employment status_Pensioner'], axis=1)
 ```
+<br />
+
 ### Scaling features
 At last, before training a machine learning model, we should scale features, given that some of them like 'Income' and 'Employment length' are not proportional to the others.
 
@@ -218,6 +297,8 @@ scaler = MinMaxScaler()
 train_df_step6 = scaler.fit_transform(train_df_step5)
 train_df_step6 = pd.DataFrame(train_df_step6, columns=train_df_step5.columns)
 ```
+<br />
+
 ## Training a model
 To train a model we first split the data in input (x_data) and output (y_data). Then we apply the following: 
   - Split dataset between train and test sets.
@@ -230,6 +311,9 @@ To visually see the results, we can use a confusion matrix.
 
 ```{python}
 #| eval: false
+#| label: fig-confusion-matrix-1
+#| fig-cap: First model confusion matrix
+#| fig-align: center
 y_data = train_df_step6['Is high risk']
 x_data = train_df_step6.drop(columns=['Is high risk'])
 
@@ -278,6 +362,7 @@ train_df_step6['Is high risk'].value_counts()
 ```
 <br />
 Only 1.74% are high risk. What does that mean? Well... instead of analyzing the dataset, evaluating models, hyperparameters, cross validation and whatnot, it would be more effective to say "No client is high risk". That would give us an accuracy of 98.26%. Looking at the confusion matrix, that is exactly what the model learned and did.
+<br />
 
 ### Balancing classes
 One way to fix this is to balance the classes, either by undersampling or oversampling. Let's try and use oversampling, as we don't really want to loose 28000 entries of valuable information.
@@ -300,6 +385,8 @@ Now classes are balanced, let's train a new model... a balanced one.
 #| eval: false
 best_model_balanced = train_model(x_smote, y_smote)
 ```
+<br />
+
 ### Comparing balanced and unbalanced models
 And now, after balancing our classes, we get an even better accuracy, 99.03%! But it wouldn't be fair to compare when we artificially created almost half the data. Let's compare both models, the balanced and unbalanced models, with the entire dataset as input.
 

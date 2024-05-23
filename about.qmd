@@ -1,6 +1,8 @@
 ---
 title: "Nicolas Tertusio"
 toc: false
+execute: 
+  freeze: auto
 about:
     template: trestles
     image: ./images/owl.jpg
