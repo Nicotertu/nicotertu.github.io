@@ -310,9 +310,8 @@ To train a model we first split the data in input (x_data) and output (y_data). 
 To visually see the results, we can use a confusion matrix.
 
 ```{python}
-#| eval: false
 #| label: fig-confusion-matrix-1
-#| fig-cap: First model confusion matrix
+#| fig-cap: First model confusion matrix.
 #| fig-align: center
 y_data = train_df_step6['Is high risk']
 x_data = train_df_step6.drop(columns=['Is high risk'])
@@ -352,12 +351,11 @@ def train_model(x, y):
 best_model = train_model(x_data, y_data)
 ```
 <br />
-98.52% accuracy is great! That meanst almost every observation we made about the dataset were appropiate and helped us build an accurate model... or not.
+98.52% accuracy is great! It means almost every observation we made about the dataset were appropiate and helped us build an accurate model... or not.
 
 Some machine learning models, especially those that are tree based, tend to fall into a trap of unbalanced classes. And in this dataset, there's a huge unbalance in our output 'Is high risk'.
 
 ```{python}
-#| eval: false
 train_df_step6['Is high risk'].value_counts()
 ```
 <br />
@@ -368,7 +366,6 @@ Only 1.74% are high risk. What does that mean? Well... instead of analyzing the 
 One way to fix this is to balance the classes, either by undersampling or oversampling. Let's try and use oversampling, as we don't really want to loose 28000 entries of valuable information.
 
 ```{python}
-#| eval: false
 smote = SMOTE()
 
 x_smote, y_smote = smote.fit_resample(x_data, y_data)
@@ -382,16 +379,20 @@ print(y_smote.value_counts())
 Now classes are balanced, let's train a new model... a balanced one.
 
 ```{python}
-#| eval: false
+#| label: fig-confusion-matrix-2
+#| fig-cap: New model confusion matrix.
+#| fig-align: center
 best_model_balanced = train_model(x_smote, y_smote)
 ```
 <br />
 
 ### Comparing balanced and unbalanced models
-And now, after balancing our classes, we get an even better accuracy, 99.03%! But it wouldn't be fair to compare when we artificially created almost half the data. Let's compare both models, the balanced and unbalanced models, with the entire dataset as input.
+And now, after balancing our classes, we get an even better accuracy, over 99%! But it wouldn't be fair to compare when we artificially created almost half the data. Let's compare both models, the balanced and unbalanced models, with the entire dataset as input.
 
 ```{python}
-#| eval: false
+#| label: fig-confusion-matrix-3
+#| fig-cap: Balanced model confusion matrix.
+#| fig-align: center
 y_pred_balanced = best_model_balanced.predict(x_data)
 balanced_accuracy = accuracy_score(y_data, y_pred_balanced)
 
@@ -399,13 +400,15 @@ cm = confusion_matrix(y_data, y_pred_balanced)
 
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=best_model.classes_)
 disp.plot(cmap=plt.cm.Blues)
-plt.title('Confusion Matrix')
+plt.title('Balanced Confusion Matrix')
 plt.show()
 ```
 <br />
 
 ```{python}
-#| eval: false
+#| label: fig-confusion-matrix-4
+#| fig-cap: Unbalanced model confusion matrix.
+#| fig-align: center
 y_pred_unbalanced = best_model.predict(x_data)
 unbalanced_accuracy = accuracy_score(y_data, y_pred_unbalanced)
 
@@ -413,43 +416,37 @@ cm = confusion_matrix(y_data, y_pred_unbalanced)
 
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=best_model.classes_)
 disp.plot(cmap=plt.cm.Blues)
-plt.title('Confusion Matrix')
+plt.title('Unbalanced Confusion Matrix')
 plt.show()
 ```
 <br />
 Results for the balanced model:
-  - It predicted that 436 cases were high risk, 387 of those were rightfully high risk (88.76% accuracy).
-  - It predicted that 28729 cases were not high risk, 28617 of those were rightfully not high risk (99.61% accuracy).
-  - Overall accuracy of 99.45%.
+
+  - It predicted that over 400 cases were high risk, most of them rightfully so.
+  - It predicted that almost all cases were not high risk, most of them rightfully so.
 
 Results for the unbalanced mode: 
-  - It predicted that 3 cases were high risk, 3 of those were rightfully high risk (100% accuracy).
-  - It predicted that 29162 cases were not high risk, 28666 of those were rightfully not high risk (98.30% accuracy).
-  - Overall accuracy of 98.30%.
 
-Only when measured by their overall accuracy does the balanced model truly shine. But only a glimpse into the confusion matrix will clearly shows that the balanced model actually learned from the high risk entries, whereas the unbalanced one barely did.
+  - It predicted that close to 0 cases were high risk.
+  - It predicted that almost all cases were not high risk.
+
+Only when measured by their overall accuracy does the balanced model truly shine. But only a glimpse into the confusion matrix clearly shows that the balanced model actually learned from the high risk entries, whereas the unbalanced one barely did.
 
 ### Comparing with unseen data
-In all fairness though, we're measuring them by almost the same data we trained both models on. Let's throw at them data it they have never seen.
+In all fairness though, we're measuring them by almost the same data we trained both models on. Let's throw at them data they have never seen.
 
 ```{python}
-#| eval: false
-test_df = pd.read_csv("./test_data.csv")
 test_df = pd.get_dummies(test_df, columns=['Employment status', 'Education level', 'Marital status', 'Dwelling'], dtype=int)
 test_df = test_df.drop(['ID','Has a mobile phone','Job title','Employment status_Pensioner'], axis=1)
-with pd.option_context("future.no_silent_downcasting", True):
-    test_df['Gender'] = test_df['Gender'].replace({'M': int(0), 'F': int(1)}).astype(int)
-    test_df['Has a property'] = test_df['Has a property'].replace({'N': int(0), 'Y': int(1)}).astype(int)
-    test_df['Has a car'] = test_df['Has a car'].replace({'N': int(0), 'Y': int(1)}).astype(int)
+#with pd.option_context("future.no_silent_downcasting", True):
+test_df['Gender'] = test_df['Gender'].replace({'M': int(0), 'F': int(1)}).astype(int)
+test_df['Has a property'] = test_df['Has a property'].replace({'N': int(0), 'Y': int(1)}).astype(int)
+test_df['Has a car'] = test_df['Has a car'].replace({'N': int(0), 'Y': int(1)}).astype(int)
 scaler = MinMaxScaler()
 test_df_columns = test_df.columns
 test_df = scaler.fit_transform(test_df)
 test_df = pd.DataFrame(test_df, columns = test_df_columns)
-```
-<br />
 
-```{python}
-#| eval: false
 y_data = test_df['Is high risk']
 x_data = test_df.drop(columns=['Is high risk'])
 
@@ -463,17 +460,24 @@ print(f"Accuracy on dataset with balanced training: {balanced_accuracy*100:.2f}%
 print(f"Accuracy on dataset set with unbalanced training: {unbalanced_accuracy*100:.2f}%")
 ```
 <br />
-Overall accuracy of the balanced model dropped to 90.65% and the unbalanced model stayed high at 98.40%, but is it truly accurate?
+Overall accuracy of the balanced model dropped to a little over 90% and the unbalanced model stayed high, but is it truly accurate? Let's calculate again the confusion matrices.
 
 ```{python}
-#| eval: false
+#| label: fig-confusion-matrix-5
+#| fig-cap: Balanced model confusion matrix against unseen data.
+#| fig-align: center
 cm = confusion_matrix(y_data, y_pred_unbalanced)
 
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=best_model.classes_)
 disp.plot(cmap=plt.cm.Blues)
 plt.title('Unbalanced Confusion Matrix')
 plt.show()
+```
 
+```{python}
+#| label: fig-confusion-matrix-6
+#| fig-cap: Unbalanced model confusion matrix against unseen data.
+#| fig-align: center
 cm = confusion_matrix(y_data, y_pred_balanced)
 
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=best_model.classes_)
@@ -482,4 +486,4 @@ plt.title('Balanced Confusion Matrix')
 plt.show()
 ```
 <br />
-It isn't. The unbalanced model did not predict any high risk, whereas the balanced model predicted 635 cases. It did so correctly at 5.51% accuracy which is not that good, but that is a story for a different day.
+It isn't. The unbalanced model predicted almost no high risk clients, whereas the balanced model predicted multiple cases. It did so correctly at a very low accuracy which is not that good, but that is a story for a different day.

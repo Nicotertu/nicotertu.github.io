@@ -229,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the world of data science and machine learning, understanding the significance of not just diving headfirst into building models but rather meticulously exploring and understanding the datasets at hand is crucial.</p>
 <p>In this article I embark on a journey through the pre-modeling phase, focusing on essential exploratory data analysis (EDA) techniques. I am going to be using a dataset from Kaggle, a website where one can find different datasets, people can upload their machine learning models, there’s even competition and sometimes prizes for winners. The dataset is called “Credit Car Prediction”, and it has multiple variables regarding the financial and social status of individuals. The goal of the dataset is to determine if an individual is or not eligible for a credit card.</p>
 <p>We start off importing the libraries we are going to be using, and loading the dataset.</p>
-<div id="9294e6d9" class="cell" data-execution_count="1">
+<div id="721992b3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exploring-the-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-the-dataset">Exploring the dataset</h2>
 <p>Let’s take a look at the dataset, see what types of features there are, what information they bring to the table, how many there are, how many entries and some of the statistics of each.</p>
-<div id="fc80476b" class="cell" data-execution_count="2">
+<div id="9e1e8f1e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>train_df.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
@@ -405,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><br></p>
-<div id="ff1a0a94" class="cell" data-execution_count="3">
+<div id="37ce6199" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>train_df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -562,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="dropping-features" class="level3">
 <h3 class="anchored" data-anchor-id="dropping-features">Dropping features</h3>
 <p>ID can be quickly dropped, as it provides no information about the client. It is merely used by databases to assign a unique value to any given client.</p>
-<div id="bf24b455" class="cell" data-execution_count="4">
+<div id="55c23ce7" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>train_df_step1 <span class="op">=</span> train_df.drop([<span class="st">'ID'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> Looking at the mobile phones statistics:</p>
@@ -573,7 +573,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>It has a maximum of 1</li>
 </ul>
 <p>It is simply a feature full of 1’s, it provides no information. If we encountered in the validation set or real life a person with no mobile phone, the model can’t possibly learn anything about them.</p>
-<div id="8207b0ec" class="cell" data-execution_count="5">
+<div id="9d122c91" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>train_df_step2 <span class="op">=</span> train_df_step1.drop([<span class="st">'Has a mobile phone'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
@@ -586,7 +586,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Has a car we replace N to 0 and Y to 1.</li>
 <li>Has a property we replace N to 0 and Y to 1.</li>
 </ul>
-<div id="d58f0556" class="cell" data-execution_count="6">
+<div id="74965dd3" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#replacing an entire column of strings for integers raises some warnings</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="co">#with pd.option_context("future.no_silent_downcasting", True): </span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>train_df_step2[<span class="st">'Gender'</span>] <span class="op">=</span> train_df_step2[<span class="st">'Gender'</span>].replace({<span class="st">'M'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'F'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span>
@@ -599,7 +599,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Next up are features that have more than two possible categories, like Employment status, Education level, Marital status, Dwelling and Job title.</p>
 <p>Plotting them is a very helpful way to visualize how many categories there are and the population of each. See <a href="#fig-uniques1" class="quarto-xref">Figure&nbsp;1</a>, <a href="#fig-uniques2" class="quarto-xref">Figure&nbsp;2</a>, <a href="#fig-uniques3" class="quarto-xref">Figure&nbsp;3</a>, <a href="#fig-uniques4" class="quarto-xref">Figure&nbsp;4</a>, <a href="#fig-uniques5" class="quarto-xref">Figure&nbsp;5</a>.</p>
-<div id="163c1057" class="cell" data-execution_count="7">
+<div id="ec119e4c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>features <span class="op">=</span> [<span class="st">'Employment status'</span>, <span class="st">'Education level'</span>, <span class="st">'Marital status'</span>, <span class="st">'Dwelling'</span>, <span class="st">'Job title'</span>]</span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="cf">for</span> feature <span class="kw">in</span> features:</span>
@@ -713,7 +713,7 @@ Figure&nbsp;6: Employment Status for NaN Job Titles
 <li>Encoding this feature would increase the dimensionality significantly</li>
 </ul>
 <p>Based on that, I will remove the feature altogether, and apply OHE (One Hot Encoding).</p>
-<div id="2c20d212" class="cell" data-execution_count="14">
+<div id="ddb3b754" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>train_df_step3 <span class="op">=</span> train_df_step2.drop([<span class="st">'Job title'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
 <span id="cb9-3"><a href="#cb9-3"></a>train_df_step4 <span class="op">=</span> pd.get_dummies(train_df_step3, columns<span class="op">=</span>[<span class="st">'Employment status'</span>, <span class="st">'Education level'</span>, <span class="st">'Marital status'</span>, <span class="st">'Dwelling'</span>], dtype<span class="op">=</span><span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -775,7 +775,7 @@ Figure&nbsp;8: Correlation matrix
 </div>
 <p><br> We can see that most of the time, children make up for most of the family members, but sometimes (especifically for 1 family member), there are a few cases with more children than family members.</p>
 <p>Moving to the next point to explore, let’s take a look at those with an employment status of pensioner and their respective ‘Employment length’.</p>
-<div id="70d6f486" class="cell" data-execution_count="17">
+<div id="4b1648da" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>employment_status_pensioner <span class="op">=</span> train_df_step4[(train_df_step4[<span class="st">'Employment status_Pensioner'</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
 <span id="cb12-2"><a href="#cb12-2"></a>employment_status_pensioner[<span class="st">'Employment length'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
@@ -798,7 +798,7 @@ Name: count, dtype: int64</code></pre>
 </div>
 <p><br> Out of 4920 pensioners, only 12 have an ‘Employment length’ different than the value ‘365243’. That is a 0.24% over the pensioners and 0.04% over the dataset. It is most likely safe to remove one of these two features, as they are explaining the same thing. But which one to remove matters: ‘Employment status_Pensioner’ has the same information as ‘Employment length’, but not the other way around. ‘Employment length’ has information about those that are not Pensioners.</p>
 <p>That means we can only remove the Employment status_Pensioner feature.</p>
-<div id="0c4db214" class="cell" data-execution_count="18">
+<div id="2455f1c0" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>train_df_step5 <span class="op">=</span> train_df_step4.drop([<span class="st">'Employment status_Pensioner'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
@@ -806,7 +806,7 @@ Name: count, dtype: int64</code></pre>
 <section id="scaling-features" class="level3">
 <h3 class="anchored" data-anchor-id="scaling-features">Scaling features</h3>
 <p>At last, before training a machine learning model, we should scale features, given that some of them like ‘Income’ and ‘Employment length’ are not proportional to the others.</p>
-<div id="b586bca8" class="cell" data-execution_count="19">
+<div id="64dbbf2d" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>scaler <span class="op">=</span> MinMaxScaler()</span>
 <span id="cb15-2"><a href="#cb15-2"></a>train_df_step6 <span class="op">=</span> scaler.fit_transform(train_df_step5)</span>
 <span id="cb15-3"><a href="#cb15-3"></a>train_df_step6 <span class="op">=</span> pd.DataFrame(train_df_step6, columns<span class="op">=</span>train_df_step5.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -818,153 +818,255 @@ Name: count, dtype: int64</code></pre>
 <h2 class="anchored" data-anchor-id="training-a-model">Training a model</h2>
 <p>To train a model we first split the data in input (x_data) and output (y_data). Then we apply the following: - Split dataset between train and test sets. - Apply cross validation - Search for best hyperparameters - Make predictions - Calculate accuracy</p>
 <p>To visually see the results, we can use a confusion matrix.</p>
-<div id="fig-confusion-matrix-1" class="cell quarto-figure quarto-figure-center quarto-float anchored" data-execution_count="20">
+<div id="cell-fig-confusion-matrix-1" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>y_data <span class="op">=</span> train_df_step6[<span class="st">'Is high risk'</span>]</span>
+<span id="cb16-2"><a href="#cb16-2"></a>x_data <span class="op">=</span> train_df_step6.drop(columns<span class="op">=</span>[<span class="st">'Is high risk'</span>])</span>
+<span id="cb16-3"><a href="#cb16-3"></a></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="kw">def</span> train_model(x, y):</span>
+<span id="cb16-5"><a href="#cb16-5"></a>    X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(x, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb16-6"><a href="#cb16-6"></a>    rf_classifier <span class="op">=</span> RandomForestClassifier(random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb16-7"><a href="#cb16-7"></a>    param_grid <span class="op">=</span> {</span>
+<span id="cb16-8"><a href="#cb16-8"></a>        <span class="st">'n_estimators'</span>: [<span class="dv">10</span>, <span class="dv">100</span>],</span>
+<span id="cb16-9"><a href="#cb16-9"></a>        <span class="st">'max_depth'</span>: [<span class="va">None</span>, <span class="dv">5</span>, <span class="dv">10</span>],</span>
+<span id="cb16-10"><a href="#cb16-10"></a>        <span class="st">'min_samples_split'</span>: [<span class="dv">2</span>, <span class="dv">4</span>],</span>
+<span id="cb16-11"><a href="#cb16-11"></a>        <span class="st">'min_samples_leaf'</span>: [<span class="dv">1</span>, <span class="dv">3</span>]</span>
+<span id="cb16-12"><a href="#cb16-12"></a>    }</span>
+<span id="cb16-13"><a href="#cb16-13"></a></span>
+<span id="cb16-14"><a href="#cb16-14"></a>    grid_search <span class="op">=</span> GridSearchCV(estimator<span class="op">=</span>rf_classifier, param_grid<span class="op">=</span>param_grid, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">'accuracy'</span>)</span>
+<span id="cb16-15"><a href="#cb16-15"></a>    grid_search.fit(X_train, y_train)</span>
+<span id="cb16-16"><a href="#cb16-16"></a></span>
+<span id="cb16-17"><a href="#cb16-17"></a>    best_params <span class="op">=</span> grid_search.best_params_</span>
+<span id="cb16-18"><a href="#cb16-18"></a>    <span class="bu">print</span>(<span class="st">"Best hyperparameters:"</span>, best_params)</span>
+<span id="cb16-19"><a href="#cb16-19"></a>    best_model <span class="op">=</span> grid_search.best_estimator_</span>
+<span id="cb16-20"><a href="#cb16-20"></a></span>
+<span id="cb16-21"><a href="#cb16-21"></a>    y_pred <span class="op">=</span> best_model.predict(X_test)</span>
+<span id="cb16-22"><a href="#cb16-22"></a>    accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb16-23"><a href="#cb16-23"></a>    <span class="bu">print</span>(<span class="st">"Accuracy on testing set:"</span>, accuracy)</span>
+<span id="cb16-24"><a href="#cb16-24"></a>    </span>
+<span id="cb16-25"><a href="#cb16-25"></a>    y_pred <span class="op">=</span> best_model.predict(X_test)</span>
+<span id="cb16-26"><a href="#cb16-26"></a></span>
+<span id="cb16-27"><a href="#cb16-27"></a>    cm <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
+<span id="cb16-28"><a href="#cb16-28"></a></span>
+<span id="cb16-29"><a href="#cb16-29"></a>    disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
+<span id="cb16-30"><a href="#cb16-30"></a>    disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
+<span id="cb16-31"><a href="#cb16-31"></a>    plt.title(<span class="st">'Confusion Matrix'</span>)</span>
+<span id="cb16-32"><a href="#cb16-32"></a>    plt.show()</span>
+<span id="cb16-33"><a href="#cb16-33"></a>    </span>
+<span id="cb16-34"><a href="#cb16-34"></a>    <span class="cf">return</span> best_model</span>
+<span id="cb16-35"><a href="#cb16-35"></a>    </span>
+<span id="cb16-36"><a href="#cb16-36"></a>best_model <span class="op">=</span> train_model(x_data, y_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Best hyperparameters: {'max_depth': None, 'min_samples_leaf': 3, 'min_samples_split': 2, 'n_estimators': 100}
+Accuracy on testing set: 0.9852563003600205</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-confusion-matrix-1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-confusion-matrix-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode cell-code" id="fig-confusion-matrix-1" data-execution_count="20"><pre class="sourceCode numberSource python number-lines cell code-with-copy"><code class="sourceCode python"><span id="fig-confusion-matrix-1-1"><a href="#fig-confusion-matrix-1-1"></a>y_data <span class="op">=</span> train_df_step6[<span class="st">'Is high risk'</span>]</span>
-<span id="fig-confusion-matrix-1-2"><a href="#fig-confusion-matrix-1-2"></a>x_data <span class="op">=</span> train_df_step6.drop(columns<span class="op">=</span>[<span class="st">'Is high risk'</span>])</span>
-<span id="fig-confusion-matrix-1-3"><a href="#fig-confusion-matrix-1-3"></a></span>
-<span id="fig-confusion-matrix-1-4"><a href="#fig-confusion-matrix-1-4"></a><span class="kw">def</span> train_model(x, y):</span>
-<span id="fig-confusion-matrix-1-5"><a href="#fig-confusion-matrix-1-5"></a>    X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(x, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="fig-confusion-matrix-1-6"><a href="#fig-confusion-matrix-1-6"></a>    rf_classifier <span class="op">=</span> RandomForestClassifier(random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="fig-confusion-matrix-1-7"><a href="#fig-confusion-matrix-1-7"></a>    param_grid <span class="op">=</span> {</span>
-<span id="fig-confusion-matrix-1-8"><a href="#fig-confusion-matrix-1-8"></a>        <span class="st">'n_estimators'</span>: [<span class="dv">10</span>, <span class="dv">100</span>],</span>
-<span id="fig-confusion-matrix-1-9"><a href="#fig-confusion-matrix-1-9"></a>        <span class="st">'max_depth'</span>: [<span class="va">None</span>, <span class="dv">5</span>, <span class="dv">10</span>],</span>
-<span id="fig-confusion-matrix-1-10"><a href="#fig-confusion-matrix-1-10"></a>        <span class="st">'min_samples_split'</span>: [<span class="dv">2</span>, <span class="dv">4</span>],</span>
-<span id="fig-confusion-matrix-1-11"><a href="#fig-confusion-matrix-1-11"></a>        <span class="st">'min_samples_leaf'</span>: [<span class="dv">1</span>, <span class="dv">3</span>]</span>
-<span id="fig-confusion-matrix-1-12"><a href="#fig-confusion-matrix-1-12"></a>    }</span>
-<span id="fig-confusion-matrix-1-13"><a href="#fig-confusion-matrix-1-13"></a></span>
-<span id="fig-confusion-matrix-1-14"><a href="#fig-confusion-matrix-1-14"></a>    grid_search <span class="op">=</span> GridSearchCV(estimator<span class="op">=</span>rf_classifier, param_grid<span class="op">=</span>param_grid, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">'accuracy'</span>)</span>
-<span id="fig-confusion-matrix-1-15"><a href="#fig-confusion-matrix-1-15"></a>    grid_search.fit(X_train, y_train)</span>
-<span id="fig-confusion-matrix-1-16"><a href="#fig-confusion-matrix-1-16"></a></span>
-<span id="fig-confusion-matrix-1-17"><a href="#fig-confusion-matrix-1-17"></a>    best_params <span class="op">=</span> grid_search.best_params_</span>
-<span id="fig-confusion-matrix-1-18"><a href="#fig-confusion-matrix-1-18"></a>    <span class="bu">print</span>(<span class="st">"Best hyperparameters:"</span>, best_params)</span>
-<span id="fig-confusion-matrix-1-19"><a href="#fig-confusion-matrix-1-19"></a>    best_model <span class="op">=</span> grid_search.best_estimator_</span>
-<span id="fig-confusion-matrix-1-20"><a href="#fig-confusion-matrix-1-20"></a></span>
-<span id="fig-confusion-matrix-1-21"><a href="#fig-confusion-matrix-1-21"></a>    y_pred <span class="op">=</span> best_model.predict(X_test)</span>
-<span id="fig-confusion-matrix-1-22"><a href="#fig-confusion-matrix-1-22"></a>    accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
-<span id="fig-confusion-matrix-1-23"><a href="#fig-confusion-matrix-1-23"></a>    <span class="bu">print</span>(<span class="st">"Accuracy on testing set:"</span>, accuracy)</span>
-<span id="fig-confusion-matrix-1-24"><a href="#fig-confusion-matrix-1-24"></a>    </span>
-<span id="fig-confusion-matrix-1-25"><a href="#fig-confusion-matrix-1-25"></a>    y_pred <span class="op">=</span> best_model.predict(X_test)</span>
-<span id="fig-confusion-matrix-1-26"><a href="#fig-confusion-matrix-1-26"></a></span>
-<span id="fig-confusion-matrix-1-27"><a href="#fig-confusion-matrix-1-27"></a>    cm <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
-<span id="fig-confusion-matrix-1-28"><a href="#fig-confusion-matrix-1-28"></a></span>
-<span id="fig-confusion-matrix-1-29"><a href="#fig-confusion-matrix-1-29"></a>    disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
-<span id="fig-confusion-matrix-1-30"><a href="#fig-confusion-matrix-1-30"></a>    disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
-<span id="fig-confusion-matrix-1-31"><a href="#fig-confusion-matrix-1-31"></a>    plt.title(<span class="st">'Confusion Matrix'</span>)</span>
-<span id="fig-confusion-matrix-1-32"><a href="#fig-confusion-matrix-1-32"></a>    plt.show()</span>
-<span id="fig-confusion-matrix-1-33"><a href="#fig-confusion-matrix-1-33"></a>    </span>
-<span id="fig-confusion-matrix-1-34"><a href="#fig-confusion-matrix-1-34"></a>    <span class="cf">return</span> best_model</span>
-<span id="fig-confusion-matrix-1-35"><a href="#fig-confusion-matrix-1-35"></a>    </span>
-<span id="fig-confusion-matrix-1-36"><a href="#fig-confusion-matrix-1-36"></a>best_model <span class="op">=</span> train_model(x_data, y_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<img src="002-Datasets_files/figure-html/fig-confusion-matrix-1-output-2.png" class="quarto-figure quarto-figure-center figure-img" width="525" height="449">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-confusion-matrix-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-confusion-matrix-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: First model confusion matrix.
 </figcaption>
 </figure>
 </div>
-<p><br> 98.52% accuracy is great! That meanst almost every observation we made about the dataset were appropiate and helped us build an accurate model… or not.</p>
+</div>
+</div>
+<p><br> 98.52% accuracy is great! It means almost every observation we made about the dataset were appropiate and helped us build an accurate model… or not.</p>
 <p>Some machine learning models, especially those that are tree based, tend to fall into a trap of unbalanced classes. And in this dataset, there’s a huge unbalance in our output ‘Is high risk’.</p>
-<div id="f830daa4" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>train_df_step6[<span class="st">'Is high risk'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="236a24d9" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>train_df_step6[<span class="st">'Is high risk'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>Is high risk
+0.0    28666
+1.0      499
+Name: count, dtype: int64</code></pre>
+</div>
 </div>
 <p><br> Only 1.74% are high risk. What does that mean? Well… instead of analyzing the dataset, evaluating models, hyperparameters, cross validation and whatnot, it would be more effective to say “No client is high risk”. That would give us an accuracy of 98.26%. Looking at the confusion matrix, that is exactly what the model learned and did. <br></p>
 <section id="balancing-classes" class="level3">
 <h3 class="anchored" data-anchor-id="balancing-classes">Balancing classes</h3>
 <p>One way to fix this is to balance the classes, either by undersampling or oversampling. Let’s try and use oversampling, as we don’t really want to loose 28000 entries of valuable information.</p>
-<div id="3b9df208" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>smote <span class="op">=</span> SMOTE()</span>
-<span id="cb17-2"><a href="#cb17-2"></a></span>
-<span id="cb17-3"><a href="#cb17-3"></a>x_smote, y_smote <span class="op">=</span> smote.fit_resample(x_data, y_data)</span>
-<span id="cb17-4"><a href="#cb17-4"></a></span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="bu">print</span>(<span class="st">'Original dataset shape'</span>)</span>
-<span id="cb17-6"><a href="#cb17-6"></a><span class="bu">print</span>(y_data.value_counts())</span>
-<span id="cb17-7"><a href="#cb17-7"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Resample dataset shape'</span>)</span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="bu">print</span>(y_smote.value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="59d65300" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>smote <span class="op">=</span> SMOTE()</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>x_smote, y_smote <span class="op">=</span> smote.fit_resample(x_data, y_data)</span>
+<span id="cb20-4"><a href="#cb20-4"></a></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="bu">print</span>(<span class="st">'Original dataset shape'</span>)</span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="bu">print</span>(y_data.value_counts())</span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Resample dataset shape'</span>)</span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="bu">print</span>(y_smote.value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Original dataset shape
+Is high risk
+0.0    28666
+1.0      499
+Name: count, dtype: int64
+
+Resample dataset shape
+Is high risk
+0.0    28666
+1.0    28666
+Name: count, dtype: int64</code></pre>
+</div>
 </div>
 <p><br> Now classes are balanced, let’s train a new model… a balanced one.</p>
-<div id="87b48381" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>best_model_balanced <span class="op">=</span> train_model(x_smote, y_smote)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-fig-confusion-matrix-2" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>best_model_balanced <span class="op">=</span> train_model(x_smote, y_smote)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Best hyperparameters: {'max_depth': None, 'min_samples_leaf': 1, 'min_samples_split': 4, 'n_estimators': 100}
+Accuracy on testing set: 0.9909304962065056</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-confusion-matrix-2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-confusion-matrix-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="002-Datasets_files/figure-html/fig-confusion-matrix-2-output-2.png" class="quarto-figure quarto-figure-center figure-img" width="525" height="449">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-confusion-matrix-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: New model confusion matrix.
+</figcaption>
+</figure>
+</div>
+</div>
 </div>
 <p><br></p>
 </section>
 <section id="comparing-balanced-and-unbalanced-models" class="level3">
 <h3 class="anchored" data-anchor-id="comparing-balanced-and-unbalanced-models">Comparing balanced and unbalanced models</h3>
-<p>And now, after balancing our classes, we get an even better accuracy, 99.03%! But it wouldn’t be fair to compare when we artificially created almost half the data. Let’s compare both models, the balanced and unbalanced models, with the entire dataset as input.</p>
-<div id="fdc0623e" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>y_pred_balanced <span class="op">=</span> best_model_balanced.predict(x_data)</span>
-<span id="cb19-2"><a href="#cb19-2"></a>balanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_balanced)</span>
-<span id="cb19-3"><a href="#cb19-3"></a></span>
-<span id="cb19-4"><a href="#cb19-4"></a>cm <span class="op">=</span> confusion_matrix(y_data, y_pred_balanced)</span>
-<span id="cb19-5"><a href="#cb19-5"></a></span>
-<span id="cb19-6"><a href="#cb19-6"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
-<span id="cb19-7"><a href="#cb19-7"></a>disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
-<span id="cb19-8"><a href="#cb19-8"></a>plt.title(<span class="st">'Confusion Matrix'</span>)</span>
-<span id="cb19-9"><a href="#cb19-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And now, after balancing our classes, we get an even better accuracy, over 99%! But it wouldn’t be fair to compare when we artificially created almost half the data. Let’s compare both models, the balanced and unbalanced models, with the entire dataset as input.</p>
+<div id="cell-fig-confusion-matrix-3" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>y_pred_balanced <span class="op">=</span> best_model_balanced.predict(x_data)</span>
+<span id="cb24-2"><a href="#cb24-2"></a>balanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_balanced)</span>
+<span id="cb24-3"><a href="#cb24-3"></a></span>
+<span id="cb24-4"><a href="#cb24-4"></a>cm <span class="op">=</span> confusion_matrix(y_data, y_pred_balanced)</span>
+<span id="cb24-5"><a href="#cb24-5"></a></span>
+<span id="cb24-6"><a href="#cb24-6"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
+<span id="cb24-7"><a href="#cb24-7"></a>disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
+<span id="cb24-8"><a href="#cb24-8"></a>plt.title(<span class="st">'Balanced Confusion Matrix'</span>)</span>
+<span id="cb24-9"><a href="#cb24-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-confusion-matrix-3" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-confusion-matrix-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="002-Datasets_files/figure-html/fig-confusion-matrix-3-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="534" height="449">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-confusion-matrix-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Balanced model confusion matrix.
+</figcaption>
+</figure>
+</div>
+</div>
 </div>
 <p><br></p>
-<div id="ab8008f9" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>y_pred_unbalanced <span class="op">=</span> best_model.predict(x_data)</span>
-<span id="cb20-2"><a href="#cb20-2"></a>unbalanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_unbalanced)</span>
-<span id="cb20-3"><a href="#cb20-3"></a></span>
-<span id="cb20-4"><a href="#cb20-4"></a>cm <span class="op">=</span> confusion_matrix(y_data, y_pred_unbalanced)</span>
-<span id="cb20-5"><a href="#cb20-5"></a></span>
-<span id="cb20-6"><a href="#cb20-6"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
-<span id="cb20-7"><a href="#cb20-7"></a>disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
-<span id="cb20-8"><a href="#cb20-8"></a>plt.title(<span class="st">'Confusion Matrix'</span>)</span>
-<span id="cb20-9"><a href="#cb20-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-fig-confusion-matrix-4" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>y_pred_unbalanced <span class="op">=</span> best_model.predict(x_data)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>unbalanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_unbalanced)</span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a>cm <span class="op">=</span> confusion_matrix(y_data, y_pred_unbalanced)</span>
+<span id="cb25-5"><a href="#cb25-5"></a></span>
+<span id="cb25-6"><a href="#cb25-6"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
+<span id="cb25-7"><a href="#cb25-7"></a>disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
+<span id="cb25-8"><a href="#cb25-8"></a>plt.title(<span class="st">'Unbalanced Confusion Matrix'</span>)</span>
+<span id="cb25-9"><a href="#cb25-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-confusion-matrix-4" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-confusion-matrix-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="002-Datasets_files/figure-html/fig-confusion-matrix-4-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="534" height="449">
 </div>
-<p><br> Results for the balanced model: - It predicted that 436 cases were high risk, 387 of those were rightfully high risk (88.76% accuracy). - It predicted that 28729 cases were not high risk, 28617 of those were rightfully not high risk (99.61% accuracy). - Overall accuracy of 99.45%.</p>
-<p>Results for the unbalanced mode: - It predicted that 3 cases were high risk, 3 of those were rightfully high risk (100% accuracy). - It predicted that 29162 cases were not high risk, 28666 of those were rightfully not high risk (98.30% accuracy). - Overall accuracy of 98.30%.</p>
-<p>Only when measured by their overall accuracy does the balanced model truly shine. But only a glimpse into the confusion matrix will clearly shows that the balanced model actually learned from the high risk entries, whereas the unbalanced one barely did.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-confusion-matrix-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Unbalanced model confusion matrix.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br> Results for the balanced model:</p>
+<ul>
+<li>It predicted that over 400 cases were high risk, most of them rightfully so.</li>
+<li>It predicted that almost all cases were not high risk, most of them rightfully so.</li>
+</ul>
+<p>Results for the unbalanced mode:</p>
+<ul>
+<li>It predicted that close to 0 cases were high risk.</li>
+<li>It predicted that almost all cases were not high risk.</li>
+</ul>
+<p>Only when measured by their overall accuracy does the balanced model truly shine. But only a glimpse into the confusion matrix clearly shows that the balanced model actually learned from the high risk entries, whereas the unbalanced one barely did.</p>
 </section>
 <section id="comparing-with-unseen-data" class="level3">
 <h3 class="anchored" data-anchor-id="comparing-with-unseen-data">Comparing with unseen data</h3>
-<p>In all fairness though, we’re measuring them by almost the same data we trained both models on. Let’s throw at them data it they have never seen.</p>
-<div id="d49c66fc" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>test_df <span class="op">=</span> pd.read_csv(<span class="st">"./test_data.csv"</span>)</span>
-<span id="cb21-2"><a href="#cb21-2"></a>test_df <span class="op">=</span> pd.get_dummies(test_df, columns<span class="op">=</span>[<span class="st">'Employment status'</span>, <span class="st">'Education level'</span>, <span class="st">'Marital status'</span>, <span class="st">'Dwelling'</span>], dtype<span class="op">=</span><span class="bu">int</span>)</span>
-<span id="cb21-3"><a href="#cb21-3"></a>test_df <span class="op">=</span> test_df.drop([<span class="st">'ID'</span>,<span class="st">'Has a mobile phone'</span>,<span class="st">'Job title'</span>,<span class="st">'Employment status_Pensioner'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="cf">with</span> pd.option_context(<span class="st">"future.no_silent_downcasting"</span>, <span class="va">True</span>):</span>
-<span id="cb21-5"><a href="#cb21-5"></a>    test_df[<span class="st">'Gender'</span>] <span class="op">=</span> test_df[<span class="st">'Gender'</span>].replace({<span class="st">'M'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'F'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span>
-<span id="cb21-6"><a href="#cb21-6"></a>    test_df[<span class="st">'Has a property'</span>] <span class="op">=</span> test_df[<span class="st">'Has a property'</span>].replace({<span class="st">'N'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'Y'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span>
-<span id="cb21-7"><a href="#cb21-7"></a>    test_df[<span class="st">'Has a car'</span>] <span class="op">=</span> test_df[<span class="st">'Has a car'</span>].replace({<span class="st">'N'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'Y'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span>
-<span id="cb21-8"><a href="#cb21-8"></a>scaler <span class="op">=</span> MinMaxScaler()</span>
-<span id="cb21-9"><a href="#cb21-9"></a>test_df_columns <span class="op">=</span> test_df.columns</span>
-<span id="cb21-10"><a href="#cb21-10"></a>test_df <span class="op">=</span> scaler.fit_transform(test_df)</span>
-<span id="cb21-11"><a href="#cb21-11"></a>test_df <span class="op">=</span> pd.DataFrame(test_df, columns <span class="op">=</span> test_df_columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In all fairness though, we’re measuring them by almost the same data we trained both models on. Let’s throw at them data they have never seen.</p>
+<div id="641cf96d" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>test_df <span class="op">=</span> pd.get_dummies(test_df, columns<span class="op">=</span>[<span class="st">'Employment status'</span>, <span class="st">'Education level'</span>, <span class="st">'Marital status'</span>, <span class="st">'Dwelling'</span>], dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb26-2"><a href="#cb26-2"></a>test_df <span class="op">=</span> test_df.drop([<span class="st">'ID'</span>,<span class="st">'Has a mobile phone'</span>,<span class="st">'Job title'</span>,<span class="st">'Employment status_Pensioner'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="co">#with pd.option_context("future.no_silent_downcasting", True):</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a>test_df[<span class="st">'Gender'</span>] <span class="op">=</span> test_df[<span class="st">'Gender'</span>].replace({<span class="st">'M'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'F'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span>
+<span id="cb26-5"><a href="#cb26-5"></a>test_df[<span class="st">'Has a property'</span>] <span class="op">=</span> test_df[<span class="st">'Has a property'</span>].replace({<span class="st">'N'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'Y'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span>
+<span id="cb26-6"><a href="#cb26-6"></a>test_df[<span class="st">'Has a car'</span>] <span class="op">=</span> test_df[<span class="st">'Has a car'</span>].replace({<span class="st">'N'</span>: <span class="bu">int</span>(<span class="dv">0</span>), <span class="st">'Y'</span>: <span class="bu">int</span>(<span class="dv">1</span>)}).astype(<span class="bu">int</span>)</span>
+<span id="cb26-7"><a href="#cb26-7"></a>scaler <span class="op">=</span> MinMaxScaler()</span>
+<span id="cb26-8"><a href="#cb26-8"></a>test_df_columns <span class="op">=</span> test_df.columns</span>
+<span id="cb26-9"><a href="#cb26-9"></a>test_df <span class="op">=</span> scaler.fit_transform(test_df)</span>
+<span id="cb26-10"><a href="#cb26-10"></a>test_df <span class="op">=</span> pd.DataFrame(test_df, columns <span class="op">=</span> test_df_columns)</span>
+<span id="cb26-11"><a href="#cb26-11"></a></span>
+<span id="cb26-12"><a href="#cb26-12"></a>y_data <span class="op">=</span> test_df[<span class="st">'Is high risk'</span>]</span>
+<span id="cb26-13"><a href="#cb26-13"></a>x_data <span class="op">=</span> test_df.drop(columns<span class="op">=</span>[<span class="st">'Is high risk'</span>])</span>
+<span id="cb26-14"><a href="#cb26-14"></a></span>
+<span id="cb26-15"><a href="#cb26-15"></a>y_pred_unbalanced <span class="op">=</span> best_model.predict(x_data)</span>
+<span id="cb26-16"><a href="#cb26-16"></a>unbalanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_unbalanced)</span>
+<span id="cb26-17"><a href="#cb26-17"></a></span>
+<span id="cb26-18"><a href="#cb26-18"></a>y_pred_balanced <span class="op">=</span> best_model_balanced.predict(x_data)</span>
+<span id="cb26-19"><a href="#cb26-19"></a>balanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_balanced)</span>
+<span id="cb26-20"><a href="#cb26-20"></a></span>
+<span id="cb26-21"><a href="#cb26-21"></a><span class="bu">print</span>(<span class="ss">f"Accuracy on dataset with balanced training: </span><span class="sc">{</span>balanced_accuracy<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb26-22"><a href="#cb26-22"></a><span class="bu">print</span>(<span class="ss">f"Accuracy on dataset set with unbalanced training: </span><span class="sc">{</span>unbalanced_accuracy<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy on dataset with balanced training: 91.33%
+Accuracy on dataset set with unbalanced training: 98.40%</code></pre>
 </div>
-<p><br></p>
-<div id="5f203ab7" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>y_data <span class="op">=</span> test_df[<span class="st">'Is high risk'</span>]</span>
-<span id="cb22-2"><a href="#cb22-2"></a>x_data <span class="op">=</span> test_df.drop(columns<span class="op">=</span>[<span class="st">'Is high risk'</span>])</span>
-<span id="cb22-3"><a href="#cb22-3"></a></span>
-<span id="cb22-4"><a href="#cb22-4"></a>y_pred_unbalanced <span class="op">=</span> best_model.predict(x_data)</span>
-<span id="cb22-5"><a href="#cb22-5"></a>unbalanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_unbalanced)</span>
-<span id="cb22-6"><a href="#cb22-6"></a></span>
-<span id="cb22-7"><a href="#cb22-7"></a>y_pred_balanced <span class="op">=</span> best_model_balanced.predict(x_data)</span>
-<span id="cb22-8"><a href="#cb22-8"></a>balanced_accuracy <span class="op">=</span> accuracy_score(y_data, y_pred_balanced)</span>
-<span id="cb22-9"><a href="#cb22-9"></a></span>
-<span id="cb22-10"><a href="#cb22-10"></a><span class="bu">print</span>(<span class="ss">f"Accuracy on dataset with balanced training: </span><span class="sc">{</span>balanced_accuracy<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
-<span id="cb22-11"><a href="#cb22-11"></a><span class="bu">print</span>(<span class="ss">f"Accuracy on dataset set with unbalanced training: </span><span class="sc">{</span>unbalanced_accuracy<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br> Overall accuracy of the balanced model dropped to 90.65% and the unbalanced model stayed high at 98.40%, but is it truly accurate?</p>
-<div id="a9f67699" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>cm <span class="op">=</span> confusion_matrix(y_data, y_pred_unbalanced)</span>
-<span id="cb23-2"><a href="#cb23-2"></a></span>
-<span id="cb23-3"><a href="#cb23-3"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
-<span id="cb23-4"><a href="#cb23-4"></a>disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
-<span id="cb23-5"><a href="#cb23-5"></a>plt.title(<span class="st">'Unbalanced Confusion Matrix'</span>)</span>
-<span id="cb23-6"><a href="#cb23-6"></a>plt.show()</span>
-<span id="cb23-7"><a href="#cb23-7"></a></span>
-<span id="cb23-8"><a href="#cb23-8"></a>cm <span class="op">=</span> confusion_matrix(y_data, y_pred_balanced)</span>
-<span id="cb23-9"><a href="#cb23-9"></a></span>
-<span id="cb23-10"><a href="#cb23-10"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
-<span id="cb23-11"><a href="#cb23-11"></a>disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
-<span id="cb23-12"><a href="#cb23-12"></a>plt.title(<span class="st">'Balanced Confusion Matrix'</span>)</span>
-<span id="cb23-13"><a href="#cb23-13"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br> Overall accuracy of the balanced model dropped to a little over 90% and the unbalanced model stayed high, but is it truly accurate? Let’s calculate again the confusion matrices.</p>
+<div id="cell-fig-confusion-matrix-5" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>cm <span class="op">=</span> confusion_matrix(y_data, y_pred_unbalanced)</span>
+<span id="cb28-2"><a href="#cb28-2"></a></span>
+<span id="cb28-3"><a href="#cb28-3"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
+<span id="cb28-4"><a href="#cb28-4"></a>disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
+<span id="cb28-5"><a href="#cb28-5"></a>plt.title(<span class="st">'Unbalanced Confusion Matrix'</span>)</span>
+<span id="cb28-6"><a href="#cb28-6"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-confusion-matrix-5" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-confusion-matrix-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="002-Datasets_files/figure-html/fig-confusion-matrix-5-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="525" height="449">
 </div>
-<p><br> It isn’t. The unbalanced model did not predict any high risk, whereas the balanced model predicted 635 cases. It did so correctly at 5.51% accuracy which is not that good, but that is a story for a different day.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-confusion-matrix-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Balanced model confusion matrix against unseen data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-fig-confusion-matrix-6" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>cm <span class="op">=</span> confusion_matrix(y_data, y_pred_balanced)</span>
+<span id="cb29-2"><a href="#cb29-2"></a></span>
+<span id="cb29-3"><a href="#cb29-3"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>best_model.classes_)</span>
+<span id="cb29-4"><a href="#cb29-4"></a>disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span>
+<span id="cb29-5"><a href="#cb29-5"></a>plt.title(<span class="st">'Balanced Confusion Matrix'</span>)</span>
+<span id="cb29-6"><a href="#cb29-6"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-confusion-matrix-6" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-confusion-matrix-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="002-Datasets_files/figure-html/fig-confusion-matrix-6-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="525" height="449">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-confusion-matrix-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Unbalanced model confusion matrix against unseen data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br> It isn’t. The unbalanced model predicted almost no high risk clients, whereas the balanced model predicted multiple cases. It did so correctly at a very low accuracy which is not that good, but that is a story for a different day.</p>
 
 
 </section>
