@@ -62,3 +62,6 @@ PCA Feature engineering (https://www.kaggle.com/code/ryanholbrook/principal-comp
 Permutation importance, partial dependence plots, AEL (ACCUMULATED LOCAL EFFECTS), SHAP values (https://www.kaggle.com/code/dansbecker/advanced-uses-of-shap-values)
 https://www.kaggle.com/code/alexisbcook/play-the-game
 https://www.kaggle.com/learn/time-series
+Custom loss para el dataset de tarjetas de crédito (agregarle recall a la función de pérdida )
+Bayesian optimization (Ray library)
+Embeddings
