@@ -65,3 +65,4 @@ https://www.kaggle.com/learn/time-series
 Custom loss para el dataset de tarjetas de crédito (agregarle recall a la función de pérdida )
 Bayesian optimization (Ray library)
 Embeddings
+Gradio & Streamlit
