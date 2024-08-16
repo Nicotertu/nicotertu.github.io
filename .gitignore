@@ -2,3 +2,8 @@
 *.tsv
 *.model
 *.pth
+*.pt
+*datasets
+*runs
+*.pkl
+*.json
